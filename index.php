@@ -170,7 +170,9 @@
 
 <!--FOOTER start-->
 
-<div class="footer"
+<div class="footer">
+    
+</div>
 
 <!--FOOTER end-->
 
