@@ -6,42 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://kit.fontawesome.com/90241b67b0.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <!--HEADER start-->
-<header class="header">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid header-nav">
-                <a class="navbar-brand" href="#">TR</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Главная</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#tr">Тренировочные программы</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Тренера</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">О нас</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex header-search" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-                        <button class="btn" type="submit">Поиск</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
+<?php include "pages/header.php"; ?>
 <!--HEADER end-->
 
 
@@ -91,9 +61,9 @@
         <h2 class="main-trainers">
             Наши лучшие тренера
         </h2>
-        <div class="train-cards col-md-9 col-12">
+        <div class="train-cards col-lg-9 col-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <a href="">
                         <div class="card">
                             <img src="assets/img/trainers/trainer_1.jpg" class="card-img-top" alt="...">
@@ -105,7 +75,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <a href="">
                         <div class="card">
                             <img src="assets/img/trainers/trainer_2.jpg" class="card-img-top" alt="...">
@@ -117,7 +87,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <a href="">
                         <div class="card">
                             <img src="assets/img/trainers/trainer_3.jpg" class="card-img-top" alt="...">
@@ -129,7 +99,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <a href="">
                         <div class="card">
                             <img src="assets/img/trainers/trainer_4.jpg" class="card-img-top" alt="...">
@@ -145,23 +115,9 @@
         </div>
         <!--TRAINERS CARDS start-->
         
+        
         <!--SIDEBAR start-->
-        <div class="sidebar col-md-3 col-12">
-            <div class="section topics">
-                <h3>Категории</h3>
-                <ul>
-                    <li>
-                        <a href="">Программы тренировок</a>
-                    </li>
-                    <li>
-                        <a href="">Выбрать тренера</a>
-                    </li>
-                    <li>
-                        <a href="">Тех. поддержка</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <?php include "pages/sidebar.php"; ?>
         <!--SIDEBAR end-->
 
     </div>
@@ -169,11 +125,7 @@
 <!--MAIN end-->
 
 <!--FOOTER start-->
-
-<div class="footer">
-    
-</div>
-
+<?php include "pages/footer.php"; ?>
 <!--FOOTER end-->
 
 

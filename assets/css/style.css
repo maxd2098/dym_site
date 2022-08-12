@@ -8,6 +8,10 @@ a {
     color: black;
 }
 
+a:hover {
+    color: black;
+}
+
 /*
     HEADER start
 */
@@ -30,7 +34,7 @@ a {
 }
 
 .header-nav li {
-    padding: 0px 0;
+    padding: 0;
     transition: all 0.2s;
 }
 
@@ -42,28 +46,15 @@ a {
     font-size: 40px;
 }
 
-.header-search button {
-    font-size: 20px;
+.header-nav .authorization .aut {
+    padding: 30px 10px;
+    transition: all 0.2s;
 }
 
-.header-nav .header-search button {
-    border-color: white;
-    background-color: indianred;
-    color: white;
-}
-
-.header-nav .header-search button:hover {
-    background-color: #c13535;
-}
-
-.header-nav .header-search button:active {
+.header-nav .authorization .aut:hover {
     background-color: firebrick;
 }
 
-.header-nav .header-search input:focus {
-    box-shadow: none;
-    border-color: firebrick;
-}
 
 /*
     CAROUSEL
@@ -81,7 +72,7 @@ a {
 
 .carousel-inner {
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(205,92,92,0.1);
 }
 
 .carousel-item {
@@ -99,7 +90,7 @@ a {
 }
 
 .carousel-item a:hover {
-    color: lightgray;
+    color: #e1e1e1;
     transition: all 0.1s;
 }
 
@@ -114,6 +105,7 @@ a {
 
 .main-content {
     padding: 30px 0;
+    min-height: 442px;
 }
 
 .train-cards .card {
@@ -170,7 +162,101 @@ a {
     transition: all 0.2s;
 }
 
+.sidebar .title-search {
+    padding-top: 15px;
+}
 
+.sidebar .sidebar-search {
+    background-color: indianred;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.sidebar .sidebar-search button {
+    font-size: 20px;
+}
+
+.sidebar .sidebar-search button {
+    border-color: white;
+    background-color: indianred;
+    color: white;
+}
+
+.sidebar .sidebar-search button:hover {
+    background-color: #c13535;
+}
+
+.sidebar .sidebar-search button:active {
+    background-color: firebrick;
+}
+
+.sidebar .sidebar-search input:focus {
+    box-shadow: none;
+    border-color: firebrick;
+}
+
+/*
+    FOOTER
+ */
+
+.footer {
+    color: white;
+    background: indianred;
+}
+
+.footer-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.footer .socials {
+    padding: 10px 0;
+}
+
+.footer .socials a {
+    color: white;
+    font-size: 30px;
+    width: 50px;
+    margin: 15px;
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.footer .socials a:hover {
+    color: #e1e1e1;
+    border-color: #e1e1e1;
+}
+
+.footer .rules {
+    font-size: 15px;
+}
+
+
+/*
+    PROGRAMS content
+ */
+
+.program-cards img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+
+
+.program-cards .card {
+    margin-bottom: 20px;
+    font-size: 15px
+}
+
+.program-cards .card:hover {
+    background-color: whitesmoke;
+}
+
+.program-cards .card-date {
+    padding-bottom: 5px;
+}
 
 
 
