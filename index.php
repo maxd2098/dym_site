@@ -1,3 +1,9 @@
+<?php
+
+    include "path.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,8 +23,8 @@
 
 <!--MAIN start-->
 
+<!--CAROUSEL start-->
 <div class="container">
-    <!--CAROUSEL start-->
     <h2 class="title-carousel">
         Тренажерка
     </h2>
@@ -52,8 +58,9 @@
             <span class="visually-hidden">Следующий</span>
         </button>
     </div>
-    <!--CAROUSEL end-->
 </div>
+<!--CAROUSEL end-->
+
 
 <div class="container">
     <!--TRAINERS CARDS start-->
@@ -64,9 +71,11 @@
         <div class="train-cards col-lg-9 col-12">
             <div class="row">
                 <div class="col-lg-6">
-                    <a href="">
+                    <a href="<?php echo BASE_URL . 'train.php'; ?>">
                         <div class="card">
-                            <img src="assets/img/trainers/trainer_1.jpg" class="card-img-top" alt="...">
+                            <div class="img-div">
+                                <img src="assets/img/trainers/trainer_1.jpg" class="card-img-top" alt="...">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">Фред Ган</h5>
                                 <h6 class="age">32 года</h6>
@@ -76,9 +85,11 @@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                    <a href="">
+                    <a href="train.php">
                         <div class="card">
-                            <img src="assets/img/trainers/trainer_2.jpg" class="card-img-top" alt="...">
+                            <div class="img-div">
+                                <img src="assets/img/trainers/trainer_2.jpg" class="card-img-top" alt="...">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">Нильсон Дэвидс</h5>
                                 <h6 class="age">62 года</h6>
@@ -88,9 +99,11 @@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                    <a href="">
+                    <a href="train.php">
                         <div class="card">
-                            <img src="assets/img/trainers/trainer_3.jpg" class="card-img-top" alt="...">
+                            <div class="img-div">
+                                <img src="assets/img/trainers/trainer_3.jpg" class="card-img-top" alt="...">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">Майкл Джонс</h5>
                                 <h6 class="age">29 лет</h6>
@@ -100,9 +113,11 @@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                    <a href="">
+                    <a href="train.php">
                         <div class="card">
-                            <img src="assets/img/trainers/trainer_4.jpg" class="card-img-top" alt="...">
+                            <div class="img-div">
+                                <img src="assets/img/trainers/trainer_4.jpg" class="card-img-top" alt="...">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">Льюис Двигайло</h5>
                                 <h6 class="age">31 год</h6>
@@ -113,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <!--TRAINERS CARDS start-->
+        <!--TRAINERS CARDS end-->
         
         
         <!--SIDEBAR start-->

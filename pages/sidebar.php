@@ -3,13 +3,16 @@
         <h3>Категории</h3>
         <ul>
             <li>
-                <a href="">Программы тренировок</a>
+                <a href="memberships.php">Купить абонемент</a>
             </li>
             <li>
-                <a href="">Выбрать тренера</a>
+                <a href="trainers.php">Выбрать тренера</a>
             </li>
             <li>
-                <a href="">Тех. поддержка</a>
+                <a href="programms.php">Программы тренировок</a>
+            </li>
+            <li>
+                <a href="support.php">Тех. поддержка</a>
             </li>
         </ul>
     </div>

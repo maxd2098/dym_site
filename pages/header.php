@@ -1,3 +1,9 @@
+<?php
+
+include_once SITE_ROOT . "/app/controllers/users.php";
+
+?>
+
 <header class="header">
     <div class="container">
         <nav class="navbar navbar-expand-lg">
@@ -9,25 +15,31 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Главная</a>
+                            <a class="nav-link" href="<?=BASE_URL . 'index.php'?>">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="programms.php">Тренировочные программы</a>
+                            <a class="nav-link" href="<?=BASE_URL . 'programms.php'?>">Тренировочные программы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Тренеры</a>
+                            <a class="nav-link" href="<?=BASE_URL . 'trainers.php'?>">Тренеры</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Форум</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">О нас</a>
+                            <a class="nav-link" href="<?=BASE_URL . 'about.php'?>">О нас</a>
                         </li>
                     </ul>
                     <div class="authorization">
-                        <a class="aut" href="">Вход</a>
-                        <a class=""> | </a>
-                        <a class="aut" href="">Регистрация</a>
+                        <?php if(!isset($_SESSION['email'])): ?>
+                            <a class="aut" href="<?=BASE_URL . 'aut.php'?>">Вход</a>
+                            <a class=""> | </a>
+                            <a class="aut" href="<?=BASE_URL . 'reg.php'?>">Регистрация</a>
+                        <?php else: ?>
+                            <a class="aut" href="<?=BASE_URL . 'profile.php'?>">Профиль</a>
+                            <a class=""> | </a>
+                            <a class="aut" href="<?=BASE_URL . 'logout.php'?>">Выход</a>
+                        <?php endif; ?>
                     </div>
                     
                 </div>

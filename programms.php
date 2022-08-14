@@ -1,3 +1,9 @@
+<?php
+
+include "path.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -20,17 +26,20 @@
 <div class="container">
     <!--PROGRAMS CARDS start-->
     <div class="row main-content">
+        
         <div class="program-cards col-lg-9 col-12">
-            
+            <h2 class="main-trainers">
+                Программы тренировок
+            </h2>
             <div class="card col-12">
-                <a href="">
+                <a href="program.php">
                     <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="assets/img/carousel2.jpg" class="img-fluid rounded-start" alt="...">
+                        <div class="img-div col-lg-4">
+                            <img src="assets/img/programs/program_1.jpg" class="img-fluid rounded-start" alt="...">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-lg-8">
                             <div class="card-body">
-                                <h3 class="card-title">Заголовок карточки</h3>
+                                <h3 class="card-title">Упражнения на мышцы груди и плеч</h3>
                                 <div class="card-author">Фред Ган</div>
                                 <div class="card-date">11.08.22 15:32</div>
                                 <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
@@ -41,16 +50,34 @@
             </div>
 
             <div class="card col-12">
-                <a href="">
+                <a href="program.php">
                     <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="assets/img/carousel2.jpg" class="img-fluid rounded-start" alt="...">
+                        <div class="img-div col-lg-4">
+                            <img src="assets/img/programs/program_2.jpg" class="img-fluid rounded-start" alt="...">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-lg-8">
                             <div class="card-body">
-                                <h3 class="card-title">Заголовок карточки</h3>
+                                <h3 class="card-title">Упражнения на бицепс и мышцы спины</h3>
                                 <div class="card-author">Фред Ган</div>
-                                <div class="card-date">11.08.22 15:32</div>
+                                <div class="card-date">10.08.22 13:45</div>
+                                <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card col-12">
+                <a href="program.php">
+                    <div class="row g-0">
+                        <div class="img-div col-lg-4">
+                            <img src="assets/img/programs/program_3.jpg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card-body">
+                                <h3 class="card-title">Упражнения на бицепс</h3>
+                                <div class="card-author">Нильсон Дэвидс</div>
+                                <div class="card-date">10.08.22 13:45</div>
                                 <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
                             </div>
                         </div>
