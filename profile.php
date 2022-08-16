@@ -11,13 +11,17 @@ include "path.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?=BASE_URL . 'assets/css/style.css'?>">
     <script src="https://kit.fontawesome.com/90241b67b0.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <!--HEADER start-->
-<?php include "pages/header.php"; ?>
+<?php
+include "pages/header.php";
+include "pages/addYear.php";
+
+?>
 <!--HEADER end-->
 
 
@@ -27,27 +31,54 @@ include "path.php";
 <div class="container">
     <div class="row main-content">
         <div class="col-lg-9 col-12">
-            <div class="profile-content">
-                <h2 class="title">Информация о вас</h2>
-                <div class="name">Имя: <?=$_SESSION['name']; ?></div>
-                <div class="name">Фамилия: <?=$_SESSION['surname']; ?></div>
-                <div class="name">Email: <?=$_SESSION['email']; ?></div>
-                <div class="name">Номер телефона: <?=$_SESSION['phone']; ?></div>
-                <div class="name">Возраст: <?=$_SESSION['age']; ?></div>
-                <?php if($_SESSION['status'] == 0): ?>
-                    <div class="name">Статус: клиент</div>
-                <?php elseif($_SESSION['status'] == 1): ?>
-                    <div class="name">Статус: тренер</div>
-                <?php elseif($_SESSION['status'] == 2): ?>
-                    <div class="name">Статус: администратор</div>
-                    <a href="<?=BASE_URL . 'admin/admin.php'?>">
-                        <button type="button" class="btn btn-danger">Админ панель</button>
+            <div class="row profile-content">
+                <div class="col-lg-3 col-sm-4">
+                    <div class="img-div">
+                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $_SESSION['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                    </div>
+                    <div class="change-photo">
+                        <?php if($_SESSION['img'] === '' || $_SESSION['img'] === null): ?>
+                            <a class="button-reg" href="<?=BASE_URL . 'photoEdit.php'?>">
+                                <button type="button" class="btn btn-secondary">Загрузить фото</button>
+                            </a>
+                        <?php else: ?>
+                            <a class="button-reg" href="<?=BASE_URL . 'photoEdit.php'?>">
+                                <button type="button" class="btn btn-secondary">Изменить фото</button>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-sm-8">
+                    <h2 class="profile-property title">Ваш профиль</h2>
+                    <div class="profile-property name">Имя: <?=$_SESSION['name']; ?></div>
+                    <div class="profile-property surname">Фамилия: <?=$_SESSION['surname']; ?></div>
+                    <div class="profile-property email">Email: <?=$_SESSION['email']; ?></div>
+                    <div class="profile-property phone">Номер телефона: <?=$_SESSION['phone']; ?></div>
+                    <div class="profile-property age">Возраст: <?=$_SESSION['age'] . $yearAge; ?></div>
+                    <?php if($_SESSION['status'] == 0): ?>
+                        <div class="profile-property status">Статус: клиент</div>
+                    <?php elseif($_SESSION['status'] == 1): ?>
+                        <div class="profile-property status">Статус: тренер</div>
+                        <div class="profile-property experience">Стаж работы: <?=$_SESSION['experience'] . $yearExperience; ?></div>
+                    <?php elseif($_SESSION['status'] == 2): ?>
+                        <div class="profile-property status">Статус: администратор</div>
+                    <?php else: ?>
+                        <div class="profile-property status">Статус: владелец</div>
+                    <?php endif; ?>
+                    <div class="profile-property age">О себе: <?=$_SESSION['info']; ?></div>
+                    <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3): ?>
+                        <a class="admin" href="<?=BASE_URL . 'admin/admin.php'?>">
+                            <button type="button" class="btn btn-danger">Админ панель</button>
+                        </a>
+                    <?php endif; ?>
+                    <div class="w-100"></div>
+                    <a class="edit" href="<?=BASE_URL . 'profileEdit.php?id=' . $_SESSION['id']; ?>">
+                        <button type="button" class="btn btn-secondary">Редактировать профиль</button>
                     </a>
-                <?php else: ?>
-                    <div class="name">Статус: суперпользователь</div>
-                <?php endif; ?>
+                </div>
+                
             </div>
-        <?php ch($_SESSION); ?>
+            <?php //ch($_SESSION); ?>
         </div>
         
         

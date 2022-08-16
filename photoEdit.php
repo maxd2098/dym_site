@@ -17,49 +17,41 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include "pages/header.php"; ?>
+<?php include SITE_ROOT . "/pages/header.php"; ?>
 <!--HEADER end-->
 
 
 <!--MAIN start-->
 
-
 <div class="container">
-    <!--SUPPORT start-->
-    <div class="row main-content">
-        
-        <div class="support-content col-lg-9 col-12">
-            <h2 class="main-trainers">
-                Напишите нам
-            </h2>
-            <form class="support-form" method="post" action="support.php">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Адрес электронной почты</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ваш адрес">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Ваше обращение</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div class="button-support col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Отправить</button>
-                </div>
-            </form>
-        
-        </div>
-        <!--TRAINERS CARDS end-->
-        
-        
-        <!--SIDEBAR start-->
-        <?php include "pages/sidebar.php"; ?>
-        <!--SIDEBAR end-->
-    
+    <!--TRAINERS CARDS start-->
+    <div class="main-content">
+        <form class="row photo-edit justify-content-center" action="photoEdit.php" method="post" enctype="multipart/form-data">
+            <div class="mb-3 col-12 col-lg-4 error-msg">
+                <?php
+                foreach($errMsg as $msg) {
+                    echo $msg . "<br>";
+                }
+                ?>
+            </div>
+            <div class="w-100"></div>
+            <div class="mb-3 col-12 col-lg-4">
+                <input name="img" type="file" class="form-control" id="inputGroupFile02">
+            </div>
+            <div class="w-100"></div>
+            <div class="btn-div mb-3 col-12 col-lg-4">
+                <button name="button_editPhoto" type="submit" class="btn btn-primary">Сохранить</button>
+                <a class="button-reg" href="<?=BASE_URL . 'profile.php'?>">
+                    <button type="button" class="btn btn-secondary">Не сохранять</button>
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 <!--MAIN end-->
 
 <!--FOOTER start-->
-<?php include "pages/footer.php"; ?>
+<?php include SITE_ROOT . "/pages/footer.php"; ?>
 <!--FOOTER end-->
 
 
@@ -71,3 +63,5 @@ include "path.php";
 
 </body>
 </html>
+
+

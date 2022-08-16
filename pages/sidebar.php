@@ -3,16 +3,16 @@
         <h3>Категории</h3>
         <ul>
             <li>
-                <a href="memberships.php">Купить абонемент</a>
+                <a href="<?=BASE_URL . 'memberships.php'?>">Купить абонемент</a>
             </li>
             <li>
-                <a href="trainers.php">Выбрать тренера</a>
+                <a href="<?=BASE_URL . 'trainers.php'?>">Выбрать тренера</a>
             </li>
             <li>
-                <a href="programms.php">Программы тренировок</a>
+                <a href="<?=BASE_URL . 'programms.php'?>">Программы тренировок</a>
             </li>
             <li>
-                <a href="support.php">Тех. поддержка</a>
+                <a href="<?=BASE_URL . 'support.php'?>">Тех. поддержка</a>
             </li>
         </ul>
     </div>

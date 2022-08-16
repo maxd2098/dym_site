@@ -250,6 +250,7 @@ a:hover {
     max-height: 220px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 5px;
 }
 
 .program-cards .card {
@@ -278,6 +279,7 @@ a:hover {
     max-height: 200px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 5px;
 }
 
 .trainers-cards .card {
@@ -291,12 +293,6 @@ a:hover {
 
 .trainers-cards .card-date {
     padding-bottom: 5px;
-}
-
-@media screen and (max-width: 992px) {
-    .program-cards .img-div, .trainers-cards .img-div, .train-cards .img-div {
-        max-height: 500px;
-    }
 }
 
 
@@ -386,14 +382,66 @@ a:hover {
 }
 
 
+/*
+    PROFILE
+ */
+
+
+.profile-content img {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+.profile-content .img-div {
+    padding: 0;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+
+}
+
+.profile-content .profile-property {
+    padding: 5px 0;
+}
+
+.profile-content .admin button {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.profile-content .edit button {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.profile-edit .btn-div {
+    margin-top: 10px;
+}
+
+.profile-edit .btn-primary {
+    margin-right: 15px;
+}
+
+.profile-content .change-photo {
+    margin: 20px 0;
+}
 
 
 
 
 
 
+@media screen and (max-width: 992px) {
+    .program-cards .img-div, .trainers-cards .img-div, .train-cards .img-div{
+        max-height: 500px;
+    }
+}
 
-
+@media screen and (max-width: 576px) {
+    .profile-content .img-div {
+        max-height: 500px;
+    }
+}
 
 
 

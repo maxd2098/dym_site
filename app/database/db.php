@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include "connect.php";
 
 function che($value) {
@@ -111,7 +112,28 @@ function selectOneOr($table, $params = []) {
     return $query->fetch();
 }
 
-function selectAll($table, $params = []) {
+function selectAllOr($table, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= " WHERE $key = '$value'";
+        } else {
+            $where .= " OR $key = '$value'";
+        }
+    }
+    
+    $sql = "SELECT * FROM gym_site.$table" . $where;
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+
+function selectAllAnd($table, $params = []) {
     global $pdo;
     
     $where = '';
