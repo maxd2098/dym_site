@@ -1,7 +1,6 @@
 <?php
 
-include "path.php";
-//include "app/controllers/users.php";
+include "../../path.php";
 
 ?>
 
@@ -24,35 +23,19 @@ include "path.php";
 
 <!--MAIN start-->
 
-
 <div class="container">
-    <div class="main-content aut-content">
-        <form class="row justify-content-center" action="aut.php" method="post">
-            <div class="mb-3 col-12 col-lg-4 error-msg">
-                <?php
-                foreach($errMsg as $msg) {
-                    echo $msg . "<br>";
-                }
-                ?>
-            </div>
-            <div class="w-100"></div>
-            <div class="mb-3 col-12 col-lg-4">
-                <label for="exampleInputEmail1" class="form-label">Введите email или номер телефона</label>
-                <input name="email" type="text" class="form-control" id="exampleInputEmail">
-            </div>
-            <div class="w-100"></div>
-            <div class="mb-3 col-12 col-lg-4">
-                <label for="exampleInputPassword1" class="form-label">Введите пароль</label>
-                <input name="pass" type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="w-100"></div>
-            <div class="mb-3 col-12 col-lg-4">
-                <button name="button_aut" type="submit" class="btn btn-primary">Авторизация</button>
-                <a class="button-reg" href="reg.php">
-                    <button type="button" class="btn btn-secondary">Регистрация</button>
-                </a>
-            </div>
-        </form>
+    
+    <div class="row main-content">
+        <!--ADMIN CONTENT start-->
+        <div class="support-content col-lg-9 col-12">
+            <h1>Программы тренировок</h1>
+        </div>
+        <!--ADMIN CONTENT end-->
+        
+        <!--SIDEBAR start-->
+        <?php include SITE_ROOT . "/pages/sidebarAdmin.php"; ?>
+        <!--SIDEBAR end-->
+    
     </div>
 </div>
 <!--MAIN end-->
@@ -70,4 +53,5 @@ include "path.php";
 
 </body>
 </html>
+
 

@@ -52,7 +52,7 @@ include "path.php";
         
         
         <!--SIDEBAR start-->
-        <?php include "pages/sidebar.php"; ?>
+        <?php include SITE_ROOT . "/pages/sidebar.php"; ?>
         <!--SIDEBAR end-->
     
     </div>
@@ -60,7 +60,7 @@ include "path.php";
 <!--MAIN end-->
 
 <!--FOOTER start-->
-<?php include "pages/footer.php"; ?>
+<?php include SITE_ROOT . "/pages/footer.php"; ?>
 <!--FOOTER end-->
 
 

@@ -2,17 +2,19 @@
     <div class="section topics">
         <h3>Категории</h3>
         <ul>
-            <li>
-                <a href="<?=BASE_URL . 'memberships.php'?>">Купить абонемент</a>
-            </li>
-            <li>
-                <a href="<?=BASE_URL . 'trainers.php'?>">Выбрать тренера</a>
-            </li>
+            <?php if(isset($_SESSION['email'])): ?>
+                <li>
+                    <a href="<?=BASE_URL . 'memberships.php'?>">Купить абонемент</a>
+                </li>
+                <li>
+                    <a href="<?=BASE_URL . 'trainers.php'?>">Выбрать тренера</a>
+                </li>
+                <li>
+                    <a href="<?=BASE_URL . 'support.php'?>">Тех. поддержка</a>
+                </li>
+            <?php endif; ?>
             <li>
                 <a href="<?=BASE_URL . 'programms.php'?>">Программы тренировок</a>
-            </li>
-            <li>
-                <a href="<?=BASE_URL . 'support.php'?>">Тех. поддержка</a>
             </li>
         </ul>
     </div>

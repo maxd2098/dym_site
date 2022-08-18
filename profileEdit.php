@@ -68,8 +68,8 @@ include "path.php";
             <?php endif; ?>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-4">
-                <label for="exampleInputEmail1" class="form-label">Расскажите о себе</label>
-                <textarea name="info" class="form-control" rows="6" placeholder="Максимум 500 знаков"><?=$userEdit['info']; ?></textarea>
+                <label for="exampleInputEmail1" class="form-label">Расскажите о себе (max: 500 символов)</label>
+                <textarea name="info" class="form-control" rows="6" placeholder="Максимум 500 символов" maxlength="500"><?=$userEdit['info']; ?></textarea>
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-4">

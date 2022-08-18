@@ -132,7 +132,7 @@
         
         
         <!--SIDEBAR start-->
-        <?php include "pages/sidebar.php"; ?>
+        <?php include SITE_ROOT . "/pages/sidebar.php"; ?>
         <!--SIDEBAR end-->
 
     </div>

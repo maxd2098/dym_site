@@ -1,6 +1,7 @@
 <?php
 
 include "path.php";
+include SITE_ROOT . "/app/controllers/supportMsg.php";
 
 ?>
 
@@ -17,7 +18,7 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include "pages/header.php"; ?>
+<?php include SITE_ROOT . "/pages/header.php"; ?>
 <!--HEADER end-->
 
 
@@ -32,26 +33,34 @@ include "path.php";
             <h2 class="main-trainers">
                 Напишите нам
             </h2>
+            <div class="mb-3 error-msg">
+                <?php
+                foreach($errMsg as $msg) {
+                    echo $msg . "<br>";
+                }
+                //che($_POST);
+                ?>
+            </div>
             <form class="support-form" method="post" action="support.php">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Адрес электронной почты</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ваш адрес">
+                    <input value="<?=$_SESSION['email']; ?>" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ваш адрес" disabled>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Ваше обращение</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="exampleFormControlTextarea1" class="form-label">Ваше обращение (max: 1000 символов)</label>
+                    <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="6" maxlength="1000"></textarea>
                 </div>
                 <div class="button-support col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Отправить</button>
+                    <button name="button_supportMsg" type="submit" class="btn btn-primary mb-3">Отправить</button>
                 </div>
             </form>
         
         </div>
-        <!--TRAINERS CARDS end-->
+        <!--SUPPORT end-->
         
         
         <!--SIDEBAR start-->
-        <?php include "pages/sidebar.php"; ?>
+        <?php include SITE_ROOT . "/pages/sidebar.php"; ?>
         <!--SIDEBAR end-->
     
     </div>
@@ -59,7 +68,7 @@ include "path.php";
 <!--MAIN end-->
 
 <!--FOOTER start-->
-<?php include "pages/footer.php"; ?>
+<?php include SITE_ROOT . "/pages/footer.php"; ?>
 <!--FOOTER end-->
 
 

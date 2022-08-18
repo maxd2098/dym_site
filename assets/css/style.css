@@ -12,6 +12,10 @@ a:hover {
     color: black;
 }
 
+textarea {
+    resize: none;
+}
+
 /*
     HEADER start
 */
@@ -115,6 +119,8 @@ a:hover {
 .train-cards .img-div {
     overflow: hidden;
     max-height: 220px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 .train-cards .card img {
@@ -427,8 +433,41 @@ a:hover {
 }
 
 
+/*
+    FORUM
+ */
+
+.forum-content .card {
+    margin-bottom: 30px;
+}
+
+.forum-content .author {
+    display: flex;
+}
+
+.forum-content .author div {
+    padding: 5px 20px 5px 0px;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.forum-content .card:hover {
+    background-color: whitesmoke;
+}
 
 
+
+
+
+
+
+
+
+
+
+/*
+    MEDIA SCREEN
+ */
 
 
 @media screen and (max-width: 992px) {

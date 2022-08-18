@@ -24,9 +24,18 @@ include "../path.php";
 <!--MAIN start-->
 
 <div class="container">
-    <!--TRAINERS CARDS start-->
-    <div class="main-content">
-        <h1>АДМИН ПАНЕЛь</h1>
+    
+    <div class="row main-content">
+        <!--ADMIN CONTENT start-->
+        <div class="support-content col-lg-9 col-12">
+            <h1><?=$_SESSION['name'];?>, добро пожаловать в админ. панель!</h1>
+        </div>
+        <!--ADMIN CONTENT end-->
+        
+        <!--SIDEBAR start-->
+        <?php include SITE_ROOT . "/pages/sidebarAdmin.php"; ?>
+        <!--SIDEBAR end-->
+
     </div>
 </div>
 <!--MAIN end-->

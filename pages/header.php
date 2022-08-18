@@ -1,6 +1,6 @@
 <?php
 
-include_once SITE_ROOT . "/app/controllers/users.php";
+include SITE_ROOT . "/app/controllers/users.php";
 
 ?>
 
@@ -24,7 +24,7 @@ include_once SITE_ROOT . "/app/controllers/users.php";
                             <a class="nav-link" href="<?=BASE_URL . 'trainers.php'?>">Тренеры</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Форум</a>
+                            <a class="nav-link" href="<?=BASE_URL . 'forum.php'?>">Форум</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?=BASE_URL . 'about.php'?>">О нас</a>

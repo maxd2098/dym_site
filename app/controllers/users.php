@@ -1,8 +1,10 @@
 <?php
 
-include  SITE_ROOT . "/app/database/db.php";
+include_once SITE_ROOT . "/app/database/db.php";
 
-$errMsg = [];
+if (!isset($errMsg)) {
+    $errMsg = [];
+}
 
 $name = '';
 $surname = '';
@@ -93,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_aut'])) {
 
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ start
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']) && $_GET['id'] === $_SESSION['id']) {
     $userEdit = selectOneAnd('users', ['id' => $_GET['id']]);
     /*$name = $userEdit['name'];
     $surname = $userEdit['surname'];

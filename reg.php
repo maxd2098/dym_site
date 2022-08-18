@@ -1,7 +1,7 @@
 <?php
 
 include "path.php";
-include "app/controllers/users.php";
+//include "app/controllers/users.php";
 
 ?>
 
@@ -18,7 +18,7 @@ include "app/controllers/users.php";
 <body>
 
 <!--HEADER start-->
-<?php include "pages/header.php"; ?>
+<?php include SITE_ROOT . "/pages/header.php"; ?>
 <!--HEADER end-->
 
 
@@ -84,7 +84,7 @@ include "app/controllers/users.php";
 <!--MAIN end-->
 
 <!--FOOTER start-->
-<?php include "pages/footer.php"; ?>
+<?php include SITE_ROOT . "/pages/footer.php"; ?>
 <!--FOOTER end-->
 
 

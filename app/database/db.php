@@ -178,6 +178,30 @@ function delete($table, $params) {
     
 }
 
+// ФУНКЦИЯ ПОИСКА ПОСЛЕДНЕГО ОБРАЩЕНИЯ В ПОДДЕРЖКУ ПОЛЬЗОВАТЕЛЯ
+function selectOneUserToSupport($table, $params) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= " WHERE $key = '$value'";
+        } else {
+            $where .= " AND $key = '$value'";
+        }
+    }
+    
+    $sql = "
+        SELECT *
+        FROM gym_site.$table" . $where . " AND created_date = (SELECT MAX(created_date) FROM gym_site.$table $where)";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetch();
+}
+
 //$arr = [
 //    'name' => 'maxi',
 //    'surname' => 'danil',

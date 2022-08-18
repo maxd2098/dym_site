@@ -18,8 +18,8 @@ include "path.php";
 
 <!--HEADER start-->
 <?php
-include "pages/header.php";
-include "pages/addYear.php";
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/addYear.php";
 
 ?>
 <!--HEADER end-->
@@ -83,7 +83,7 @@ include "pages/addYear.php";
         
         
         <!--SIDEBAR start-->
-        <?php include "pages/sidebar.php"; ?>
+        <?php include SITE_ROOT . "/pages/sidebar.php"; ?>
         <!--SIDEBAR end-->
         
         
@@ -93,7 +93,7 @@ include "pages/addYear.php";
 
 
 <!--FOOTER start-->
-<?php include "pages/footer.php"; ?>
+<?php include SITE_ROOT . "/pages/footer.php"; ?>
 <!--FOOTER end-->
 
 
