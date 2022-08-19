@@ -458,13 +458,6 @@ textarea {
 
 
 
-
-
-
-
-
-
-
 /*
     MEDIA SCREEN
  */
@@ -481,6 +474,57 @@ textarea {
         max-height: 500px;
     }
 }
+
+
+
+
+/*
+    ADMINISTRATION
+ */
+
+.admin-content .admin-users-params {
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+.admin-content .admin-users {
+    padding: 10px 0;
+    border: 1px solid gray;
+    margin: 10px 0;
+}
+
+.admin-content .admin-users .delete a {
+    color: red;
+}
+
+.admin-content .admin-users a:hover {
+    text-decoration: underline;
+}
+
+.admin-content .admin-users:hover {
+    background-color: whitesmoke;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 include "../../path.php";
+include SITE_ROOT . '/app/controllers/adminUsers.php';
 
 ?>
 
@@ -27,10 +28,41 @@ include "../../path.php";
     
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
-        <div class="support-content col-lg-9 col-12">
-            <h1>Пользователи</h1>
+        <div class="admin-content col-lg-9 col-12">
+            <div class="row admin-users-params">
+                <div class="col-1"><strong>ID</strong></div>
+                <div class="col-2"><strong>Статус</strong></div>
+                <div class="col-5"><strong>Email</strong></div>
+                <div class="col-2"><strong>Редактировать</strong></div>
+                <div class="col-2"><strong>Удалить</strong></div>
+            </div>
+                <?php foreach($users as $user): ?>
+                    <div class="row admin-users">
+                        <div class="col-1"><?=$user['id']; ?></div>
+                        <div class="col-2"><?=$user['status']; ?></div>
+                        <?php if(strlen($user['email']) > 30): ?>
+                            <div class="col-5"><?=substr($user['email'], 0, 30); ?>...</div>
+                        <?php else: ?>
+                            <div class="col-5"><?=$user['email']; ?></div>
+                        <?php endif; ?>
+                        <?php if($user['status'] == 0 || $user['status'] == 1): ?>
+                            <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
+                            <div class="col-2 delete"><a href="edit.php?delete_id=<?=$user['id']?>">Delete</a></div>
+                        <?php elseif($user['status'] == 2 && $_SESSION['status'] == 3): ?>
+                            <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
+                            <div class="col-2 delete"><a href="edit.php?delete_id=<?=$user['id']?>">Delete</a></div>
+                        <?php elseif($user['status'] == 3 && $_SESSION['status'] == 3): ?>
+                            <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
+                            <div class="col-2 delete">Delete</div>
+                        <?php elseif($user['status'] == 2 && $_SESSION['status'] == 2): ?>
+                            <div class="col-2 edit">NoEdit</div>
+                            <div class="col-2 delete">Delete</div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
         </div>
         <!--ADMIN CONTENT end-->
+        
         
         <!--SIDEBAR start-->
         <?php include SITE_ROOT . "/pages/sidebarAdmin.php"; ?>
