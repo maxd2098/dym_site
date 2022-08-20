@@ -32,23 +32,7 @@ include SITE_ROOT . "/pages/addYear.php";
     <div class="row main-content">
         <div class="col-lg-9 col-12">
             <div class="row profile-content">
-                <div class="col-lg-3 col-sm-4">
-                    <div class="img-div">
-                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $_SESSION['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
-                    </div>
-                    <div class="change-photo">
-                        <?php if($_SESSION['img'] === '' || $_SESSION['img'] === null): ?>
-                            <a class="button-reg" href="<?=BASE_URL . 'photoEdit.php'?>">
-                                <button type="button" class="btn btn-secondary">Загрузить фото</button>
-                            </a>
-                        <?php else: ?>
-                            <a class="button-reg" href="<?=BASE_URL . 'photoEdit.php'?>">
-                                <button type="button" class="btn btn-secondary">Изменить фото</button>
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-sm-8">
+                <div class="col-lg-7 col-sm-8">
                     <h2 class="profile-property title">Ваш профиль</h2>
                     <div class="profile-property name">Имя: <?=$_SESSION['name']; ?></div>
                     <div class="profile-property surname">Фамилия: <?=$_SESSION['surname']; ?></div>
@@ -75,6 +59,28 @@ include SITE_ROOT . "/pages/addYear.php";
                     <a class="edit" href="<?=BASE_URL . 'profileEdit.php?id=' . $_SESSION['id']; ?>">
                         <button type="button" class="btn btn-secondary">Редактировать профиль</button>
                     </a>
+                    <?php if($_SESSION['status'] == 1): ?>
+                        <div class="w-100"></div>
+                        <a class="edit_programs" href="<?=BASE_URL . 'programsEdit.php?id=' . $_SESSION['id']; ?>">
+                            <button type="button" class="btn btn-danger">Редактировать мои программы тренировок</button>
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="img-div">
+                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $_SESSION['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                    </div>
+                    <div class="change-photo">
+                        <?php if($_SESSION['img'] === '' || $_SESSION['img'] === null): ?>
+                            <a class="button-reg" href="<?=BASE_URL . 'photoEdit.php'?>">
+                                <button type="button" class="btn btn-secondary">Загрузить фото</button>
+                            </a>
+                        <?php else: ?>
+                            <a class="button-reg" href="<?=BASE_URL . 'photoEdit.php'?>">
+                                <button type="button" class="btn btn-secondary">Изменить фото</button>
+                            </a>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 
             </div>

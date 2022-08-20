@@ -47,6 +47,10 @@ include "path.php";
                 разнесены на независимые элементы. Но акционеры крупнейших компаний, вне зависимости от их уровня,
                 должны быть в равной степени предоставлены сами себе.
             </div>
+            <button type="button like-program" class="btn btn-primary">
+                <i class="fa-solid fa-thumbs-up"></i> Нравится
+                <span class="badge">1000</span>
+            </button>
         </div>
         <!--TRAINERS CARDS end-->
         

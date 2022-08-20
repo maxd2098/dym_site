@@ -253,7 +253,7 @@ textarea {
 }
 
 .program-cards .img-div {
-    max-height: 220px;
+    height: 200px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -270,6 +270,41 @@ textarea {
 
 .program-cards .card-date {
     padding-bottom: 5px;
+}
+
+.program-describe button {
+    background-color: indianred;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.program-describe button:hover {
+    background-color: firebrick;
+}
+
+.program-describe button:focus {
+    background-color: firebrick;
+    box-shadow: none;
+    color: black;
+}
+
+.program-describe button:active {
+    box-shadow: none;
+    color: black;
+    --bs-btn-focus-shadow-rgb: none;
+}
+
+.program-describe .describe-program {
+    padding-bottom: 30px;
+}
+
+.button-program-add button {
+    font-size: 20px;
+}
+
+.program-cards .card-author, .program-cards .card-date {
+    font-style: italic;
 }
 
 
@@ -432,6 +467,11 @@ textarea {
     margin: 20px 0;
 }
 
+.profile-content .edit_programs button {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
 
 /*
     FORUM
@@ -465,7 +505,7 @@ textarea {
 
 @media screen and (max-width: 992px) {
     .program-cards .img-div, .trainers-cards .img-div, .train-cards .img-div{
-        max-height: 500px;
+        height: 400px;
     }
 }
 
@@ -480,6 +520,11 @@ textarea {
 
 /*
     ADMINISTRATION
+ */
+
+
+/*
+    USERS
  */
 
 .admin-content .admin-users-params {
@@ -506,7 +551,9 @@ textarea {
 }
 
 
-
+/*
+    PROGRAMMS
+ */
 
 
 

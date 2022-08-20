@@ -1,6 +1,7 @@
 <?php
 
 include "../../path.php";
+include SITE_ROOT . '/app/controllers/adminPrograms.php';
 
 ?>
 
@@ -27,7 +28,7 @@ include "../../path.php";
     
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
-        <div class="support-content col-lg-9 col-12">
+        <div class="programs-admin-content col-lg-9 col-12">
             <h1>Программы тренировок</h1>
         </div>
         <!--ADMIN CONTENT end-->

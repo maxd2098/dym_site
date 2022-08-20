@@ -17,7 +17,12 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/app/controllers/programs.php";
+
+?>
 <!--HEADER end-->
 
 
@@ -28,9 +33,18 @@ include "path.php";
     <div class="row main-content">
         
         <div class="program-cards col-lg-9 col-12">
-            <h2 class="main-trainers">
-                Программы тренировок
-            </h2>
+            <div class="d-flex justify-content-between">
+                <h2 class="main-trainers">
+                    Программы тренировок
+                </h2>
+                <?php if(isset($_SESSION['status']) && $_SESSION['status'] == 1): ?>
+                    <div class="button-program-add">
+                        <a href="<?=BASE_URL . 'createProgram.php'?>">
+                            <button type="button" class="btn btn-danger">Добавить свою программу</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
             <div class="card col-12">
                 <a href="program.php">
                     <div class="row g-0">
@@ -40,7 +54,7 @@ include "path.php";
                         <div class="col-lg-8">
                             <div class="card-body">
                                 <h3 class="card-title">Упражнения на мышцы груди и плеч</h3>
-                                <div class="card-author">Фред Ган</div>
+                                <div class="card-author">Автор: Фред Ган</div>
                                 <div class="card-date">11.08.22 15:32</div>
                                 <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
                             </div>
@@ -58,7 +72,7 @@ include "path.php";
                         <div class="col-lg-8">
                             <div class="card-body">
                                 <h3 class="card-title">Упражнения на бицепс и мышцы спины</h3>
-                                <div class="card-author">Фред Ган</div>
+                                <div class="card-author">Автор: Фред Ган</div>
                                 <div class="card-date">10.08.22 13:45</div>
                                 <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
                             </div>

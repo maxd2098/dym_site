@@ -70,6 +70,27 @@ function update($table, $id, $params) {
     dbCheckError($query);
 }
 
+function updateProgram($table, $id, $params) {
+    global $pdo;
+    
+    $set = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $set .= "$key = '$value'";
+        } else {
+            $set .= ", $key = '$value'";
+        }
+    }
+    
+    $sql = "UPDATE gym_site.$table SET $set WHERE id_program = $id";
+    
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+}
+
 function selectOneAnd($table, $params = []) {
     global $pdo;
     
@@ -201,6 +222,38 @@ function selectOneUserToSupport($table, $params) {
     dbCheckError($query);
     return $query->fetch();
 }
+
+function selectAllStatesForTrainer($table1, $table2, $params) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= " WHERE $key = '$value'";
+        } else {
+            $where .= " AND $key = '$value'";
+        }
+    }
+    
+    $sql = "
+        SELECT id_program, title, author_id, text, count_like, t1.img, t1.created_date, t1.change_date, name, surname
+        FROM gym_site.$table1 AS t1 JOIN gym_site.$table2 AS t2 ON t1.author_id = t2.id" . $where;
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+
+
+
+
+
+
+
+
+
 
 //$arr = [
 //    'name' => 'maxi',
