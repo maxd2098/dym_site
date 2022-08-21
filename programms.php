@@ -45,59 +45,35 @@ include SITE_ROOT . "/app/controllers/programs.php";
                     </div>
                 <?php endif; ?>
             </div>
-            <div class="card col-12">
-                <a href="program.php">
-                    <div class="row g-0">
-                        <div class="img-div col-lg-4">
-                            <img src="assets/img/programs/program_1.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h3 class="card-title">Упражнения на мышцы груди и плеч</h3>
-                                <div class="card-author">Автор: Фред Ган</div>
-                                <div class="card-date">11.08.22 15:32</div>
-                                <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+    
+            <?php foreach($programs as $program): ?>
+                <?php if($program['publish'] == 1): ?>
+                    <div class="card col-12">
+                        <a href="<?=BASE_URL . 'program.php?id_program=' . $program['id_program']; ?>">
+                            <div class="row g-0">
+                                <div class="img-div col-lg-4">
+                                    <div class="img-div">
+                                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><?=$program['title']; ?></h3>
+                                        <div class="card-author">Автор: <?=$program['name'] . ' ' . $program['surname']; ?></div>
+                                        <div class="row">
+                                            <div class="card-date col-5">Опубликован: <?=$program['created_date']; ?></div>
+                                            <?php if($program['change_date'] != ''): ?>
+                                                <div class="card-date-change col-5">Изменен: <?=$program['change_date']; ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <p class="card-text"><?=mb_substr($program['text'], 0, 200, $encoding='utf8') . '...'; ?></p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-
-            <div class="card col-12">
-                <a href="program.php">
-                    <div class="row g-0">
-                        <div class="img-div col-lg-4">
-                            <img src="assets/img/programs/program_2.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h3 class="card-title">Упражнения на бицепс и мышцы спины</h3>
-                                <div class="card-author">Автор: Фред Ган</div>
-                                <div class="card-date">10.08.22 13:45</div>
-                                <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="card col-12">
-                <a href="program.php">
-                    <div class="row g-0">
-                        <div class="img-div col-lg-4">
-                            <img src="assets/img/programs/program_3.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h3 class="card-title">Упражнения на бицепс</h3>
-                                <div class="card-author">Нильсон Дэвидс</div>
-                                <div class="card-date">10.08.22 13:45</div>
-                                <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
             
         </div>
         <!--PROGRAMS CARDS start-->

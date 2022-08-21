@@ -4,6 +4,8 @@ include_once SITE_ROOT . "/app/database/db.php";
 
 // ДОБАВЛЕНИЕ СТАТЬИ start
 
+$programs = selectAllStatesForTrainer('programs', 'users');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_createProgram'])) {
     $title = trim($_POST['title']);
     $text = $_POST['text'];
@@ -57,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_createProgram']
 
 // ВЫВОД ВСЕХ СТАТЕЙ ТРЕНЕРА ДЛЯ РЕДАКТИРОВАНИЯ start
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']) && $_GET['id'] === $_SESSION['id']) {
-    $programs = selectAllStatesForTrainer('programs', 'users', ['author_id' => $_GET['id']]);
+    $programsTrainer = selectAllStatesForTrainer('programs', 'users', ['author_id' => $_GET['id']]);
     //che($programs);
 }
 
@@ -66,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']) && $_GET['id'] ===
 
 // РЕДАКТИРОВАНИЕ СТАТЬИ start
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id_program'])) {
-    $program = selectOneAnd('programs', ['id_program' => $_GET['id_program']]);
+    $program = selectOneAndForDisplayOrEditProgram('programs', 'users', ['id_program' => $_GET['id_program']]);
     //che($program);
 }
 
@@ -115,15 +117,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editProgram']))
         $errMsg []= 'Не все поля * заполнены';
         $program = selectOneAnd('programs', ['id_program' => $id_program]);
     } else {
-        
+        $timeNow = date('Y-m-d H:i:s', time() + (60 * 60 * 10));
+        //che($timeNow);
         $program = [
             'title' => $title,
             'text' => $text,
-            'author_id' => $author_id
+            'author_id' => $author_id,
+            'change_date' => $timeNow
         ];
         if(isset($_POST['img'])) $program['img'] = $_POST['img'];
         updateProgram('programs', $id_program, $program);
-        header('location: programms.php');
+        header('location: program.php?id_program=' . $id_program);
     }
 }
 

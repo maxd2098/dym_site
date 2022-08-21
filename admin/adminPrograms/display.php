@@ -1,7 +1,6 @@
 <?php
 
 include "../../path.php";
-include SITE_ROOT . '/app/controllers/adminPrograms.php';
 
 ?>
 
@@ -18,7 +17,12 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . '/app/controllers/adminPrograms.php';
+
+?>
 <!--HEADER end-->
 
 
@@ -28,8 +32,40 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
     
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
-        <div class="programs-admin-content col-lg-9 col-12">
-            <h1>Программы тренировок</h1>
+        <div class="admin-content col-lg-9 col-12">
+            <h2>Тренировочные программы</h2>
+            <div class="row admin-params">
+                <div class="col-1"><strong>ID</strong></div>
+                <div class="col-3"><strong>Автор</strong></div>
+                <div class="col-4"><strong>Название</strong></div>
+                <div class="col-2"><strong>Редактировать</strong></div>
+                <div class="col-2"><strong>Статус</strong></div>
+            </div>
+            <?php foreach($programs as $program): ?>
+            <?php //che($programs); ?>
+                <div class="row admin-string">
+                    <div class="col-1"><?=$program['id_program']; ?></div>
+                    
+                    <?php if(mb_strlen($program['email']) > 15): ?>
+                        <div class="col-3"><?=mb_substr($program['email'], 0, 15, $encoding='utf8'); ?>...</div>
+                    <?php else: ?>
+                        <div class="col-3"><?=$program['email']; ?></div>
+                    <?php endif; ?>
+                    
+                    <?php if(mb_strlen($program['title']) > 20): ?>
+                        <div class="col-4"><?=mb_substr($program['title'], 0, 20, $encoding='utf8'); ?>...</div>
+                    <?php else: ?>
+                        <div class="col-4"><?=$program['title']; ?></div>
+                    <?php endif; ?>
+                    <div class="col-1 edit"><a href="edit.php?edit_id=<?=$program['id_program']?>">Edit</a></div>
+                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$program['id_program']?>">Delete</a></div>
+                    <?php if($program['publish'] == 1): ?>
+                        <div class="col-2 status"><a href="edit.php?edit_id=<?=$program['id_program']?>&publish=0">Publish</a></div>
+                    <?php else: ?>
+                        <div class="col-2 status"><a href="edit.php?edit_id=<?=$program['id_program']?>&publish=1">UnPublish</a></div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
         </div>
         <!--ADMIN CONTENT end-->
         

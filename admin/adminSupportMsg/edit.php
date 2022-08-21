@@ -20,7 +20,7 @@ include "../../path.php";
 <?php
 
 include SITE_ROOT . "/pages/header.php";
-include SITE_ROOT . '/app/controllers/adminPrograms.php';
+include SITE_ROOT . '/app/controllers/adminSupportMsg.php';
 
 ?>
 <!--HEADER end-->
@@ -33,45 +33,31 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <form class="row justify-content-center" action="edit.php" method="post" enctype="multipart/form-data">
-                <div class="mb-3 col-12 col-lg-6 error-msg">
-                    <?php
-                    foreach($errMsg as $msg) {
-                        echo $msg . "<br>";
-                    }
-                    ?>
+            <form class="row justify-content-center">
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">ID сообщения</label>
+                    <input value="<?=$supportMsg['id']; ?>" type="text" class="form-control" id="regName" readonly>
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Автор*</label>
-                    <input name="name_user" value="<?=$program['name'] . ' ' . $program['surname']; ?>" type="text" class="form-control" id="regName" readonly>
+                    <label for="exampleInputEmail1" class="form-label">Статус автора</label>
+                    <input value="<?=$supportMsg['status']; ?>" type="text" class="form-control" id="regName" readonly>
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">ID программы*</label>
-                    <input name="id_program" value="<?=$program['id_program']; ?>" type="text" class="form-control" id="regName" readonly>
+                    <label for="exampleInputEmail1" class="form-label">Email автора</label>
+                    <input value="<?=$supportMsg['email']; ?>" type="text" class="form-control" id="regSurname" placeholder="Заголовок программы" readonly>
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Заголовок*</label>
-                    <input name="title" value="<?=$program['title']; ?>" type="text" class="form-control" id="regSurname" placeholder="Заголовок программы">
+                    <label for="exampleInputEmail1" class="form-label">Текст сообщения</label>
+                    <textarea class="form-control" rows="12" placeholder="Содержание" maxlength="20000" readonly><?=$supportMsg['message']; ?></textarea>
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Содержание программы*</label>
-                    <textarea name="text" class="form-control" rows="12" placeholder="Содержание" maxlength="20000"><?=$program['text']; ?></textarea>
-                </div>
-                <div class="w-100"></div>
-                <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Изменить изображение</label>
-                    <input name="img" type="file" class="form-control" id="inputGroupFile02">
-                </div>
-                <div class="w-100"></div>
-                <div class="buttons-form mb-3 col-12 col-lg-6">
-                    <button name="button_adminEditProgram" type="submit" class="btn btn-danger">Сохранить</button>
-                    <a class="button-reg" href="<?=BASE_URL . 'program.php'?>">
-                        <button type="button" class="btn btn-secondary">Не сохранять</button>
-                    </a>
+                    <label for="exampleInputEmail1" class="form-label">Дата отправки сообщения</label>
+                    <input value="<?=$supportMsg['created_date']; ?>" type="text" class="form-control" id="regSurname" placeholder="Заголовок программы" readonly>
                 </div>
             </form>
         </div>
@@ -98,5 +84,6 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
 
 </body>
 </html>
+
 
 

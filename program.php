@@ -17,7 +17,12 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/app/controllers/programs.php";
+
+?>
 <!--HEADER end-->
 
 
@@ -29,23 +34,32 @@ include "path.php";
     <div class="row main-content">
         
         <div class="program-describe col-lg-9 col-12">
-            <h2 class="title-program">
-                Упражнения на мышцы груди и плеч
-            </h2>
-            <div class="img-div">
-                <img src="assets/img/programs/program_1.jpg" class="img-fluid" alt="...">
+            <div class="d-flex justify-content-between">
+                <h2 class="title-program">
+                    <?=$program['title']; ?>
+                </h2>
+                <?php if(isset($_SESSION['id']) && $_SESSION['id'] == $program['author_id']): ?>
+                    <div class="button-program-edit">
+                        <a href="<?=BASE_URL . 'programEdit.php?id_program=' . $program['id_program']; ?>">
+                            <button type="button" class="btn btn-danger">Редактировать</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="img-div-program">
+                <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
             </div>
             <div class="weight-program age">
-                Автор: Фред Ган
+                Автор: <?=$program['name'] . ' ' . $program['surname']; ?>
             </div>
-            <div class="weight-program experience">
-                Дата публикации: 12.08.22 15:45
+            <div class="weight-program experience row">
+                <div class="card-date col-6">Опубликован: <?=$program['created_date']; ?></div>
+                <?php if($program['change_date'] != ''): ?>
+                    <div class="card-date-change col-6">Изменен: <?=$program['change_date']; ?></div>
+                <?php endif; ?>
             </div>
             <div class="describe-program">
-                Но укрепление и развитие внутренней структуры напрямую зависит от переосмысления внешнеэкономических политик.
-                Лишь явные признаки победы институционализации являются только методом политического участия и функционально
-                разнесены на независимые элементы. Но акционеры крупнейших компаний, вне зависимости от их уровня,
-                должны быть в равной степени предоставлены сами себе.
+                <?=$program['text']; ?>
             </div>
             <button type="button like-program" class="btn btn-primary">
                 <i class="fa-solid fa-thumbs-up"></i> Нравится

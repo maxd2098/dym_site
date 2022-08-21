@@ -52,7 +52,7 @@ include SITE_ROOT . "/pages/addYear.php";
                     <div class="profile-property age">О себе: <?=$_SESSION['info']; ?></div>
                     <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3): ?>
                         <a class="admin" href="<?=BASE_URL . 'admin/admin.php'?>">
-                            <button type="button" class="btn btn-danger">Админ панель</button>
+                            <button type="button" class="btn btn-danger">Админ. панель</button>
                         </a>
                     <?php endif; ?>
                     <div class="w-100"></div>

@@ -46,7 +46,7 @@ include SITE_ROOT . "/app/controllers/programs.php";
                 <?php endif; ?>
             </div>
             
-            <?php foreach($programs as $program): ?>
+            <?php foreach($programsTrainer as $program): ?>
                 <div class="card col-12">
                     <a href="<?=BASE_URL . 'programEdit.php?id_program=' . $program['id_program']; ?>">
                         <div class="row g-0">
@@ -60,9 +60,9 @@ include SITE_ROOT . "/app/controllers/programs.php";
                                     <h3 class="card-title"><?=$program['title']; ?></h3>
                                     <div class="card-author">Автор: <?=$program['name'] . ' ' . $program['surname']; ?></div>
                                     <div class="row">
-                                        <div class="card-date">Опубликован: <?=$program['created_date']; ?></div>
+                                        <div class="card-date col-6">Опубликован: <?=$program['created_date']; ?></div>
                                         <?php if($program['change_date'] != ''): ?>
-                                            <div class="card-date-change">Изменен: <?=$program['change_date']; ?></div>
+                                            <div class="card-date-change col-6">Изменен: <?=$program['change_date']; ?></div>
                                         <?php endif; ?>
                                     </div>
                                     <p class="card-text"><?=mb_substr($program['text'], 0, 200, $encoding='utf8') . '...'; ?></p>

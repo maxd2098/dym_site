@@ -223,7 +223,30 @@ function selectOneUserToSupport($table, $params) {
     return $query->fetch();
 }
 
-function selectAllStatesForTrainer($table1, $table2, $params) {
+function selectAllStatesForTrainer($table1, $table2, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= " WHERE $key = '$value'";
+        } else {
+            $where .= " AND $key = '$value'";
+        }
+    }
+    
+    $sql = "
+        SELECT id_program, title, author_id, text, count_like, t1.img, t1.created_date, t1.change_date, publish, name, surname, email
+        FROM gym_site.$table1 AS t1 JOIN gym_site.$table2 AS t2 ON t1.author_id = t2.id" . $where;
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+
+function selectOneAndForDisplayOrEditProgram($table1, $table2, $params = []) {
     global $pdo;
     
     $where = '';
@@ -243,8 +266,9 @@ function selectAllStatesForTrainer($table1, $table2, $params) {
     $query->execute();
     
     dbCheckError($query);
-    return $query->fetchAll();
+    return $query->fetch();
 }
+
 
 
 

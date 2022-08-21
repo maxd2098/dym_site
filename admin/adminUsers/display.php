@@ -29,7 +29,8 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <div class="row admin-users-params">
+            <h2>Пользователи</h2>
+            <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
                 <div class="col-2"><strong>Статус</strong></div>
                 <div class="col-5"><strong>Email</strong></div>
@@ -37,11 +38,11 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
                 <div class="col-2"><strong>Удалить</strong></div>
             </div>
                 <?php foreach($users as $user): ?>
-                    <div class="row admin-users">
+                    <div class="row admin-string">
                         <div class="col-1"><?=$user['id']; ?></div>
                         <div class="col-2"><?=$user['status']; ?></div>
-                        <?php if(strlen($user['email']) > 30): ?>
-                            <div class="col-5"><?=substr($user['email'], 0, 30); ?>...</div>
+                        <?php if(mb_strlen($user['email']) > 30): ?>
+                            <div class="col-5"><?=mb_substr($user['email'], 0, 30, $encoding='utf8'); ?>...</div>
                         <?php else: ?>
                             <div class="col-5"><?=$user['email']; ?></div>
                         <?php endif; ?>

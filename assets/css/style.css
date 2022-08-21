@@ -272,7 +272,7 @@ textarea {
     padding-bottom: 5px;
 }
 
-.program-describe button {
+.program-describe .button-program-add button {
     background-color: indianred;
     border: none;
     border-radius: 20px;
@@ -299,11 +299,11 @@ textarea {
     padding-bottom: 30px;
 }
 
-.button-program-add button {
+.button-program-add button, .button-program-edit button {
     font-size: 20px;
 }
 
-.program-cards .card-author, .program-cards .card-date {
+.program-cards .card-author, .program-cards .card-date, .program-cards .card-date-change {
     font-style: italic;
 }
 
@@ -527,26 +527,27 @@ textarea {
     USERS
  */
 
-.admin-content .admin-users-params {
+.admin-content .admin-params {
     padding: 10px 0;
     margin: 10px 0;
 }
 
-.admin-content .admin-users {
+.admin-content .admin-string {
     padding: 10px 0;
-    border: 1px solid gray;
+    border: 1px solid black;
     margin: 10px 0;
+    border-radius: 5px;
 }
 
-.admin-content .admin-users .delete a {
+.admin-content .admin-string .delete a {
     color: red;
 }
 
-.admin-content .admin-users a:hover {
+.admin-content .admin-string a:hover {
     text-decoration: underline;
 }
 
-.admin-content .admin-users:hover {
+.admin-content .admin-string:hover {
     background-color: whitesmoke;
 }
 
@@ -556,7 +557,9 @@ textarea {
  */
 
 
-
+.buttons-form {
+    margin: 15px 0;
+}
 
 
 
