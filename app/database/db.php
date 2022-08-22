@@ -91,6 +91,27 @@ function updateProgram($table, $id, $params) {
     dbCheckError($query);
 }
 
+function updateMemShips($table, $id, $params) {
+    global $pdo;
+    
+    $set = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $set .= "$key = '$value'";
+        } else {
+            $set .= ", $key = '$value'";
+        }
+    }
+    
+    $sql = "UPDATE gym_site.$table SET $set WHERE id_memsh = $id";
+    
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+}
+
 function selectOneAnd($table, $params = []) {
     global $pdo;
     

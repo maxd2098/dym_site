@@ -16,6 +16,9 @@ textarea {
     resize: none;
 }
 
+.btn-danger {
+    background-color: indianred;
+}
 /*
     HEADER start
 */
@@ -276,6 +279,13 @@ textarea {
     background-color: indianred;
     border: none;
     border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.program-describe .like-program {
+    background-color: indianred;
+    border: none;
+    border-radius: 15px;
     margin-bottom: 30px;
 }
 

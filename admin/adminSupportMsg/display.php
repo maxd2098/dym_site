@@ -33,7 +33,7 @@ include SITE_ROOT . '/app/controllers/adminSupportMsg.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <h2>Сообщения пользователей в тех. поддержку</h2>
+            <h1>Сообщения пользователей в тех. поддержку</h1>
             <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
                 <div class="col-1"><strong>Статус</strong></div>

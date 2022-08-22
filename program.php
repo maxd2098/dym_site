@@ -61,7 +61,7 @@ include SITE_ROOT . "/app/controllers/programs.php";
             <div class="describe-program">
                 <?=$program['text']; ?>
             </div>
-            <button type="button like-program" class="btn btn-primary">
+            <button type="button" class="btn btn-primary like-program">
                 <i class="fa-solid fa-thumbs-up"></i> Нравится
                 <span class="badge">1000</span>
             </button>

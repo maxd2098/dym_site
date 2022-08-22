@@ -17,7 +17,12 @@ include "../../path.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . '/app/controllers/adminMemShips.php';
+
+?>
 <!--HEADER end-->
 
 
@@ -27,8 +32,33 @@ include "../../path.php";
     
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
-        <div class="support-content col-lg-9 col-12">
-            <h1>Абонементы</h1>
+        <div class="admin-content col-lg-9 col-12">
+            <div class="d-flex justify-content-between">
+                <h1>Абонементы</h1>
+                <div class="button-program-add">
+                    <a href="<?=BASE_URL . 'admin/adminMemShips/create.php'?>">
+                        <button type="button" class="btn btn-danger">Добавить абонемент</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row admin-params">
+                <div class="col-1"><strong>ID</strong></div>
+                <div class="col-1"><strong>Тип</strong></div>
+                <div class="col-3"><strong>Цена</strong></div>
+                <div class="col-2"><strong>Число</strong></div>
+                <div class="col-3"><strong>Действия</strong></div>
+            </div>
+            <?php foreach($memberShips as $memSh): ?>
+                <?php //che($supportMsgs); ?>
+                <div class="row admin-string">
+                    <div class="col-1"><?=$memSh['id_memsh']; ?></div>
+                    <div class="col-1"><?=$memSh['type']; ?></div>
+                    <div class="col-3"><?=$memSh['price']; ?></div>
+                    <div class="col-2"><?=$memSh['count']; ?></div>
+                    <div class="col-2 look"><a href="edit.php?edit_id=<?=$memSh['id_memsh']?>">Edit</a></div>
+                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$memSh['id_memsh']?>">Delete</a></div>
+                </div>
+            <?php endforeach; ?>
         </div>
         <!--ADMIN CONTENT end-->
         

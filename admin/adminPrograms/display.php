@@ -33,7 +33,7 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <h2>Тренировочные программы</h2>
+            <h1>Тренировочные программы</h1>
             <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
                 <div class="col-3"><strong>Автор</strong></div>

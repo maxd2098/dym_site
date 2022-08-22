@@ -48,12 +48,12 @@ include SITE_ROOT . "/app/controllers/programs.php";
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-5">
                 <label for="exampleInputEmail1" class="form-label">Введите заголовок*</label>
-                <input name="title" type="text" class="form-control" id="regSurname" placeholder="Заголовок программы">
+                <input name="title" value="<?=$title; ?>" type="text" class="form-control" id="regSurname" placeholder="Заголовок программы">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-5">
                 <label for="exampleInputEmail1" class="form-label">Содержание программы*</label>
-                <textarea name="text" class="form-control" rows="12" placeholder="Содержание" maxlength="20000"></textarea>
+                <textarea name="text" class="form-control" rows="12" placeholder="Содержание" maxlength="20000"><?=$text; ?></textarea>
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-5">

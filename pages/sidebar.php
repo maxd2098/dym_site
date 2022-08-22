@@ -13,10 +13,12 @@
                     <a href="<?=BASE_URL . 'support.php'?>">Тех. поддержка</a>
                 </li>
             <?php endif; ?>
-            <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3): ?>
-                <li>
-                    <a href="<?=BASE_URL . 'admin/admin.php'?>">Админ. панель</a>
-                </li>
+            <?php if(isset($_SESSION['status'])): ?>
+                <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3): ?>
+                    <li>
+                        <a href="<?=BASE_URL . 'admin/admin.php'?>">Админ. панель</a>
+                    </li>
+                <?php endif; ?>
             <?php endif; ?>
             <li>
                 <a href="<?=BASE_URL . 'programms.php'?>">Программы тренировок</a>

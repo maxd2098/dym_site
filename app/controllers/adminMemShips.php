@@ -2,17 +2,22 @@
 
 include_once SITE_ROOT . "/app/database/db.php";
 
-// ДОБАВЛЕНИЕ СТАТЬИ start
+// ДОБАВЛЕНИЕ АБОНЕМЕНТА start
 
-$programs = selectAllStatesForTrainer('programs', 'users');
+$memberShips = selectAllAnd('member_ships');
 
+$type = '';
+$price = '';
+$count = '';
 $title = '';
-$text = '';
+$img = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_createProgram'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminAddMemShips'])) {
+    
+    $type = trim($_POST['type']);
+    $price = trim($_POST['price']);
+    $count = trim($_POST['count']);
     $title = trim($_POST['title']);
-    $text = $_POST['text'];
-    $author_id = $_SESSION['id'];
     
     if ($_FILES['img']['name'] !== '') {
         $imgName = 'img' . time() . '_' . $_FILES['img']['name'];
@@ -25,80 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_createProgram']
             $result = move_uploaded_file($imgTmp, $imgPath);
             if ($result) {
                 $_POST['img'] = $imgName;
-                /*$img = [
-                    'img' => $_POST['img']
-                ];
-            
-                update('programs', $id, $img);
-                $_SESSION['img'] = $_POST['img'];
-                header('location: ' . BASE_URL . 'profile.php');*/
-            
-            } else {
-                $errMsg []= "Ошибка загрузки изображения на сервер";
-            }
-        } else {
-            $errMsg []= "Можно загружать только изображения";
-        }
-    
-    }
-    
-    if ($title === '' || $text === '') {
-        $errMsg []= 'Не все поля * заполнены';
-    } else {
-        
-        $program = [
-            'title' => $title,
-            'text' => $text,
-            'author_id' => $author_id
-        ];
-        if(isset($_POST['img'])) $program['img'] = $_POST['img'];
-        insert('programs', $program);
-        header('location: programms.php');
-    }
-}
-
-// ДОБАВЛЕНИЕ СТАТЬИ end
-
-
-// ВЫВОД ВСЕХ СТАТЕЙ ТРЕНЕРА ДЛЯ РЕДАКТИРОВАНИЯ start
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']) && $_GET['id'] === $_SESSION['id']) {
-    $programsTrainer = selectAllStatesForTrainer('programs', 'users', ['author_id' => $_GET['id']]);
-    //che($programs);
-}
-
-// ВЫВОД ВСЕХ СТАТЕЙ ТРЕНЕРА ДЛЯ РЕДАКТИРОВАНИЯ end
-
-
-// РЕДАКТИРОВАНИЕ СТАТЬИ start
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id_program'])) {
-    $program = selectOneAndForDisplayOrEditProgram('programs', 'users', ['id_program' => $_GET['id_program']]);
-    //che($program);
-}
-
-// РЕДАКТИРОВАНИЕ СТАТЬИ end
-
-
-
-// РЕДАКТИРОВАНИЕ СТАТЬИ edit start
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editProgram'])) {
-    //che($_POST);
-    $title = trim($_POST['title']);
-    $text = $_POST['text'];
-    $id_program = $_POST['id_program'];
-    $author_id = $_SESSION['id'];
-    
-    if ($_FILES['img']['name'] !== '') {
-        $imgName = 'img' . time() . '_' . $_FILES['img']['name'];
-        $imgType = $_FILES['img']['type'];
-        $imgTmp = $_FILES['img']['tmp_name'];
-        $imgSize = $_FILES['img']['size'];
-        $imgPath = SITE_ROOT . '\assets\imageToServer\\' . $imgName;
-        
-        if(strpos($imgType, 'image') !== false) {
-            $result = move_uploaded_file($imgTmp, $imgPath);
-            if ($result) {
-                $_POST['img'] = $imgName;
+                $img = $_POST['img'];
                 /*$img = [
                     'img' => $_POST['img']
                 ];
@@ -115,37 +47,96 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editProgram']))
         }
         
     }
-    
-    if ($title === '' || $text === '') {
+    //che($_POST);
+    if ($type === '' || $price === '' || $count === '' || $title === '') {
         $errMsg []= 'Не все поля * заполнены';
-        $program = selectOneAnd('programs', ['id_program' => $id_program]);
+    } elseif(empty($_POST['img'])) {
+        $errMsg []= 'Изображение не загружено';
     } else {
-        $timeNow = date('Y-m-d H:i:s', time() + (60 * 60 * 10));
-        //che($timeNow);
-        $program = [
+        $memShips = [
+            'type' => $type,
+            'price' => $price,
+            'count' => $count,
             'title' => $title,
-            'text' => $text,
-            'author_id' => $author_id,
-            'change_date' => $timeNow
+            'img' => $img
         ];
-        if(isset($_POST['img'])) $program['img'] = $_POST['img'];
-        updateProgram('programs', $id_program, $program);
-        header('location: program.php?id_program=' . $id_program);
+        insert('member_ships', $memShips);
+        header('location: display.php');
     }
 }
 
-// РЕДАКТИРОВАНИЕ СТАТЬИ edit end
+// ДОБАВЛЕНИЕ АБОНЕМЕНТА end
 
 
+// РЕДАКТИРОВАНИЕ АБОНЕМЕНТА edit start
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['edit_id'])) {
+    $memShip = selectOneAnd('member_ships', ['id_memsh' => $_GET['edit_id']]);
+    //che($memShip);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditMemShips'])) {
+    
+    $id_memsh = $_POST['id_memsh'];
+    $type = trim($_POST['type']);
+    $price = trim($_POST['price']);
+    $count = trim($_POST['count']);
+    $title = trim($_POST['title']);
+    
+    if ($_FILES['img']['name'] !== '') {
+        $imgName = 'img' . time() . '_' . $_FILES['img']['name'];
+        $imgType = $_FILES['img']['type'];
+        $imgTmp = $_FILES['img']['tmp_name'];
+        $imgSize = $_FILES['img']['size'];
+        $imgPath = SITE_ROOT . '\assets\imageToServer\\' . $imgName;
+        
+        if(strpos($imgType, 'image') !== false) {
+            $result = move_uploaded_file($imgTmp, $imgPath);
+            if ($result) {
+                $_POST['img'] = $imgName;
+                $img = $_POST['img'];
+                /*$img = [
+                    'img' => $_POST['img']
+                ];
+            
+                update('programs', $id, $img);
+                $_SESSION['img'] = $_POST['img'];
+                header('location: ' . BASE_URL . 'profile.php');*/
+                
+            } else {
+                $errMsg []= "Ошибка загрузки изображения на сервер";
+            }
+        } else {
+            $errMsg []= "Можно загружать только изображения";
+        }
+        
+    }
+    //che($_POST);
+    if ($type === '' || $price === '' || $count === '' || $title === '') {
+        $errMsg []= 'Не все поля * заполнены';
+    } else {
+        $memShips = [
+            'type' => $type,
+            'price' => $price,
+            'count' => $count,
+            'title' => $title
+        ];
+        if($img !== '') $memShips['img'] = $img;
+        updateMemShips('member_ships', $id_memsh, $memShips);
+        header('location: display.php');
+    }
+}
+
+// РЕДАКТИРОВАНИЕ АБОНЕМЕНТА edit end
 
 
+// УДАЛЕНИЕ АБОНЕМЕНТА start
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
+    delete('member_ships', ['id_memsh' => $_GET['delete_id']]);
+    header("location: display.php");
+}
 
-
-
-
-
-
-
+// УДАЛЕНИЕ АБОНЕМЕНТА end
 
 
 
