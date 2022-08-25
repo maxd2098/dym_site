@@ -346,6 +346,10 @@ textarea {
     padding-bottom: 5px;
 }
 
+.trainers-cards .card .year {
+    font-style: italic;
+}
+
 
 /*
     ABOUT

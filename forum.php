@@ -30,7 +30,9 @@ include "app/controllers/supportMsg.php";
     <div class="row main-content">
         
         <div class="forum-content col-lg-9 col-12">
-            
+            <h2 class="main-trainers">
+                Форум
+            </h2>
             <a href="">
                 <div class="card">
                     <div class="card-body">

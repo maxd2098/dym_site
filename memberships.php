@@ -30,7 +30,7 @@ include SITE_ROOT . '/app/controllers/memShips.php';
 
 
 <div class="container">
-    <!--TRAINERS CARDS start-->
+    <!--MEMSHIPS CARDS start-->
     <div class="row main-content memberships-content">
 
         <div class="train-cards col-lg-9 col-12">
@@ -39,65 +39,31 @@ include SITE_ROOT . '/app/controllers/memShips.php';
             </h2>
             <div class="row">
                 
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="img-div">
-                            <img src="assets/img/membership.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-describe">Абонемент на 6 занятий</h3>
-                            <h5 class="card-describe">Тип: без тренера</h5>
-                            <h5 class="card-describe">Цена: 1000 рублей</h5>
-                            <button class="btn btn-primary" type="submit">Купить абонемент</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="img-div">
-                            <img src="assets/img/membership.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-describe">Абонемент на 12 занятий</h3>
-                            <h5 class="card-describe">Тип: без тренера</h5>
-                            <h5 class="card-describe">Цена: 1800 рублей</h5>
-                            <button class="btn btn-primary" type="submit">Купить абонемент</button>
+                <?php foreach($memberShips as $memShip): ?>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="img-div">
+                                <img src="<?=BASE_URL . '/assets/imageToServer/' . $memShip['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-describe"><?=$memShip['title']; ?></h3>
+                                <?php if($memShip['type'] == 0): ?>
+                                    <h5 class="card-describe">Тип: без тренера</h5>
+                                <?php else: ?>
+                                    <h5 class="card-describe">Тип: с тренером</h5>
+                                <?php endif; ?>
+                                <h5 class="card-describe">Цена: <?=$memShip['price']; ?> рублей</h5>
+                                <a href="membership.php?id_memsh=<?=$memShip['id_memsh']; ?>">
+                                    <button class="btn btn-danger" type="submit">Купить абонемент</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="img-div">
-                            <img src="assets/img/membership.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-describe">Абонемент на 6 занятий</h3>
-                            <h5 class="card-describe">Тип: с тренером</h5>
-                            <h5 class="card-describe">Цена: 1500 рублей</h5>
-                            <button class="btn btn-primary" type="submit">Купить абонемент</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="img-div">
-                            <img src="assets/img/membership.jpg" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-describe">Абонемент на 12 занятий</h3>
-                            <h5 class="card-describe">Тип: с тренером</h5>
-                            <h5 class="card-describe">Цена: 2800 рублей</h5>
-                            <button class="btn btn-primary" type="submit">Купить абонемент</button>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
                 
             </div>
         </div>
-        <!--TRAINERS CARDS end-->
+        <!--MEMSHIPS CARDS end-->
         
         
         <!--SIDEBAR start-->

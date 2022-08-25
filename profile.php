@@ -38,12 +38,12 @@ include SITE_ROOT . "/pages/addYear.php";
                     <div class="profile-property surname">Фамилия: <?=$_SESSION['surname']; ?></div>
                     <div class="profile-property email">Email: <?=$_SESSION['email']; ?></div>
                     <div class="profile-property phone">Номер телефона: <?=$_SESSION['phone']; ?></div>
-                    <div class="profile-property age">Возраст: <?=$_SESSION['age'] . $yearAge; ?></div>
+                    <div class="profile-property age">Возраст: <?=$_SESSION['age'] . $yearAgeProfile; ?></div>
                     <?php if($_SESSION['status'] == 0): ?>
                         <div class="profile-property status">Статус: клиент</div>
                     <?php elseif($_SESSION['status'] == 1): ?>
                         <div class="profile-property status">Статус: тренер</div>
-                        <div class="profile-property experience">Стаж работы: <?=$_SESSION['experience'] . $yearExperience; ?></div>
+                        <div class="profile-property experience">Стаж работы: <?=$_SESSION['experience'] . $yearExperienceProfile; ?></div>
                     <?php elseif($_SESSION['status'] == 2): ?>
                         <div class="profile-property status">Статус: администратор</div>
                     <?php else: ?>

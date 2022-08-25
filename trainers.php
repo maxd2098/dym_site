@@ -17,7 +17,13 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/addYear.php";
+$trainers = selectAllAnd('users', ['status' => 1]);
+
+?>
 <!--HEADER end-->
 
 
@@ -31,41 +37,30 @@ include "path.php";
             <h2 class="main-trainers">
                 Наши тренеры
             </h2>
-            <div class="card col-12">
-                <a href="train.php">
-                    <div class="row g-0">
-                        <div class="img-div col-lg-4">
-                            <img src="assets/img/trainers/trainer_1.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h3 class="card-title">Фред Ган</h3>
-                                <div class="card-author">Номер: +79142443211</div>
-                                <div class="card-date">Стаж: 5 лет</div>
-                                <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+            
+            <?php foreach($trainers as $trainer): ?>
+                <div class="card col-12">
+                    <a href="train.php">
+                        <div class="row g-0">
+                            <div class="img-div col-lg-4">
+                                <img src="<?=BASE_URL . '/assets/imageToServer/' . $trainer['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card-body">
+                                    <h3 class="card-title"><?=$trainer['name'] . ' ' . $trainer['surname']; ?></h3>
+                                    <div class="year card-author">Возраст: <?=$trainer['age'] . addYearAll($trainer, 'age'); ?></div>
+                                    <div class="year card-date">Стаж: <?=$trainer['experience'] . addYearAll($trainer, 'experience'); ?></div>
+                                    <?php if(mb_strlen($trainer['info']) > 200): ?>
+                                        <p class="card-text">О себе: <?=mb_substr($trainer['info'], 0, 200, $encoding="utf-8") . '...'; ?></p>
+                                    <?php else: ?>
+                                        <p class="card-text">О себе: <?=$trainer['info']; ?></p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-    
-            <div class="card col-12">
-                <a href="train.php">
-                    <div class="row g-0">
-                        <div class="img-div col-lg-4">
-                            <img src="assets/img/trainers/trainer_4.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card-body">
-                                <h3 class="card-title">Нильсон Дэвидс</h3>
-                                <div class="card-author">Номер: +791422432311</div>
-                                <div class="card-date">Стаж: 36 лет</div>
-                                <p class="card-text">Это более широкая карта с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
     
         </div>
         <!--TRAINERS CARDS end-->
