@@ -17,7 +17,12 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/addYear.php";
+
+?>
 <!--HEADER end-->
 
 
@@ -30,27 +35,24 @@ include "path.php";
         
         <div class="trainer-describe col-lg-9 col-12">
             <h2 class="name-trainer">
-                Фред Ган
+                <?=$trainer['name'] . ' ' . $trainer['surname']; ?>
             </h2>
             <div class="img-div">
-                <img src="assets/img/trainers/trainer_1.jpg" class="img-fluid" alt="...">
+                <img src="<?=BASE_URL . '/assets/imageToServer/' . $trainer['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
             </div>
             <div class="weight-train age">
-                Возраст: 32 года
+                Возраст: <?=$trainer['age'] . addYearAll($trainer, 'age');?>
             </div>
             <div class="weight-train experience">
-                Стаж работы: 5 лет
+                Стаж работы: <?=$trainer['experience'] . addYearAll($trainer, 'experience');?>
             </div>
             <div class="weight-train email">
-                Email: fredgan@gmail.com
+                Email: <?=$trainer['email'];?>
             </div>
             <div class="describe">
-                Но укрепление и развитие внутренней структуры напрямую зависит от переосмысления внешнеэкономических политик.
-                Лишь явные признаки победы институционализации являются только методом политического участия и функционально
-                разнесены на независимые элементы. Но акционеры крупнейших компаний, вне зависимости от их уровня,
-                должны быть в равной степени предоставлены сами себе.
+                О себе: <?=$trainer['info'];?>
             </div>
-            <button class="btn btn-primary" type="submit">Оставить заявку</button>
+            <button class="btn btn-danger" type="submit">Оставить заявку</button>
         </div>
         <!--TRAINERS CARDS end-->
         

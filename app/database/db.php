@@ -112,6 +112,28 @@ function updateMemShips($table, $id, $params) {
     dbCheckError($query);
 }
 
+function updateAbout($table, $params) {
+    global $pdo;
+    
+    $set = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $set .= "$key = '$value'";
+        } else {
+            $set .= ", $key = '$value'";
+        }
+    }
+    
+    $sql = "UPDATE gym_site.$table SET $set WHERE id_about = 1";
+    
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+}
+
+
 function selectOneAnd($table, $params = []) {
     global $pdo;
     
@@ -290,7 +312,26 @@ function selectOneAndForDisplayOrEditProgram($table1, $table2, $params = []) {
     return $query->fetch();
 }
 
-
+function selectAllAndForForum($table, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= " WHERE $key = '$value'";
+        } else {
+            $where .= " AND $key = '$value'";
+        }
+    }
+    
+    $sql = "SELECT * FROM gym_site.$table" . $where . " ORDER BY last_date DESC";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
 
 
 

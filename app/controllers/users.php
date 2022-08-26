@@ -224,6 +224,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editPhoto'])) {
 
 
 
+// ВЫВОД ТРЕНЕРА start
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id_trainer'])) {
+    $trainer = selectOneAnd('users', ['id' => $_GET['id_trainer']]);
+    //che($trainer);
+}
+
+// ВЫВОД ТРЕНЕРА end
+
 
 
 

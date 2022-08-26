@@ -19,6 +19,14 @@ textarea {
 .btn-danger {
     background-color: indianred;
 }
+
+.invisible {
+    display: none;
+}
+
+
+
+
 /*
     HEADER start
 */
@@ -507,6 +515,29 @@ textarea {
 
 .forum-content .card:hover {
     background-color: whitesmoke;
+}
+
+.forum-cards {
+    margin-top: 10px;
+}
+
+.forum-content .last-date {
+    font-style: italic;
+    font-size: 15px;
+}
+
+.forum-content .card-comment {
+    margin-bottom: 0;
+}
+
+.topic-describe .param {
+    font-style: italic;
+    font-size: 15px;
+}
+
+.topic-describe .author-topic {
+    margin: 15px 0;
+    font-style: italic;
 }
 
 

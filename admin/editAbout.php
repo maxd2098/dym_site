@@ -1,6 +1,6 @@
 <?php
 
-include "../../path.php";
+include "../path.php";
 
 ?>
 
@@ -20,7 +20,27 @@ include "../../path.php";
 <?php
 
 include SITE_ROOT . "/pages/header.php";
-include SITE_ROOT . '/app/controllers/adminMemShips.php';
+$about = selectOneAnd('about');
+//che($about);
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditAbout'])) {
+    $phone = trim($_POST['phone']);
+    $email = trim($_POST['email']);
+    $address = trim($_POST['address']);
+    $description = $_POST['description'];
+    if($phone === '' || $email === '' || $address === '' || $description === '') {
+        $errMsg[] = 'Не все поля заполнены';
+    } else {
+        $post = [
+            'phone' => $phone,
+            'email' => $email,
+            'address' => $address,
+            'description' => $description
+        ];
+        updateAbout('about', $post);
+        header('location: ' . '../about.php');
+    }
+}
 
 ?>
 <!--HEADER end-->
@@ -33,7 +53,7 @@ include SITE_ROOT . '/app/controllers/adminMemShips.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <form class="row justify-content-center" method="post" action="edit.php" enctype="multipart/form-data">
+            <form class="row justify-content-center" action="editAbout.php" method="post">
                 <div class="mb-3 col-12 col-lg-6 error-msg">
                     <?php
                     foreach($errMsg as $msg) {
@@ -43,46 +63,28 @@ include SITE_ROOT . '/app/controllers/adminMemShips.php';
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">ID</label>
-                    <input name="id_memsh" value="<?=$memShip['id_memsh']; ?>" type="text" class="form-control" placeholder="Введите цену" readonly>
+                    <label for="exampleInputEmail1" class="form-label">Наш номер телефона</label>
+                    <input name="phone" value="<?=$about['phone']; ?>" type="text" class="form-control" id="regName" placeholder="Номер телефона">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Тип</label>
-                    <select name="type" class="form-select" aria-label="Пример выбора по умолчанию">
-                        <?php if($memShip['type'] == 0): ?>
-                            <option value="0" selected>Без тренера</option>
-                            <option value="1">С тренером</option>
-                        <?php else: ?>
-                            <option value="1" selected>С тренером</option>
-                            <option value="0">Без тренера</option>
-                        <?php endif; ?>
-                    </select>
+                    <label for="exampleInputEmail1" class="form-label">Наш email</label>
+                    <input name="email" value="<?=$about['email']; ?>" type="text" class="form-control" id="regName" placeholder="Email">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Цена</label>
-                    <input name="price" value="<?=$memShip['price']; ?>" type="text" class="form-control" placeholder="Введите цену">
+                    <label for="exampleInputEmail1" class="form-label">Адрес</label>
+                    <input name="address" value="<?=$about['address']; ?>" type="text" class="form-control" id="regSurname" placeholder="Заголовок программы">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Число занятий</label>
-                    <input name="count" value="<?=$memShip['count']; ?>" type="text" class="form-control" placeholder="Введите число занятий">
-                </div>
-                <div class="w-100"></div>
-                <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Название абонемента</label>
-                    <input name="title" value="<?=$memShip['title']; ?>" type="text" class="form-control" placeholder="Введите название">
-                </div>
-                <div class="w-100"></div>
-                <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Изображение</label>
-                    <input name="img" type="file" class="form-control" id="inputGroupFile02">
+                    <label for="exampleInputEmail1" class="form-label">Описание фитнес-центра</label>
+                    <textarea name="description" class="form-control" rows="12" placeholder="Содержание" maxlength="20000"><?=$about['description']; ?></textarea>
                 </div>
                 <div class="w-100"></div>
                 <div class="buttons-form mb-3 col-12 col-lg-6">
-                    <button name="button_adminEditMemShips" type="submit" class="btn btn-danger">Сохранить</button>
-                    <a class="button-reg" href="display.php">
+                    <button name="button_adminEditAbout" type="submit" class="btn btn-danger">Сохранить</button>
+                    <a class="button-reg" href="<?=BASE_URL . 'about.php'?>">
                         <button type="button" class="btn btn-secondary">Не сохранять</button>
                     </a>
                 </div>
@@ -111,9 +113,6 @@ include SITE_ROOT . '/app/controllers/adminMemShips.php';
 
 </body>
 </html>
-
-
-
 
 
 

@@ -90,11 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditMemShi
         $imgSize = $_FILES['img']['size'];
         $imgPath = SITE_ROOT . '\assets\imageToServer\\' . $imgName;
         
+        $img = false;
+        
         if(strpos($imgType, 'image') !== false) {
             $result = move_uploaded_file($imgTmp, $imgPath);
             if ($result) {
                 $_POST['img'] = $imgName;
                 $img = $_POST['img'];
+                //che($_POST);
                 /*$img = [
                     'img' => $_POST['img']
                 ];
@@ -114,6 +117,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditMemShi
     //che($_POST);
     if ($type === '' || $price === '' || $count === '' || $title === '') {
         $errMsg []= 'Не все поля * заполнены';
+        $memShip = selectOneAnd('member_ships', ['id_memsh' => $id_memsh]);
+    } elseif ($img === false) {
+        $errMsg []= 'Загруженный файл не является картинкой';
+        $memShip = selectOneAnd('member_ships', ['id_memsh' => $id_memsh]);
     } else {
         $memShips = [
             'type' => $type,

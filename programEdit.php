@@ -66,11 +66,16 @@ include SITE_ROOT . "/app/controllers/programs.php";
                 <input name="img" type="file" class="form-control" id="inputGroupFile02">
             </div>
             <div class="w-100"></div>
-            <div class="mb-3 col-12 col-lg-5">
-                <button name="button_editProgram" type="submit" class="btn btn-danger">Сохранить</button>
-                <a class="button-reg" href="<?=BASE_URL . 'program.php'?>">
-                    <button type="button" class="btn btn-secondary">Не сохранять</button>
-                </a>
+            <div class="d-flex justify-content-between mb-3 col-12 col-lg-5">
+                <div class="save-or-not">
+                    <button name="button_editProgram" type="submit" class="btn btn-danger">Сохранить</button>
+                    <a class="button-reg" href="<?=BASE_URL . 'program.php?id_program=' . $program['id_program']?>">
+                        <button type="button" class="btn btn-secondary">Не сохранять</button>
+                    </a>
+                </div>
+                <div class="delete-program">
+                    <button name="button_deleteProgram" type="submit" class="btn btn-danger">Удалить</button>
+                </div>
             </div>
         </form>
     </div>

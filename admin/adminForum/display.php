@@ -17,7 +17,12 @@ include "../../path.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . '/app/controllers/adminForum.php';
+
+?>
 <!--HEADER end-->
 
 
@@ -28,7 +33,33 @@ include "../../path.php";
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="support-content col-lg-9 col-12">
-            <h1>Форум</h1>
+            <div class="row admin-params">
+                <div class="col-1"><strong>ID</strong></div>
+                <div class="col-1"><strong>Статус</strong></div>
+                <div class="col-3"><strong>Автор</strong></div>
+                <div class="col-4"><strong>Кратко</strong></div>
+                <div class="col-2"><strong>Действия</strong></div>
+            </div>
+            <?php foreach($supportMsgs as $msg): ?>
+                <?php //che($supportMsgs); ?>
+                <div class="row admin-string">
+                    <div class="col-1"><?=$msg['id']; ?></div>
+                    <div class="col-1"><?=$msg['status']; ?></div>
+                    <?php if(mb_strlen($msg['email']) > 15): ?>
+                        <div class="col-3"><?=mb_substr($msg['email'], 0, 15, $encoding='utf8'); ?>...</div>
+                    <?php else: ?>
+                        <div class="col-3"><?=$msg['email']; ?></div>
+                    <?php endif; ?>
+            
+                    <?php if(mb_strlen($msg['message']) > 20): ?>
+                        <div class="col-4"><?=mb_substr($msg['message'], 0, 20, $encoding='utf8'); ?>...</div>
+                    <?php else: ?>
+                        <div class="col-4"><?=$msg['message']; ?></div>
+                    <?php endif; ?>
+                    <div class="col-2 look"><a href="edit.php?look_id=<?=$msg['id']?>">Смотреть</a></div>
+                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$msg['id']?>">Delete</a></div>
+                </div>
+            <?php endforeach; ?>
         </div>
         <!--ADMIN CONTENT end-->
         

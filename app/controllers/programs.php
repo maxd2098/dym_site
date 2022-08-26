@@ -137,7 +137,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editProgram']))
 // РЕДАКТИРОВАНИЕ СТАТЬИ edit end
 
 
+// УДАЛЕНИЕ СТАТЬИ start
 
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_deleteProgram'])) {
+    
+    delete('programs', ['id_program' => $_POST['id_program']]);
+    header('location: programms.php');
+    //che($_POST);
+}
+
+// УДАЛЕНИЕ СТАТЬИ end
 
 
 

@@ -1,7 +1,6 @@
 <?php
 
 include "path.php";
-include "app/controllers/supportMsg.php";
 
 ?>
 
@@ -18,7 +17,12 @@ include "app/controllers/supportMsg.php";
 <body>
 
 <!--HEADER start-->
-<?php include "pages/header.php"; ?>
+<?php
+
+include "pages/header.php";
+include SITE_ROOT . "/app/controllers/forum.php";
+
+?>
 <!--HEADER end-->
 
 
@@ -30,40 +34,51 @@ include "app/controllers/supportMsg.php";
     <div class="row main-content">
         
         <div class="forum-content col-lg-9 col-12">
-            <h2 class="main-trainers">
-                Форум
-            </h2>
-            <a href="">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row flex-forum">
-                            <h5 class="card-title col-8">Что лучше, протеин или гейнер</h5>
-                            <div class="change-date col-4">Последнее сообщение: 18:46</div>
-                        </div>
-                        <div class="author">
-                            <div class="name-author">Автор: Фред Ган</div>
-                            <div class="create-date">06:08:22 16:32</div>
-                        </div>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+            <div class="d-flex justify-content-between">
+                <h2 class="main-trainers">
+                    Форум
+                </h2>
+                <div class="col-4"></div>
+                <div class="button-program-add">
+                    <?php if(isset($_SESSION['email'])): ?>
+                        <a href="<?=BASE_URL . 'createTopic.php'?>">
+                            <button type="button" class="btn btn-danger">Создать тему обсуждений</button>
+                        </a>
+                    <?php else: ?>
+                        <div class="text">Зарегистрируйтесь, если хотите начать обсуждение</div>
+                    <?php endif; ?>
                 </div>
-            </a>
-
-            <a href="">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row flex-forum">
-                            <h5 class="card-title col-8">Что лучше, протеин или гейнер</h5>
-                            <div class="change-date col-4">Последнее сообщение: 18:46</div>
+            </div>
+            
+            <div class="forum-cards">
+                <?php foreach($topics as $topic): ?>
+                
+                <a href="<?=BASE_URL . 'topic.php?id_topic=' . $topic['id_topic'] . '&email=' . $topic['email']; ?>">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row flex-forum">
+                                <?php if(mb_strlen($topic['title']) > 70): ?>
+                                    <h5 class="card-title col-8"><?=mb_substr($topic['title'], 0, 70, $encoding='utf-8') . '...'; ?></h5>
+                                <?php else: ?>
+                                    <h5 class="card-title col-8"><?=$topic['title']; ?></h5>
+                                <?php endif; ?>
+                                <div class="last-date col-4">Последнее сообщение: <?=$topic['last_date']; ?></div>
+                            </div>
+                            <div class="author">
+                                <div class="create-date">Дата создания: <?=$topic['created_date']; ?></div>
+                            </div>
+                            <?php if(mb_strlen($topic['comment']) > 70): ?>
+                                <p class="card-comment"><?=mb_substr($topic['comment'], 0, 70, $encoding='utf-8') . '...'; ?></p>
+                            <?php else: ?>
+                                <p class="card-comment"><?=$topic['comment']; ?></p>
+                            <?php endif; ?>
                         </div>
-                        <div class="author">
-                            <div class="name-author">Автор: Фред Ган</div>
-                            <div class="create-date">06:08:22 16:32</div>
-                        </div>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
-                </div>
-            </a>
+                </a>
+                
+                <?php endforeach; ?>
+                
+            </div>
             
             
         </div>

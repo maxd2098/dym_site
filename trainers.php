@@ -40,7 +40,7 @@ $trainers = selectAllAnd('users', ['status' => 1]);
             
             <?php foreach($trainers as $trainer): ?>
                 <div class="card col-12">
-                    <a href="train.php">
+                    <a href="<?=BASE_URL . 'train.php?id_trainer=' . $trainer['id']; ?>">
                         <div class="row g-0">
                             <div class="img-div col-lg-4">
                                 <img src="<?=BASE_URL . '/assets/imageToServer/' . $trainer['img']; ?>" class="img-fluid" alt="Загрузите фотографию">

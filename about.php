@@ -17,7 +17,12 @@ include "path.php";
 <body>
 
 <!--HEADER start-->
-<?php include "pages/header.php"; ?>
+<?php
+
+include "pages/header.php";
+$about = selectOneAnd('about');
+
+?>
 <!--HEADER end-->
 
 
@@ -28,24 +33,33 @@ include "path.php";
     <div class="row main-content about-content">
         
         <div class="train-cards col-lg-9 col-12">
-            <h2 class="about-title">
-                О нас
-            </h2>
+            <div class="d-flex justify-content-between">
+                <h2 class="about-title">
+                    О нас
+                </h2>
+                <?php if(isset($_SESSION['status']) && ($_SESSION['status'] == 2 || $_SESSION['status'] == 3)): ?>
+                    <div class="button-program-add">
+                        <a href="<?=BASE_URL . 'admin/editAbout.php'?>">
+                            <button type="button" class="btn btn-danger">Редактировать раздел</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
             <div class="row-div phone-number">
                 <h5>Наш номер телефона</h5>
-                <div>+71238532132</div>
+                <div><?=$about['phone']; ?></div>
             </div>
             <div class="row-div email">
                 <h5>Наш email</h5>
-                <div>trenazorka@gmail.com</div>
+                <div><?=$about['email']; ?></div>
             </div>
             <div class="row-div address">
                 <h5>Адрес</h5>
-                <div>Ул. успенская, дом. 5</div>
+                <div><?=$about['address']; ?></div>
             </div>
             <div class="row-div describe">
                 <h5>Описание фитнес-центра</h5>
-                <div>Наш фитнес центр работает 15 лет, десятки лучших тренеров подберут для вас лучшие программы тренировок</div>
+                <div><?=$about['description']; ?></div>
             </div>
         </div>
         <!--TRAINERS CARDS start-->
