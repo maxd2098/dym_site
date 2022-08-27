@@ -20,7 +20,7 @@ include "../../path.php";
 <?php
 
 include SITE_ROOT . "/pages/header.php";
-include SITE_ROOT . '/app/controllers/adminForum.php';
+include SITE_ROOT . '/app/controllers/adminCarousel.php';
 
 ?>
 <!--HEADER end-->
@@ -33,32 +33,34 @@ include SITE_ROOT . '/app/controllers/adminForum.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <h1>Форум</h1>
-            <div class="row admin-params">
-                <div class="col-1"><strong>ID</strong></div>
-                <div class="col-3"><strong>Автор</strong></div>
-                <div class="col-5"><strong>Заголовок</strong></div>
-                <div class="col-2"><strong>Действия</strong></div>
-            </div>
-            <?php foreach($topics as $topic): ?>
-                <?php //che($supportMsgs); ?>
-                <div class="row admin-string">
-                    <div class="col-1"><?=$topic['id_topic']; ?></div>
-                    <?php if(mb_strlen($topic['email']) > 15): ?>
-                        <div class="col-3"><?=mb_substr($topic['email'], 0, 15, $encoding='utf8'); ?>...</div>
-                    <?php else: ?>
-                        <div class="col-3"><?=$topic['email']; ?></div>
-                    <?php endif; ?>
-            
-                    <?php if(mb_strlen($topic['title']) > 30): ?>
-                        <div class="col-5"><?=mb_substr($topic['title'], 0, 30, $encoding='utf8'); ?>...</div>
-                    <?php else: ?>
-                        <div class="col-5"><?=$topic['title']; ?></div>
-                    <?php endif; ?>
-                    <div class="col-1 look"><a href="edit.php?edit_id=<?=$topic['id_topic']?>">Edit</a></div>
-                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$topic['id_topic']?>">Delete</a></div>
+            <form class="row justify-content-center" method="post" action="create.php" enctype="multipart/form-data">
+                <div class="mb-3 col-12 col-lg-6 error-msg">
+                    <?php
+                    foreach($errMsg as $msg) {
+                        echo $msg . "<br>";
+                    }
+                    ?>
                 </div>
-            <?php endforeach; ?>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">Надпись для слайда*</label>
+                    <input name="title" value="<?=$title; ?>" type="text" class="form-control" maxlength="100" placeholder="Введите заголовок слайда">
+                </div>
+                
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">Изображение</label>
+                    <input name="img" type="file" class="form-control">
+                </div>
+                
+                <div class="w-100"></div>
+                <div class="buttons-form mb-3 col-12 col-lg-6">
+                    <button name="button_adminAddSlide" type="submit" class="btn btn-danger">Добавить</button>
+                    <a class="button-reg" href="display.php">
+                        <button type="button" class="btn btn-secondary">Не добавлять</button>
+                    </a>
+                </div>
+            </form>
         </div>
         <!--ADMIN CONTENT end-->
         
@@ -83,5 +85,9 @@ include SITE_ROOT . '/app/controllers/adminForum.php';
 
 </body>
 </html>
+
+
+
+
 
 

@@ -33,41 +33,40 @@ include SITE_ROOT . '/app/controllers/adminCarousel.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <div class="d-flex justify-content-between">
-                <h1>Карусель главной страницы</h1>
-                <div class="button-program-add">
-                    <a href="<?=BASE_URL . 'admin/adminCarousel/create.php'?>">
-                        <button type="button" class="btn btn-danger">Добавить слайд</button>
+            <form class="row justify-content-center" action="edit.php" method="post" enctype="multipart/form-data">
+                <div class="mb-3 col-12 col-lg-6 error-msg">
+                    <?php
+                    foreach($errMsg as $msg) {
+                        echo $msg . "<br>";
+                    }
+                    ?>
+                </div>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">ID слайда*</label>
+                    <input name="id_slide" value="<?=$slide['id_slide']; ?>" type="text" class="form-control" readonly>
+                </div>
+                
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">Надпись для слайда*</label>
+                    <input name="title" value="<?=$slide['title']; ?>" type="text" class="form-control" maxlength="100" placeholder="Введите заголовок слайда">
+                </div>
+    
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">Изображение</label>
+                    <input name="img" type="file" class="form-control">
+                </div>
+                
+                <div class="w-100"></div>
+                <div class="buttons-form mb-3 col-12 col-lg-6">
+                    <button name="button_adminEditSlide" type="submit" class="btn btn-danger">Сохранить</button>
+                    <a class="button-reg" href="display.php">
+                        <button type="button" class="btn btn-secondary">Не сохранять</button>
                     </a>
                 </div>
-            </div>
-            <div class="row admin-params">
-                <div class="col-1"><strong>ID</strong></div>
-                <div class="col-5"><strong>Заголовок</strong></div>
-                <div class="col-4"><strong>Картинка</strong></div>
-                <div class="col-2"><strong>Действия</strong></div>
-            </div>
-            <?php foreach($slides as $slide): ?>
-                <?php //che($supportMsgs); ?>
-                <div class="row admin-string">
-                    <div class="col-1"><?=$slide['id_slide']; ?></div>
-                    
-                    <?php if(mb_strlen($slide['title']) > 30): ?>
-                        <div class="col-5"><?=mb_substr($slide['title'], 0, 30, $encoding='utf8'); ?>...</div>
-                    <?php else: ?>
-                        <div class="col-5"><?=$slide['title']; ?></div>
-                    <?php endif; ?>
-    
-                    <?php if(mb_strlen($slide['img']) > 25): ?>
-                        <div class="col-4"><?=mb_substr($slide['img'], 0, 25, $encoding='utf8'); ?>...</div>
-                    <?php else: ?>
-                        <div class="col-4"><?=$slide['img']; ?></div>
-                    <?php endif; ?>
-                    
-                    <div class="col-1 look"><a href="edit.php?edit_id=<?=$slide['id_slide']?>">Edit</a></div>
-                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$slide['id_slide']?>">Delete</a></div>
-                </div>
-            <?php endforeach; ?>
+            </form>
         </div>
         <!--ADMIN CONTENT end-->
         
@@ -92,6 +91,7 @@ include SITE_ROOT . '/app/controllers/adminCarousel.php';
 
 </body>
 </html>
+
 
 
 

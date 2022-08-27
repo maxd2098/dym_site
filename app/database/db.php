@@ -133,6 +133,48 @@ function updateAbout($table, $params) {
     dbCheckError($query);
 }
 
+function updateForum($table, $id, $params) {
+    global $pdo;
+    
+    $set = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $set .= "$key = '$value'";
+        } else {
+            $set .= ", $key = '$value'";
+        }
+    }
+    
+    $sql = "UPDATE gym_site.$table SET $set WHERE id_topic = $id";
+    
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+}
+
+function updateCarousel($table, $id, $params) {
+    global $pdo;
+    
+    $set = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $set .= "$key = '$value'";
+        } else {
+            $set .= ", $key = '$value'";
+        }
+    }
+    
+    $sql = "UPDATE gym_site.$table SET $set WHERE id_slide = $id";
+    
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+}
+
 
 function selectOneAnd($table, $params = []) {
     global $pdo;

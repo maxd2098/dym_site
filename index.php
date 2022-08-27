@@ -17,7 +17,12 @@
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . '/app/controllers/adminCarousel.php';
+
+?>
 <!--HEADER end-->
 
 
@@ -30,24 +35,21 @@
     </h2>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/img/carousel1.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <p><a href="#">Некоторый репрезентативный заполнитель для первого слайда.</a></p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="assets/img/carousel2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <p><a href="#">Некоторый репрезентативный заполнитель для второго слайда.</a></p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="assets/img/carousel3.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <p><a href="#">Некоторый репрезентативный заполнитель для третьего слайда.</a></p>
-                </div>
-            </div>
+            <?php foreach($slides as $slide): ?>
+                <?php static $checkActive = 0; ?>
+                <?php if ($checkActive == 0): ?>
+                    <div class="carousel-item active">
+                <?php $checkActive++; ?>
+                <?php else: ?>
+                    <div class="carousel-item">
+                <?php endif; ?>
+                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $slide['img']; ?>" class="d-block w-100">
+                        <div class="carousel-caption d-none d-md-block">
+                            <p><?=$slide['title']; ?></p>
+                        </div>
+                    </div>
+            <?php endforeach; ?>
+            
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
