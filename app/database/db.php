@@ -375,8 +375,58 @@ function selectAllAndForForum($table, $params = []) {
     return $query->fetchAll();
 }
 
+function selectTrainersToGeneralPage($table, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= " WHERE $key = '$value'";
+        } else {
+            $where .= " AND $key = '$value'";
+        }
+    }
+    
+    $sql = "SELECT * FROM gym_site.$table" . $where . " ORDER BY RAND() LIMIT 4";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
 
-
+function selectResultFromSearch($table, $search) {
+    global $pdo;
+    
+    $where = '';
+    if ($table == 'users') {
+        $where .= "WHERE (name LIKE '%$search%' ";
+        $where .= "OR surname LIKE '%$search%' ";
+        $where .= "OR email LIKE '%$search%' ";
+        $where .= "OR info LIKE '%$search%') AND status = 1 ";
+        $sql = "SELECT * FROM gym_site.$table " . $where;
+    } elseif ($table == 'programs') {
+        $where .= "JOIN gym_site.users AS t2 ON t1.author_id = t2.id WHERE title LIKE '%$search%' ";
+        $where .= "OR text LIKE '%$search%' ";
+        $where .= "OR name LIKE '%$search%' ";
+        $where .= "OR surname LIKE '%$search%' ";
+        $sql = "SELECT id, title, text, name, surname, t1.created_date, change_date, publish, t1.img FROM gym_site.$table AS t1 " . $where;
+    } else {
+        $where .= "WHERE title LIKE '%$search%' ";
+        $where .= "OR comment LIKE '%$search%' ";
+        $sql = "SELECT * FROM gym_site.$table " . $where;
+    }
+    
+    
+    
+    //che($sql);
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
 
 
 

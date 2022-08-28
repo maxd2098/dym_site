@@ -20,6 +20,7 @@ include "../../path.php";
 <?php
 
 include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/banAdmin.php";
 include SITE_ROOT . '/app/controllers/adminForum.php';
 
 ?>

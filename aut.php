@@ -47,7 +47,7 @@ include "path.php";
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-4">
-                <button name="button_aut" type="submit" class="btn btn-primary">Авторизация</button>
+                <button name="button_aut" type="submit" class="btn btn-danger">Авторизация</button>
                 <a class="button-reg" href="reg.php">
                     <button type="button" class="btn btn-secondary">Регистрация</button>
                 </a>

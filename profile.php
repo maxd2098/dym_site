@@ -19,6 +19,7 @@ include "path.php";
 <!--HEADER start-->
 <?php
 include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/banUnaut.php";
 include SITE_ROOT . "/pages/addYear.php";
 
 ?>

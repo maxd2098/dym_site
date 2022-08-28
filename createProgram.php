@@ -21,6 +21,8 @@ include "path.php";
 <?php
 
 include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/banUnaut.php";
+include SITE_ROOT . "/pages/banClient.php";
 include SITE_ROOT . "/app/controllers/programs.php";
 
 ?>

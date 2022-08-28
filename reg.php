@@ -73,7 +73,7 @@ include "path.php";
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-4">
-                <button name="button_reg" type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <button name="button_reg" type="submit" class="btn btn-danger">Зарегистрироваться</button>
                 <a class="button-reg" href="aut.php">
                     <button type="button" class="btn btn-secondary">Вход</button>
                 </a>

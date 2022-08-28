@@ -119,7 +119,7 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
                 </div>
                 <div class="w-100"></div>
                 <div class="btn-div mb-3 col-12 col-lg-6">
-                    <button name="button_adminEditProfile" type="submit" class="btn btn-primary">Сохранить</button>
+                    <button name="button_adminEditProfile" type="submit" class="btn btn-danger">Сохранить</button>
                     <a class="button-reg" href="display.php">
                         <button type="button" class="btn btn-secondary">Не сохранять</button>
                     </a>

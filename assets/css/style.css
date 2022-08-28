@@ -110,6 +110,7 @@ textarea {
 }
 
 
+
 /*
     TRAINERS CARDS
  */
@@ -145,6 +146,17 @@ textarea {
 .train-cards .card:hover {
     background-color: whitesmoke;
 
+}
+
+.train-cards .years-trainers {
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.main-content .train-cards {
+    margin-bottom: 30px;
 }
 
 /*
@@ -211,9 +223,21 @@ textarea {
     background-color: firebrick;
 }
 
+.sidebar-search select {
+    margin-top: 10px;
+    background-color: indianred;
+    color: white;
+    border: 1px solid white;
+}
+
 .sidebar .sidebar-search input:focus {
     box-shadow: none;
     border-color: firebrick;
+}
+
+.sidebar-search select:focus {
+    box-shadow: none;
+    border-color: white;
 }
 
 /*
@@ -530,6 +554,10 @@ textarea {
     margin-bottom: 0;
 }
 
+.forum-content .card-comment {
+    font-size: 20px;
+}
+
 .topic-describe .param {
     font-style: italic;
     font-size: 15px;
@@ -550,7 +578,8 @@ textarea {
 
 @media screen and (max-width: 992px) {
     .program-cards .img-div, .trainers-cards .img-div, .train-cards .img-div{
-        height: 400px;
+        height: 300px;
+        max-height: 400px;
     }
 }
 
@@ -598,7 +627,7 @@ textarea {
 
 
 /*
-    PROGRAMMS
+    PROGRAMS
  */
 
 

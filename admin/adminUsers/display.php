@@ -18,7 +18,12 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/banAdmin.php";
+
+?>
 <!--HEADER end-->
 
 

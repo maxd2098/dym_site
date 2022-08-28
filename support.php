@@ -18,7 +18,12 @@ include SITE_ROOT . "/app/controllers/supportMsg.php";
 <body>
 
 <!--HEADER start-->
-<?php include SITE_ROOT . "/pages/header.php"; ?>
+<?php
+
+include SITE_ROOT . "/pages/header.php";
+include SITE_ROOT . "/pages/banUnaut.php";
+
+?>
 <!--HEADER end-->
 
 

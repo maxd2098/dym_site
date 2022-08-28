@@ -21,6 +21,9 @@
 
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . '/app/controllers/adminCarousel.php';
+include SITE_ROOT . "/pages/addYear.php";
+$trainers = selectTrainersToGeneralPage('users', ['status' => 1]);
+//che($trainers);
 
 ?>
 <!--HEADER end-->
@@ -71,63 +74,32 @@ include SITE_ROOT . '/app/controllers/adminCarousel.php';
             Наши лучшие тренера
         </h2>
         <div class="train-cards col-lg-9 col-12">
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="<?php echo BASE_URL . 'train.php'; ?>">
-                        <div class="card">
+            <div class="row row-cols-1 row-cols-lg-2 g-4">
+                
+                <?php foreach($trainers as $trainer): ?>
+                <div class="col">
+                    <a href="<?php echo BASE_URL . 'train.php?id_trainer=' . $trainer['id']; ?>">
+                        <div class="card h-100">
                             <div class="img-div">
-                                <img src="assets/img/trainers/trainer_1.jpg" class="card-img-top" alt="...">
+                                <img src="<?=BASE_URL . '/assets/imageToServer/' . $trainer['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Фред Ган</h5>
-                                <h6 class="age">32 года</h6>
-                                <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+                                <h5 class="card-title"><?=$trainer['name'] . ' ' . $trainer['surname']; ?></h5>
+                                <div class="row years-trainers">
+                                    <div class="age col-6">Возраст: <?=$trainer['age'] . addYearAll($trainer, 'age'); ?></div>
+                                    <div class="age col-6">Стаж: <?=$trainer['experience'] . addYearAll($trainer, 'experience'); ?></div>
+                                </div>
+                                <?php if(mb_strlen($trainer['info']) > 150): ?>
+                                    <div class="card-text">О себе: <?=mb_substr($trainer['info'], 0, 150, $encoding="utf-8") . '...'; ?></div>
+                                <?php else: ?>
+                                    <div class="card-text">О себе: <?=$trainer['info']; ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-6">
-                    <a href="train.php">
-                        <div class="card">
-                            <div class="img-div">
-                                <img src="assets/img/trainers/trainer_2.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Нильсон Дэвидс</h5>
-                                <h6 class="age">62 года</h6>
-                                <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <a href="train.php">
-                        <div class="card">
-                            <div class="img-div">
-                                <img src="assets/img/trainers/trainer_3.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Майкл Джонс</h5>
-                                <h6 class="age">29 лет</h6>
-                                <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <a href="train.php">
-                        <div class="card">
-                            <div class="img-div">
-                                <img src="assets/img/trainers/trainer_4.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Льюис Двигайло</h5>
-                                <h6 class="age">31 год</h6>
-                                <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php endforeach; ?>
+                
             </div>
         </div>
         <!--TRAINERS CARDS end-->
