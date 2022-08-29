@@ -88,7 +88,7 @@ include SITE_ROOT . "/pages/banUnaut.php";
             </div>
             <div class="w-100"></div>
             <div class="btn-div mb-3 col-12 col-lg-4">
-                <button name="button_editProfile" type="submit" class="btn btn-primary">Сохранить</button>
+                <button name="button_editProfile" type="submit" class="btn btn-danger">Сохранить</button>
                 <a class="button-reg" href="<?=BASE_URL . 'profile.php'?>">
                     <button type="button" class="btn btn-secondary">Не сохранять</button>
                 </a>

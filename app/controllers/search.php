@@ -7,12 +7,12 @@ $result = '';
 $category = '';
 $search = '';
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_search'])) {
-    $search = $_POST['search'];
-    $category = $_POST['category'];
-    if($_POST['category'] == 'trainers') {
+if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['button_search'])) {
+    $search = $_GET['search'];
+    $category = $_GET['category'];
+    if($_GET['category'] == 'trainers') {
         $result = selectResultFromSearch('users', $search);
-    } elseif($_POST['category'] == 'programs') {
+    } elseif($_GET['category'] == 'programs') {
         $result = selectResultFromSearch('programs', $search);
     } else {
         $result = selectResultFromSearch('forum', $search);

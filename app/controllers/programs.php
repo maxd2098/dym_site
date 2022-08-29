@@ -4,7 +4,7 @@ include_once SITE_ROOT . "/app/database/db.php";
 
 // ДОБАВЛЕНИЕ СТАТЬИ start
 
-$programs = selectAllStatesForTrainer('programs', 'users');
+//$programs = selectAllStatesForTrainer('programs', 'users');
 
 $title = '';
 $text = '';

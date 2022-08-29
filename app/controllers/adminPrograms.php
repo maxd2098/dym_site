@@ -2,7 +2,7 @@
 
 include_once SITE_ROOT . "/app/database/db.php";
 
-$programs = selectAllStatesForTrainer('programs', 'users');
+//$programs = selectAllStatesForTrainer('programs', 'users');
 
 // РЕДАКТИРОВАНИЕ СТАТЬИ В АДМИНКЕ start
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['edit_id'])) {

@@ -2,7 +2,7 @@
 
 include_once SITE_ROOT . "/app/database/db.php";
 
-$topics = selectAllAndForForum('forum');
+//$topics = selectAllAndForForum('forum');
 
 // РЕДАКТИРОВАНИЕ ТЕМ ФОРУМА start
 

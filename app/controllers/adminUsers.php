@@ -2,7 +2,7 @@
 
 include SITE_ROOT . "/app/database/db.php";
 
-$users = selectAllAnd('users');
+//$users = selectAllAnd('users');
 
 $id = '';
 

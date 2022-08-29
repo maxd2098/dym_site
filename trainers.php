@@ -21,7 +21,16 @@ include "path.php";
 
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/pages/addYear.php";
-$trainers = selectAllAnd('users', ['status' => 1]);
+//$trainers = selectAllAnd('users', ['status' => 1]);
+
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$limit = 2;
+$offset = $limit * ($page - 1);
+$countPage = countTable('users', ['status' => 1]);
+$countPage = ceil($countPage['count'] / $limit);
+//che($countPage);
+
+$trainers = selectAllForPage('users', $limit, $offset, ['status' => 1]);
 
 ?>
 <!--HEADER end-->
@@ -61,6 +70,10 @@ $trainers = selectAllAnd('users', ['status' => 1]);
                     </a>
                 </div>
             <?php endforeach; ?>
+            
+            <!--PAGINATION start-->
+            <?php include SITE_ROOT . "/pages/pagination.php"; ?>
+            <!--PAGINATION end-->
     
         </div>
         <!--TRAINERS CARDS end-->
@@ -69,6 +82,7 @@ $trainers = selectAllAnd('users', ['status' => 1]);
         <!--SIDEBAR start-->
         <?php include SITE_ROOT . "/pages/sidebar.php"; ?>
         <!--SIDEBAR end-->
+        
     
     </div>
 </div>

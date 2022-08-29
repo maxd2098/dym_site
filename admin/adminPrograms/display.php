@@ -23,6 +23,15 @@ include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/pages/banAdmin.php";
 include SITE_ROOT . '/app/controllers/adminPrograms.php';
 
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$limit = 2;
+$offset = $limit * ($page - 1);
+$countPage = countTable('programs');
+$countPage = ceil($countPage['count'] / $limit);
+//che($countPage);
+
+$programs = selectAllForPage('programs', $limit, $offset);
+
 ?>
 <!--HEADER end-->
 
@@ -67,6 +76,11 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+
+            <!--PAGINATION start-->
+            <?php include SITE_ROOT . "/pages/pagination.php"; ?>
+            <!--PAGINATION end-->
+            
         </div>
         <!--ADMIN CONTENT end-->
         

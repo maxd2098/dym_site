@@ -23,6 +23,15 @@ include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/pages/banAdmin.php";
 include SITE_ROOT . '/app/controllers/adminForum.php';
 
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$limit = 2;
+$offset = $limit * ($page - 1);
+$countPage = countTable('forum');
+$countPage = ceil($countPage['count'] / $limit);
+//che($countPage);
+
+$topics = selectAllForPage('forum', $limit, $offset);
+
 ?>
 <!--HEADER end-->
 
@@ -60,6 +69,11 @@ include SITE_ROOT . '/app/controllers/adminForum.php';
                     <div class="col-1 delete"><a href="edit.php?delete_id=<?=$topic['id_topic']?>">Delete</a></div>
                 </div>
             <?php endforeach; ?>
+
+            <!--PAGINATION start-->
+            <?php include SITE_ROOT . "/pages/pagination.php"; ?>
+            <!--PAGINATION end-->
+            
         </div>
         <!--ADMIN CONTENT end-->
         

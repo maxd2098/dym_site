@@ -26,7 +26,7 @@
         </ul>
     </div>
     <h4 class="title-search">Поиск по сайту</h4>
-    <form class="sidebar-search" action="<?=BASE_URL . 'search.php'?>" method="post">
+    <form class="sidebar-search" action="<?=BASE_URL . 'search.php'?>">
         <div class="d-flex">
             <input name="search" value="<?=isset($search) ? $search : ''; ?>" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
             <button name="button_search" class="btn" type="submit">Поиск</button>

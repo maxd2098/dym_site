@@ -428,7 +428,58 @@ function selectResultFromSearch($table, $search) {
     return $query->fetchAll();
 }
 
+function countTable($table, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= "WHERE $key = '$value' ";
+        } else {
+            $where .= "AND $key = '$value' ";
+        }
+    }
+    
+    $sql = "SELECT COUNT(*) AS count FROM gym_site.$table " . $where;
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetch();
+}
 
+function selectAllForPage($table, $limit, $offset, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= "WHERE $key = '$value' ";
+        } else {
+            $where .= "AND $key = '$value' ";
+        }
+    }
+    
+    if ($table == 'programs') {
+        $sql = "
+        SELECT id_program, title, author_id, text, count_like, t1.img, t1.created_date, t1.change_date, publish, name, surname, email
+        FROM gym_site.$table AS t1 JOIN gym_site.users AS t2 ON t1.author_id = t2.id " . $where;
+    } elseif($table == 'users') {
+        $sql = "SELECT * FROM gym_site.$table " . $where;
+    } else {
+        $sql = "SELECT * FROM gym_site.$table " . $where . "ORDER BY last_date DESC ";
+    }
+    
+    
+    $sql .= "LIMIT $limit OFFSET $offset";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
 
 
 

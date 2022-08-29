@@ -19,8 +19,17 @@ include "path.php";
 <!--HEADER start-->
 <?php
 
-include "pages/header.php";
+include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/app/controllers/forum.php";
+
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$limit = 2;
+$offset = $limit * ($page - 1);
+$countPage = countTable('forum');
+$countPage = ceil($countPage['count'] / $limit);
+//che($countPage);
+
+$topics = selectAllForPage('forum', $limit, $offset);
 
 ?>
 <!--HEADER end-->
@@ -51,6 +60,11 @@ include SITE_ROOT . "/app/controllers/forum.php";
             </div>
             
             <div class="forum-cards">
+                
+                <!--PAGINATION start-->
+                <?php include SITE_ROOT . "/pages/pagination.php"; ?>
+                <!--PAGINATION end-->
+                
                 <?php foreach($topics as $topic): ?>
                 
                 <a href="<?=BASE_URL . 'topic.php?id_topic=' . $topic['id_topic'] . '&email=' . $topic['email']; ?>">
@@ -77,6 +91,10 @@ include SITE_ROOT . "/app/controllers/forum.php";
                 </a>
                 
                 <?php endforeach; ?>
+
+                <!--PAGINATION start-->
+                <?php include SITE_ROOT . "/pages/pagination.php"; ?>
+                <!--PAGINATION end-->
                 
             </div>
             

@@ -49,14 +49,14 @@ include SITE_ROOT . "/pages/banUnaut.php";
             <form class="support-form" method="post" action="support.php">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Адрес электронной почты</label>
-                    <input value="<?=$_SESSION['email']; ?>" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ваш адрес" disabled>
+                    <input value="<?=$_SESSION['email']; ?>" type="email" class="form-control" placeholder="Ваш адрес" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Ваше обращение (max: 1000 символов)</label>
-                    <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="6" maxlength="1000"></textarea>
+                    <textarea name="message" class="form-control" rows="6" maxlength="1000"></textarea>
                 </div>
                 <div class="button-support col-auto">
-                    <button name="button_supportMsg" type="submit" class="btn btn-primary mb-3">Отправить</button>
+                    <button name="button_supportMsg" type="submit" class="btn btn-danger mb-3">Отправить</button>
                 </div>
             </form>
         
