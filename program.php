@@ -21,6 +21,9 @@ include "path.php";
 
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/app/controllers/programs.php";
+include SITE_ROOT . "/app/controllers/comments.php";
+$comments = selectAllComments('comments_program', ['id_program' => $_GET['id_program']]);
+//che($comments);
 
 ?>
 <!--HEADER end-->
@@ -65,6 +68,73 @@ include SITE_ROOT . "/app/controllers/programs.php";
                 <i class="fa-solid fa-thumbs-up"></i> Нравится
                 <span class="badge">1000</span>
             </button>
+            
+            <h2>Комментарии</h2>
+            
+            <div class="comments-block">
+                <?php if(isset($_SESSION['email'])): ?>
+                    <form class="support-form" method="post" action="program.php">
+                        <input name="id_program" value="<?=$_GET['id_program']; ?>" type="text" class="invisible">
+                        <div class="w-100"></div>
+                        <div class="mb-3 col-12 col-lg-8">
+                            <label class="form-label">Ваш email</label>
+                            <input name="email" value="<?=$_SESSION['email']; ?>" type="email" class="form-control" placeholder="Ваш адрес" readonly>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="mb-3 col-12 col-lg-8">
+                            <label class="form-label">Оставить комментарий (max: 2000 символов)*</label>
+                            <textarea name="comment" class="form-control" rows="5" maxlength="2000"></textarea>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="button-support col-auto">
+                            <button name="button_commentProgramCreate" type="submit" class="btn btn-danger">Отправить</button>
+                        </div>
+                    </form>
+                <?php else: ?>
+                    <h5>Только зарегистрированные пользователи могут оставлять комментарии.</h5>
+                <?php endif; ?>
+            </div>
+            
+            <?php foreach($comments as $comment): ?>
+            
+                <div class="comments-block">
+                    <div class="col-12">
+                        <div class="row g-0">
+                            <div class="card-body">
+                                <div class="card-inline-top d-flex justify-content-between col-12 col-xl-6 col-lg-8">
+                                    <div class="card-italic"><?=$comment['name'] . ' ' . $comment['surname']; ?></div>
+                                    
+                                    <?php if($comment['status'] == 0): ?>
+                                        <div class="card-italic">Клиент</div>
+                                    <?php elseif($comment['status'] == 1): ?>
+                                        <div class="card-italic">Тренер</div>
+                                    <?php elseif($comment['status'] == 2): ?>
+                                        <div class="card-italic">Админинстратор</div>
+                                    <?php else: ?>
+                                        <div class="card-italic">Владелец сайта</div>
+                                    <?php endif; ?>
+                                    
+                                    <div class="card-italic"> <?=$comment['created_date']; ?></div>
+                                </div>
+                                <p class="card-text"><?=$comment['comment']; ?></p>
+                                <div class="card-inline-bottom d-flex justify-content-between col-8 col-xl-3 col-lg-4 col-md-5">
+                                    <?php if(isset($_SESSION['email']) && isset($_SESSION['status'])): ?>
+                                        <a class="a" href="">Ответить</a>
+                                    
+                                    <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3 || $_SESSION['email'] == $comment['email']): ?>
+                                        <a class="a" href="program.php?id_program=<?=$comment['id_program'];?>&delete_id=<?=$comment['id'];?>">Удалить</a>
+                                    <?php endif; ?>
+
+                                    <?php endif; ?>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            <?php endforeach; ?>
+            
         </div>
         <!--TRAINERS CARDS end-->
         

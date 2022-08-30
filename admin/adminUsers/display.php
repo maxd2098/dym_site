@@ -24,7 +24,7 @@ include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/pages/banAdmin.php";
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 5;
+$limit = 20;
 $offset = $limit * ($page - 1);
 $countPage = countTable('users');
 $countPage = ceil($countPage['count'] / $limit);
@@ -62,10 +62,10 @@ $users = selectAllForPage('users', $limit, $offset);
                         <?php endif; ?>
                         <?php if($user['status'] == 0 || $user['status'] == 1): ?>
                             <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
-                            <div class="col-2 delete"><a href="edit.php?delete_id=<?=$user['id']?>">Delete</a></div>
+                            <div class="col-2 delete"><a href="display.php?delete_id=<?=$user['id']?>">Delete</a></div>
                         <?php elseif($user['status'] == 2 && $_SESSION['status'] == 3): ?>
                             <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
-                            <div class="col-2 delete"><a href="edit.php?delete_id=<?=$user['id']?>">Delete</a></div>
+                            <div class="col-2 delete"><a href="display.php?delete_id=<?=$user['id']?>">Delete</a></div>
                         <?php elseif($user['status'] == 3 && $_SESSION['status'] == 3): ?>
                             <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
                             <div class="col-2 delete">Delete</div>

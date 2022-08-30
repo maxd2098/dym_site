@@ -434,7 +434,7 @@ textarea {
 }
 
 .trainer-describe > div, .program-describe > div {
-    padding: 10px 0;
+    padding: 10px 0px;
 }
 
 .trainer-describe .weight-train, .program-describe .weight-program {
@@ -591,6 +591,51 @@ textarea {
 .pagination .active {
     border: 1px solid white;
 }
+
+
+/*
+    COMMENTS
+ */
+
+.comments-block {
+    background-color: whitesmoke;
+    padding: 10px 15px !important;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.comments-block .card-text {
+    margin-bottom: 10px;
+}
+
+.comments-block .card-inline-top {
+    padding-bottom: 10px;
+}
+
+.comments-block .card-italic {
+    font-style: italic;
+    font-size: 15px;
+}
+
+.comments-block .card-inline-bottom .a {
+    font-size: 15px;
+    color: gray;
+}
+
+.comments-block .card-inline-bottom .a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

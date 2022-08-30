@@ -66,7 +66,7 @@ $topics = selectAllForPage('forum', $limit, $offset);
                         <div class="col-5"><?=$topic['title']; ?></div>
                     <?php endif; ?>
                     <div class="col-1 look"><a href="edit.php?edit_id=<?=$topic['id_topic']?>">Edit</a></div>
-                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$topic['id_topic']?>">Delete</a></div>
+                    <div class="col-1 delete"><a href="display.php?delete_id=<?=$topic['id_topic']?>">Delete</a></div>
                 </div>
             <?php endforeach; ?>
 

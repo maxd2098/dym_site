@@ -481,7 +481,26 @@ function selectAllForPage($table, $limit, $offset, $params = []) {
     return $query->fetchAll();
 }
 
-
+function selectAllComments($table, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= "WHERE $key = '$value' ";
+        } else {
+            $where .= "AND $key = '$value' ";
+        }
+    }
+    
+    $sql = "SELECT t1.*, name, surname, status FROM gym_site.$table AS t1 JOIN gym_site.users AS t2 USING(email) " . $where;
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
 
 
 //$arr = [
