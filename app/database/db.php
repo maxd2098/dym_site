@@ -466,10 +466,10 @@ function selectAllForPage($table, $limit, $offset, $params = []) {
         $sql = "
         SELECT id_program, title, author_id, text, count_like, t1.img, t1.created_date, t1.change_date, publish, name, surname, email
         FROM gym_site.$table AS t1 JOIN gym_site.users AS t2 ON t1.author_id = t2.id " . $where;
-    } elseif($table == 'users') {
-        $sql = "SELECT * FROM gym_site.$table " . $where;
-    } else {
+    } elseif($table == 'forum') {
         $sql = "SELECT * FROM gym_site.$table " . $where . "ORDER BY last_date DESC ";
+    } else {
+        $sql = "SELECT * FROM gym_site.$table " . $where;
     }
     
     

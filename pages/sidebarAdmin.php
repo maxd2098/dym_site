@@ -20,6 +20,9 @@
             <li>
                 <a href="<?=BASE_URL . 'admin/adminCarousel/display.php'?>">Карусель главной страницы</a>
             </li>
+            <li>
+                <a href="<?=BASE_URL . 'admin/adminComments/display.php'?>">Комментарии</a>
+            </li>
         </ul>
     </div>
 </div>

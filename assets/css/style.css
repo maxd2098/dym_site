@@ -602,6 +602,7 @@ textarea {
     padding: 10px 15px !important;
     border-radius: 10px;
     margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
 .comments-block .card-text {
@@ -626,12 +627,26 @@ textarea {
     text-decoration: underline;
 }
 
+.admin-comments .card {
+    margin: 20px 0;
+}
 
+.admin-comments .card:hover {
+    background-color: whitesmoke;
+}
 
+.collapse-comment {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
 
+.btn-comment-answer:hover {
+    background-color: gray !important;
+}
 
-
-
+.btn-comment-answer:focus {
+    background-color: gray !important;
+}
 
 
 

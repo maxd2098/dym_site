@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentProgramC
             'email' => $email,
             'comment' => $comment
         ];
+        if(isset($_POST['answer'])) $comment['answer'] = $_POST['answer'];
         insert('comments_program', $comment);
     }
     header('location: program.php?id_program=' . $id_program);
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentTrainerC
             'email' => $email,
             'comment' => $comment
         ];
+        if(isset($_POST['answer'])) $comment['answer'] = $_POST['answer'];
         insert('comments_trainer', $comment);
     }
     header('location: train.php?id_trainer=' . $id_trainer);
@@ -89,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentTopicCre
             'email' => $email,
             'comment' => $comment
         ];
+        if(isset($_POST['answer'])) $comment['answer'] = $_POST['answer'];
         insert('comments_topic', $comment);
     }
     header('location: topic.php?id_topic=' . $id_topic . '&email=' . $author['email']);

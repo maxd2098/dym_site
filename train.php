@@ -88,7 +88,7 @@ $comments = selectAllComments('comments_trainer', ['id_trainer' => $_GET['id_tra
                     <div class="col-12">
                         <div class="row g-0">
                             <div class="card-body">
-                                <div class="card-inline-top d-flex justify-content-between col-12 col-xl-6 col-lg-8">
+                                <div class="card-inline-top d-flex justify-content-between col-12 col-xl-8 col-lg-10">
                                     <div class="card-italic"><?=$comment['name'] . ' ' . $comment['surname']; ?></div>
                             
                                     <?php if($comment['status'] == 0): ?>
@@ -104,7 +104,7 @@ $comments = selectAllComments('comments_trainer', ['id_trainer' => $_GET['id_tra
                                     <div class="card-italic"> <?=$comment['created_date']; ?></div>
                                 </div>
                                 <p class="card-text"><?=$comment['comment']; ?></p>
-                                <div class="card-inline-bottom d-flex justify-content-between col-8 col-xl-3 col-lg-4 col-md-5">
+                                <div class="card-inline-bottom d-flex justify-content-between">
                                     <?php if(isset($_SESSION['email']) && isset($_SESSION['status'])): ?>
                                         <a class="a" href="">Ответить</a>
                                     
