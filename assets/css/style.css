@@ -637,7 +637,7 @@ textarea {
 
 .collapse-comment {
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 .btn-comment-answer:hover {
@@ -648,6 +648,14 @@ textarea {
     background-color: gray !important;
 }
 
+.answer-comment {
+    margin-left: 50px;
+}
+
+.comment-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 
 

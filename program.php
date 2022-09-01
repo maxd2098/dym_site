@@ -22,7 +22,7 @@ include "path.php";
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/app/controllers/programs.php";
 include SITE_ROOT . "/app/controllers/comments.php";
-$comments = selectAllComments('comments_program', ['id_program' => $_GET['id_program']]);
+$comments = selectAllComments('comments_program', ['id_program' => $_GET['id_program'], 'answer' => 'null']);
 //che($comments);
 
 ?>
@@ -64,12 +64,13 @@ $comments = selectAllComments('comments_program', ['id_program' => $_GET['id_pro
             <div class="describe-program">
                 <?=$program['text']; ?>
             </div>
-            <button type="button" class="btn btn-primary like-program">
-                <i class="fa-solid fa-thumbs-up"></i> Нравится
-                <span class="badge">1000</span>
-            </button>
             
-            <h2>Комментарии</h2>
+<!--            <button type="button" class="btn btn-primary like-program">-->
+<!--                <i class="fa-solid fa-thumbs-up"></i> Нравится-->
+<!--                <span class="badge">1000</span>-->
+<!--            </button>-->
+            
+            <h2 class="comment-title">Комментарии</h2>
             
             <div class="comments-block">
                 <?php if(isset($_SESSION['email'])): ?>
@@ -96,8 +97,6 @@ $comments = selectAllComments('comments_program', ['id_program' => $_GET['id_pro
             </div>
             
             <?php foreach($comments as $comment): ?>
-            
-                <?php if($comment['answer'] == null): ?>
                 
                 <div class="comments-block">
                     <div class="col-12">
@@ -150,11 +149,54 @@ $comments = selectAllComments('comments_program', ['id_program' => $_GET['id_pro
                     </form>
                     
                 </div>
+
+                <?php
                 
-                <?php endif; ?>
+                $commentsIsNotNull = selectAllComments('comments_program', ['id_program' => $_GET['id_program'], 'answer' => $comment['id']]);
+                //ch($commentsIsNotNull);
+                if($commentsIsNotNull != ''):
+                
+                ?>
     
-                <?php if($comment['answer'] == null): ?>
-                
+                <?php foreach($commentsIsNotNull as $commentAnswer): ?>
+
+                <div class="comments-block answer-comment">
+                    <div class="col-12">
+                        <div class="row g-0">
+                            <div class="card-body">
+                                <div class="card-inline-top d-flex justify-content-between col-12 col-xl-8 col-lg-10">
+                                    <div class="card-italic"><?=$commentAnswer['name'] . ' ' . $commentAnswer['surname']; ?></div>
+                            
+                                    <?php if($commentAnswer['status'] == 0): ?>
+                                        <div class="card-italic">Клиент</div>
+                                    <?php elseif($commentAnswer['status'] == 1): ?>
+                                        <div class="card-italic">Тренер</div>
+                                    <?php elseif($commentAnswer['status'] == 2): ?>
+                                        <div class="card-italic">Админинстратор</div>
+                                    <?php else: ?>
+                                        <div class="card-italic">Владелец сайта</div>
+                                    <?php endif; ?>
+
+                                    <div class="card-italic"> <?=$commentAnswer['created_date']; ?></div>
+                                </div>
+                                <p class="card-text"><?=$commentAnswer['comment']; ?></p>
+                                <div class="card-inline-bottom d-flex justify-content-between">
+                                    <?php if(isset($_SESSION['email']) && isset($_SESSION['status'])): ?>
+                                
+                                        <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3 || $_SESSION['email'] == $commentAnswer['email']): ?>
+                                            <a class="a" href="program.php?id_program=<?=$commentAnswer['id_program'];?>&delete_id=<?=$commentAnswer['id'];?>">Удалить</a>
+                                        <?php endif; ?>
+                            
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <?php endforeach; ?>
+
                 <?php endif; ?>
             
             <?php endforeach; ?>

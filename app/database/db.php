@@ -489,12 +489,14 @@ function selectAllComments($table, $params = []) {
     foreach ($params as $key => $value) {
         if ($check++ == 0) {
             $where .= "WHERE $key = '$value' ";
+        } elseif($value == 'null') {
+            $where .= "AND $key IS NULL ";
         } else {
             $where .= "AND $key = '$value' ";
         }
     }
     
-    $sql = "SELECT t1.*, name, surname, status FROM gym_site.$table AS t1 JOIN gym_site.users AS t2 USING(email) " . $where;
+    $sql = "SELECT t1.*, name, surname, status FROM gym_site.$table AS t1 JOIN gym_site.users AS t2 USING(email) " . $where . 'ORDER BY created_date';
     $query = $pdo->prepare($sql);
     $query->execute();
     
