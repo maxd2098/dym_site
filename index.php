@@ -2,6 +2,7 @@
 
     include "path.php";
 
+//phpinfo();
 ?>
 
 <!DOCTYPE html>

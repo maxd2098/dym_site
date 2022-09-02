@@ -66,6 +66,10 @@ include SITE_ROOT . "/pages/addYear.php";
                             <button type="button" class="btn btn-danger">Редактировать мои программы тренировок</button>
                         </a>
                     <?php endif; ?>
+                    <div class="w-100"></div>
+                    <a class="edit_programs" href="<?=BASE_URL . 'boughtMemships.php?id=' . $_SESSION['id']; ?>">
+                        <button type="button" class="btn btn-success">Мои абонементы</button>
+                    </a>
                 </div>
                 <div class="col-lg-4 col-sm-4">
                     <div class="img-div">

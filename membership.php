@@ -57,6 +57,7 @@ include SITE_ROOT . '/app/controllers/memShips.php';
                 <div class="mb-3 col-12 col-lg-5">
                     <label for="exampleInputEmail1" class="form-label">Абонемент</label>
                     <input name="title" value="<?=$memberShip['title']; ?>" type="text" class="form-control" readonly>
+                    <input name="count" value="<?=$memberShip['count']; ?>" type="text" class="invisible">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-5">
@@ -71,6 +72,21 @@ include SITE_ROOT . '/app/controllers/memShips.php';
                 <div class="mb-3 col-12 col-lg-5">
                     <label for="exampleInputEmail1" class="form-label">Цена</label>
                     <input name="price" value="<?=$memberShip['price']; ?>" type="text" class="form-control" readonly>
+                </div>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-5">
+                    <label for="exampleInputEmail1" class="form-label">Введите номер карты *</label>
+                    <input name="num_card" type="text" class="form-control">
+                </div>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-5">
+                    <label for="exampleInputEmail1" class="form-label">Введите срок действия карты *</label>
+                    <input name="date_card" type="text" class="form-control">
+                </div>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-5">
+                    <label for="exampleInputEmail1" class="form-label">Введите 3 цифры с оборота карты *</label>
+                    <input name="code_card" type="text" class="form-control">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-5">
