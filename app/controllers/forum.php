@@ -2,9 +2,6 @@
 
 include_once SITE_ROOT . "/app/database/db.php";
 
-//$topics = selectAllAndForForum('forum');
-//che($topics);
-
 // СОЗДАНИЕ ТЕМЫ start
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_forumTopicCreate'])) {

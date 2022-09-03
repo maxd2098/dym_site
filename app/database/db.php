@@ -375,27 +375,6 @@ function selectOneAndForDisplayOrEditProgram($table1, $table2, $params = []) {
     return $query->fetch();
 }
 
-function selectAllAndForForum($table, $params = []) {
-    global $pdo;
-    
-    $where = '';
-    $check = 0;
-    foreach ($params as $key => $value) {
-        if ($check++ == 0) {
-            $where .= " WHERE $key = '$value'";
-        } else {
-            $where .= " AND $key = '$value'";
-        }
-    }
-    
-    $sql = "SELECT * FROM gym_site.$table" . $where . " ORDER BY last_date DESC";
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    
-    dbCheckError($query);
-    return $query->fetchAll();
-}
-
 function selectTrainersToGeneralPage($table, $params = []) {
     global $pdo;
     
