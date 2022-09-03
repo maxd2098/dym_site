@@ -39,7 +39,7 @@ $memShips = selectAllAnd('ordered_memships', ['email' => $_SESSION['email']]);
         
         <div class="memships-cards col-lg-9 col-12">
             <h2 class="main-trainers">
-                Ваши абонементы
+                Ваши абонементы (распечатайте или сфотографируйте ваши абонементы)
             </h2>
             <?php foreach($memShips as $memShip): ?>
             <h4 class="count">Осталось занятий: <?=$memShip['remains']; ?></h4>

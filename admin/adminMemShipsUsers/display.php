@@ -22,7 +22,18 @@ include "../../path.php";
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/pages/banAdmin.php";
 include SITE_ROOT . '/app/controllers/adminMemShips.php';
-$memberShips = selectAllAnd('member_ships');
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['button_searchOrder'])) {
+    //che($_GET);
+    $search = $_GET['search'];
+    if($search !== '') {
+        $memberShips = selectAllAnd('ordered_memships', ['id_order' => $search]);
+    } else {
+        $memberShips = selectAllAnd('ordered_memships');
+    }
+} else {
+    $memberShips = selectAllAnd('ordered_memships');
+}
 
 ?>
 <!--HEADER end-->
@@ -35,30 +46,36 @@ $memberShips = selectAllAnd('member_ships');
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <div class="d-flex justify-content-between">
-                <h1>Абонементы</h1>
-                <div class="button-program-add">
-                    <a href="<?=BASE_URL . 'admin/adminMemShips/create.php'?>">
-                        <button type="button" class="btn btn-danger">Добавить абонемент</button>
-                    </a>
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>Купленные абонементы</h1>
+                <div class="search-order sidebar">
+                    <form class="sidebar-search" action="display.php">
+                        <div class="d-flex">
+                            <input name="search" value="<?=isset($search) ? $search : ''; ?>" class="form-control me-2" type="search" placeholder="Поиск по id" aria-label="Поиск">
+                            <button name="button_searchOrder" class="btn" type="submit">Поиск</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="row admin-params">
-                <div class="col-1"><strong>ID</strong></div>
-                <div class="col-1"><strong>Тип</strong></div>
-                <div class="col-3"><strong>Цена</strong></div>
-                <div class="col-2"><strong>Число</strong></div>
-                <div class="col-3"><strong>Действия</strong></div>
+                <div class="col-1"><strong>Заказ</strong></div>
+                <div class="col-5"><strong>Email</strong></div>
+                <div class="col-2"><strong>Абонемент</strong></div>
+                <div class="col-2"><strong>Осталось</strong></div>
+                <div class="col-2"><strong>Действия</strong></div>
             </div>
             <?php foreach($memberShips as $memSh): ?>
                 <?php //che($supportMsgs); ?>
                 <div class="row admin-string">
-                    <div class="col-1"><?=$memSh['id_memsh']; ?></div>
-                    <div class="col-1"><?=$memSh['type']; ?></div>
-                    <div class="col-3"><?=$memSh['price']; ?></div>
-                    <div class="col-2"><?=$memSh['count']; ?></div>
-                    <div class="col-2 look"><a href="edit.php?edit_id=<?=$memSh['id_memsh']?>">Edit</a></div>
-                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$memSh['id_memsh']?>">Delete</a></div>
+                    <div class="col-1"><?=$memSh['id_order']; ?></div>
+                    <?php if(mb_strlen($memSh['email']) > 25): ?>
+                        <div class="col-5"><?=mb_substr($memSh['email'], 0, 25, $encoding='utf8'); ?>...</div>
+                    <?php else: ?>
+                        <div class="col-5"><?=$memSh['email']; ?></div>
+                    <?php endif; ?>
+                    <div class="col-2"><?=$memSh['id_memsh']; ?></div>
+                    <div class="col-2"><?=$memSh['remains']; ?></div>
+                    <div class="col-2 look"><a href="display.php?reduce_id=<?=$memSh['id_order']?>">Отметить</a></div>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -85,4 +102,5 @@ $memberShips = selectAllAnd('member_ships');
 
 </body>
 </html>
+
 

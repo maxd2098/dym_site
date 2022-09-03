@@ -12,7 +12,10 @@
                 <a href="<?=BASE_URL . 'admin/adminSupportMsg/display.php'?>">Обращения пользователей</a>
             </li>
             <li>
-                <a href="<?=BASE_URL . 'admin/adminMemShips/display.php'?>">Абонементы</a>
+                <a href="<?=BASE_URL . 'admin/adminMemShips/display.php'?>">Доступные абонементы</a>
+            </li>
+            <li>
+                <a href="<?=BASE_URL . 'admin/adminMemShipsUsers/display.php'?>">Купленные абонементы</a>
             </li>
             <li>
                 <a href="<?=BASE_URL . 'admin/adminForum/display.php'?>">Форум</a>
@@ -23,6 +26,10 @@
             <li>
                 <a href="<?=BASE_URL . 'admin/adminComments/display.php'?>">Комментарии</a>
             </li>
+            <li>
+                <a href="<?=BASE_URL . 'admin/adminOrderReduction/display.php'?>">Уменьшение тренировок</a>
+            </li>
+            
         </ul>
     </div>
 </div>

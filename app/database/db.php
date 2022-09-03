@@ -175,6 +175,27 @@ function updateCarousel($table, $id, $params) {
     dbCheckError($query);
 }
 
+function updateAll($table, $id, $name_id, $params) {
+    global $pdo;
+    
+    $set = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $set .= "$key = '$value'";
+        } else {
+            $set .= ", $key = '$value'";
+        }
+    }
+    
+    $sql = "UPDATE gym_site.$table SET $set WHERE $name_id = $id";
+    
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+}
+
 
 function selectOneAnd($table, $params = []) {
     global $pdo;
@@ -503,6 +524,28 @@ function selectAllComments($table, $params = []) {
     dbCheckError($query);
     return $query->fetchAll();
 }
+
+function selectAllAndOrderByDescCreatedDate($table, $params = []) {
+    global $pdo;
+    
+    $where = '';
+    $check = 0;
+    foreach ($params as $key => $value) {
+        if ($check++ == 0) {
+            $where .= "WHERE $key = '$value' ";
+        } else {
+            $where .= "AND $key = '$value' ";
+        }
+    }
+    
+    $sql = "SELECT * FROM gym_site.$table " . $where . "ORDER BY created_date DESC";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+
 
 
 //$arr = [

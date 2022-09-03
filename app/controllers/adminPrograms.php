@@ -71,7 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditProgra
 
 // УДАЛЕНИЕ СТАТЬИ В АДМИНКЕ start
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
+    $programImg = selectOneAnd('programs', ['id_program' => $_GET['delete_id']]);
     delete('programs', ['id_program' => $_GET['delete_id']]);
+    unlink(SITE_ROOT . '\assets\imageToServer\\' . $programImg['img']);
     header('location: display.php');
 }
 

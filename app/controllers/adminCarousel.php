@@ -109,7 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditSlide'
 
 // УДАЛЕНИЕ СЛАЙДА start
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
+    $slideImg = selectOneAnd('carousel', ['id_slide' => $_GET['delete_id']]);
     delete('carousel', ['id_slide' => $_GET['delete_id']]);
+    unlink(SITE_ROOT . '\assets\imageToServer\\' . $slideImg['img']);
     header("location: display.php");
 }
 

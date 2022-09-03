@@ -4,8 +4,6 @@ include_once SITE_ROOT . "/app/database/db.php";
 
 // ДОБАВЛЕНИЕ АБОНЕМЕНТА start
 
-$memberShips = selectAllAnd('member_ships');
-
 $type = '';
 $price = '';
 $count = '';
@@ -139,17 +137,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditMemShi
 
 // УДАЛЕНИЕ АБОНЕМЕНТА start
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
+    $memshipImg = selectOneAnd('member_ships', ['id_memsh' => $_GET['delete_id']]);
     delete('member_ships', ['id_memsh' => $_GET['delete_id']]);
+    unlink(SITE_ROOT . '\assets\imageToServer\\' . $memshipImg['img']);
     header("location: display.php");
 }
 
 // УДАЛЕНИЕ АБОНЕМЕНТА end
 
 
+// УМЕНЬШЕНИЕ НА 1 ЧИСЛА ОСТАВШИХСЯ ТРЕНИРОВОК start
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reduce_id'])) {
+    //che($_GET);
+    $id_order = $_GET['reduce_id'];
+    $order = selectOneAnd('ordered_memships', ['id_order' => $id_order]);
+    //che($order);
+    if($order['remains'] == 1) {
+        delete('ordered_memships', ['id_order' => $id_order]);
+        unlink(SITE_ROOT . '\assets\imageToServer\\' . $order['img']);
+    } else {
+        $orderReduce = [
+            'remains' => $order['remains'] - 1
+        ];
+        updateAll('ordered_memships', $id_order, 'id_order', $orderReduce);
+    }
+    $reduction = [
+        'id_order' => $id_order,
+        'remains' => $order['remains'],
+        'email' => $_SESSION['email']
+    ];
+    insert('order_reduction', $reduction);
+    header("location: display.php");
+}
+
+// УМЕНЬШЕНИЕ НА 1 ЧИСЛА ОСТАВШИХСЯ ТРЕНИРОВОК end
 
 
+// УДАЛЕНИЕ REDUCTION ЗАПИСИ start
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_reduct_id'])) {
+    delete('order_reduction', ['id_reduct' => $_GET['delete_reduct_id']]);
+    header("location: display.php");
+}
 
-
-
-
+// УДАЛЕНИЕ REDUCTION ЗАПИСИ end
 

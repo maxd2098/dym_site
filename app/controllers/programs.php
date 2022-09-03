@@ -140,8 +140,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editProgram']))
 // УДАЛЕНИЕ СТАТЬИ start
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_deleteProgram'])) {
-    
+    $programImg = selectOneAnd('programs', ['id_program' => $_POST['id_program']]);
     delete('programs', ['id_program' => $_POST['id_program']]);
+    unlink(SITE_ROOT . '\assets\imageToServer\\' . $programImg['img']);
     header('location: programms.php');
     //che($_POST);
 }

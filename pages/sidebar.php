@@ -11,10 +11,10 @@
             <?php endif; ?>
             <?php if(isset($_SESSION['email'])): ?>
                 <li>
-                    <a href="<?=BASE_URL . 'memberships.php'?>">Купить абонемент</a>
+                    <a href="<?=BASE_URL . 'boughtMemships.php?id=' . $_SESSION['id']; ?>">Мои абонементы</a>
                 </li>
                 <li>
-                    <a href="<?=BASE_URL . 'trainers.php'?>">Выбрать тренера</a>
+                    <a href="<?=BASE_URL . 'memberships.php'?>">Купить абонемент</a>
                 </li>
                 <li>
                     <a href="<?=BASE_URL . 'support.php'?>">Тех. поддержка</a>

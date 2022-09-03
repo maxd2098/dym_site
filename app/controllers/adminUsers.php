@@ -64,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditProfil
 
 // УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ В АДМИНКЕ start
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
+    $userImg = selectOneAnd('users', ['id' => $_GET['delete_id']]);
     delete('users', ['id' => $_GET['delete_id']]);
+    unlink(SITE_ROOT . '\assets\imageToServer\\' . $userImg['img']);
     header('location: display.php');
 }
 

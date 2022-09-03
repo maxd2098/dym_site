@@ -54,7 +54,6 @@ $comments = selectAllComments('comments_trainer', ['id_trainer' => $_GET['id_tra
             <div class="describe">
                 О себе: <?=$trainer['info'];?>
             </div>
-            <button class="btn btn-danger" type="submit">Оставить заявку</button>
 
             <h2 class="comment-title">Комментарии</h2>
 

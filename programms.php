@@ -25,11 +25,11 @@ include SITE_ROOT . "/app/controllers/programs.php";
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 2;
 $offset = $limit * ($page - 1);
-$countPage = countTable('programs');
+$countPage = countTable('programs', ['publish' => 1]);
 $countPage = ceil($countPage['count'] / $limit);
 //che($countPage);
 
-$programs = selectAllForPage('programs', $limit, $offset);
+$programs = selectAllForPage('programs', $limit, $offset, ['publish' => 1]);
 
 ?>
 <!--HEADER end-->
@@ -56,32 +56,30 @@ $programs = selectAllForPage('programs', $limit, $offset);
             </div>
     
             <?php foreach($programs as $program): ?>
-                <?php if($program['publish'] == 1): ?>
-                    <div class="card col-12">
-                        <a href="<?=BASE_URL . 'program.php?id_program=' . $program['id_program']; ?>">
-                            <div class="row g-0">
-                                <div class="img-div col-lg-4">
-                                    <div class="img-div">
-                                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="card-body">
-                                        <h3 class="card-title"><?=$program['title']; ?></h3>
-                                        <div class="card-author">Автор: <?=$program['name'] . ' ' . $program['surname']; ?></div>
-                                        <div class="row">
-                                            <div class="card-date col-5">Опубликован: <?=$program['created_date']; ?></div>
-                                            <?php if($program['change_date'] != ''): ?>
-                                                <div class="card-date-change col-5">Изменен: <?=$program['change_date']; ?></div>
-                                            <?php endif; ?>
-                                        </div>
-                                        <p class="card-text"><?=mb_substr($program['text'], 0, 200, $encoding='utf8') . '...'; ?></p>
-                                    </div>
+                <div class="card col-12">
+                    <a href="<?=BASE_URL . 'program.php?id_program=' . $program['id_program']; ?>">
+                        <div class="row g-0">
+                            <div class="img-div col-lg-4">
+                                <div class="img-div">
+                                    <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                <?php endif; ?>
+                            <div class="col-lg-8">
+                                <div class="card-body">
+                                    <h3 class="card-title"><?=$program['title']; ?></h3>
+                                    <div class="card-author">Автор: <?=$program['name'] . ' ' . $program['surname']; ?></div>
+                                    <div class="row">
+                                        <div class="card-date col-5">Опубликован: <?=$program['created_date']; ?></div>
+                                        <?php if($program['change_date'] != ''): ?>
+                                            <div class="card-date-change col-5">Изменен: <?=$program['change_date']; ?></div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <p class="card-text"><?=mb_substr($program['text'], 0, 200, $encoding='utf8') . '...'; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             <?php endforeach; ?>
 
             <!--PAGINATION start-->

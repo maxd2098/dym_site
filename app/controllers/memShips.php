@@ -21,7 +21,9 @@ function toImage($text, $x, $y, $imgPath) {
     $pic = imagecreatefrompng($img); // Функция создания изображения
     //che($pic);
     $color = imagecolorallocate($pic, 0, 0, 0); // Функция выделения цвета для текста
-    
+    if(strlen($text) > 20) {
+        $text = substr($text, 0, 20) . '...';
+    }
     imagettftext($pic, $font_size, $degree, $x, $y, $color, $font, $text); // Функция нанесения текста
     imagepng($pic, $imgPath); // Сохранение рисунка
     //che($bool);
