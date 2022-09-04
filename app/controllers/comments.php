@@ -33,6 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentProgramC
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
     //che($_GET);
     delete('comments_program', ['id' => $_GET['delete_id']]);
+    
+    $commentsAnswer = selectAllComments('comments_program', ['id_program' => $_GET['id_program'], 'answer' => $_GET['delete_id']]);
+    //che($commentsAnswer);
+    if($commentsAnswer != '') {
+        foreach($commentsAnswer as $commentAnswer) {
+            delete('comments_program', ['id' => $commentAnswer['id']]);
+        }
+    }
+    
     header('location: program.php?id_program=' . $_GET['id_program']);
     //che($_POST);
 }
@@ -69,6 +78,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentTrainerC
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_train_id'])) {
     //che($_GET);
     delete('comments_trainer', ['id' => $_GET['delete_train_id']]);
+    
+    $commentsAnswer = selectAllComments('comments_trainer', ['id_trainer' => $_GET['id_trainer'], 'answer' => $_GET['delete_train_id']]);
+    //che($commentsAnswer);
+    if($commentsAnswer != '') {
+        foreach($commentsAnswer as $commentAnswer) {
+            delete('comments_trainer', ['id' => $commentAnswer['id']]);
+        }
+    }
+    
     header('location: train.php?id_trainer=' . $_GET['id_trainer']);
 }
 
@@ -93,6 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentTopicCre
         ];
         if(isset($_POST['answer'])) $comment['answer'] = $_POST['answer'];
         insert('comments_topic', $comment);
+        $lastComment = selectOneAndForForum('comments_topic', ['id_topic' => $id_topic, 'created_date' => "(SELECT MAX(created_date) FROM gym_site.comments_topic WHERE id_topic = $id_topic)"]);
+        //che($lastComment);
+        updateAll('forum', $id_topic, 'id_topic', ['last_date' => $lastComment['created_date']]);
     }
     header('location: topic.php?id_topic=' . $id_topic . '&email=' . $author['email']);
 }
@@ -105,6 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_commentTopicCre
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_topic_id'])) {
     //che($_GET);
     delete('comments_topic', ['id' => $_GET['delete_topic_id']]);
+    
+    $commentsAnswer = selectAllComments('comments_topic', ['id_topic' => $_GET['id_topic'], 'answer' => $_GET['delete_topic_id']]);
+    //che($commentsAnswer);
+    if($commentsAnswer != '') {
+        foreach($commentsAnswer as $commentAnswer) {
+            delete('comments_topic', ['id' => $commentAnswer['id']]);
+        }
+    }
+    
+    
     header('location: topic.php?id_topic=' . $_GET['id_topic'] . '&email=' . $_GET['email']);
 }
 

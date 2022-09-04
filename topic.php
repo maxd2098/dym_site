@@ -193,7 +193,7 @@ $comments = selectAllComments('comments_topic', ['id_topic' => $_GET['id_topic']
                                         <?php if(isset($_SESSION['email']) && isset($_SESSION['status'])): ?>
                                 
                                             <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3 || $_SESSION['email'] == $commentAnswer['email']): ?>
-                                                <a class="a" href="topic.php?id_topic=<?=$comment['id_topic'] . '&email=' . $topic['email'];?>&delete_topic_id=<?=$comment['id'];?>">Удалить</a>
+                                                <a class="a" href="topic.php?id_topic=<?=$commentAnswer['id_topic'] . '&email=' . $topic['email'];?>&delete_topic_id=<?=$commentAnswer['id'];?>">Удалить</a>
                                             <?php endif; ?>
                             
                                         <?php endif; ?>

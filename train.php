@@ -169,7 +169,7 @@ $comments = selectAllComments('comments_trainer', ['id_trainer' => $_GET['id_tra
                                         <?php if(isset($_SESSION['email']) && isset($_SESSION['status'])): ?>
                                 
                                             <?php if($_SESSION['status'] == 2 || $_SESSION['status'] == 3 || $_SESSION['email'] == $commentAnswer['email']): ?>
-                                                <a class="a" href="train.php?id_trainer=<?=$comment['id_trainer'];?>&delete_train_id=<?=$comment['id'];?>">Удалить</a>
+                                                <a class="a" href="train.php?id_trainer=<?=$commentAnswer['id_trainer'];?>&delete_train_id=<?=$commentAnswer['id'];?>">Удалить</a>
                                             <?php endif; ?>
                             
                                         <?php endif; ?>
