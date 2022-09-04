@@ -46,19 +46,18 @@ $users = selectAllForPage('users', $limit, $offset);
             <h1>Пользователи</h1>
             <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
-                <div class="col-2"><strong>Статус</strong></div>
-                <div class="col-5"><strong>Email</strong></div>
-                <div class="col-2"><strong>Редактировать</strong></div>
-                <div class="col-2"><strong>Удалить</strong></div>
+                <div class="col-2 unimportant"><strong>Статус</strong></div>
+                <div class="col-7 col-lg-5"><strong>Email</strong></div>
+                <div class="col-2"><strong>Действия</strong></div>
             </div>
                 <?php foreach($users as $user): ?>
                     <div class="row admin-string">
                         <div class="col-1"><?=$user['id']; ?></div>
-                        <div class="col-2"><?=$user['status']; ?></div>
+                        <div class="col-2 unimportant"><?=$user['status']; ?></div>
                         <?php if(mb_strlen($user['email']) > 30): ?>
-                            <div class="col-5"><?=mb_substr($user['email'], 0, 30, $encoding='utf8'); ?>...</div>
+                            <div class="col-7 col-lg-5 admin-word-wrap"><?=mb_substr($user['email'], 0, 30, $encoding='utf8'); ?>...</div>
                         <?php else: ?>
-                            <div class="col-5"><?=$user['email']; ?></div>
+                            <div class="col-7 col-lg-5 admin-word-wrap"><?=$user['email']; ?></div>
                         <?php endif; ?>
                         <?php if($user['status'] == 0 || $user['status'] == 1): ?>
                             <div class="col-2 edit"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>

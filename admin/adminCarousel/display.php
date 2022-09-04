@@ -44,8 +44,8 @@ include SITE_ROOT . '/app/controllers/adminCarousel.php';
             </div>
             <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
-                <div class="col-5"><strong>Заголовок</strong></div>
-                <div class="col-4"><strong>Картинка</strong></div>
+                <div class="col-6 col-lg-5"><strong>Заголовок</strong></div>
+                <div class="col-4 xl-unimportant"><strong>Картинка</strong></div>
                 <div class="col-2"><strong>Действия</strong></div>
             </div>
             <?php foreach($slides as $slide): ?>
@@ -54,18 +54,18 @@ include SITE_ROOT . '/app/controllers/adminCarousel.php';
                     <div class="col-1"><?=$slide['id_slide']; ?></div>
                     
                     <?php if(mb_strlen($slide['title']) > 30): ?>
-                        <div class="col-5"><?=mb_substr($slide['title'], 0, 30, $encoding='utf8'); ?>...</div>
+                        <div class="col-6 col-lg-5 admin-word-wrap"><?=mb_substr($slide['title'], 0, 30, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-5"><?=$slide['title']; ?></div>
+                        <div class="col-6 col-lg-5 admin-word-wrap"><?=$slide['title']; ?></div>
                     <?php endif; ?>
     
                     <?php if(mb_strlen($slide['img']) > 25): ?>
-                        <div class="col-4"><?=mb_substr($slide['img'], 0, 25, $encoding='utf8'); ?>...</div>
+                        <div class="col-4 xl-unimportant"><?=mb_substr($slide['img'], 0, 25, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-4"><?=$slide['img']; ?></div>
+                        <div class="col-4 xl-unimportant"><?=$slide['img']; ?></div>
                     <?php endif; ?>
                     
-                    <div class="col-1 look"><a href="edit.php?edit_id=<?=$slide['id_slide']?>">Edit</a></div>
+                    <div class="col-2 col-md-1 look"><a href="edit.php?edit_id=<?=$slide['id_slide']?>">Edit</a></div>
                     <div class="col-1 delete"><a href="edit.php?delete_id=<?=$slide['id_slide']?>">Delete</a></div>
                 </div>
             <?php endforeach; ?>

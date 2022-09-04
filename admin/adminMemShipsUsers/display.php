@@ -58,23 +58,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['button_searchOrder'])) {
                 </div>
             </div>
             <div class="row admin-params">
-                <div class="col-1"><strong>Заказ</strong></div>
-                <div class="col-5"><strong>Email</strong></div>
-                <div class="col-2"><strong>Абонемент</strong></div>
-                <div class="col-2"><strong>Осталось</strong></div>
-                <div class="col-2"><strong>Действия</strong></div>
+                <div class="col-2 col-md-1"><strong>Заказ</strong></div>
+                <div class="col-4 col-md-5"><strong>Email</strong></div>
+                <div class="col-2 unimportant"><strong>Абонемент</strong></div>
+                <div class="col-3 col-md-2"><strong>Осталось</strong></div>
+                <div class="col-2 unimportant"><strong>Действия</strong></div>
             </div>
             <?php foreach($memberShips as $memSh): ?>
                 <?php //che($supportMsgs); ?>
                 <div class="row admin-string">
-                    <div class="col-1"><?=$memSh['id_order']; ?></div>
+                    <div class="col-2 col-md-1"><?=$memSh['id_order']; ?></div>
                     <?php if(mb_strlen($memSh['email']) > 25): ?>
-                        <div class="col-5"><?=mb_substr($memSh['email'], 0, 25, $encoding='utf8'); ?>...</div>
+                        <div class="col-4 col-md-5 admin-word-wrap"><?=mb_substr($memSh['email'], 0, 25, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-5"><?=$memSh['email']; ?></div>
+                        <div class="col-4 col-md-5 admin-word-wrap"><?=$memSh['email']; ?></div>
                     <?php endif; ?>
-                    <div class="col-2"><?=$memSh['id_memsh']; ?></div>
-                    <div class="col-2"><?=$memSh['remains']; ?></div>
+                    <div class="col-2 unimportant"><?=$memSh['id_memsh']; ?></div>
+                    <div class="col-1 col-md-2"><?=$memSh['remains']; ?></div>
                     <div class="col-2 look"><a href="display.php?reduce_id=<?=$memSh['id_order']?>">Отметить</a></div>
                 </div>
             <?php endforeach; ?>

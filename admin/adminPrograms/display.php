@@ -46,10 +46,10 @@ $programs = selectAllForPage('programs', $limit, $offset);
             <h1>Тренировочные программы</h1>
             <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
-                <div class="col-3"><strong>Автор</strong></div>
-                <div class="col-4"><strong>Название</strong></div>
-                <div class="col-2"><strong>Редактировать</strong></div>
-                <div class="col-2"><strong>Статус</strong></div>
+                <div class="col-3 unimportant"><strong>Автор</strong></div>
+                <div class="col-5 col-lg-4"><strong>Название</strong></div>
+                <div class="col-3 col-lg-2"><strong>Действия</strong></div>
+                <div class="col-2 unimportant"><strong>Статус</strong></div>
             </div>
             <?php foreach($programs as $program): ?>
             <?php //che($programs); ?>
@@ -57,18 +57,18 @@ $programs = selectAllForPage('programs', $limit, $offset);
                     <div class="col-1"><?=$program['id_program']; ?></div>
                     
                     <?php if(mb_strlen($program['email']) > 15): ?>
-                        <div class="col-3"><?=mb_substr($program['email'], 0, 15, $encoding='utf8'); ?>...</div>
+                        <div class="col-3 unimportant"><?=mb_substr($program['email'], 0, 15, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-3"><?=$program['email']; ?></div>
+                        <div class="col-3 unimportant"><?=$program['email']; ?></div>
                     <?php endif; ?>
                     
-                    <?php if(mb_strlen($program['title']) > 20): ?>
-                        <div class="col-4"><?=mb_substr($program['title'], 0, 20, $encoding='utf8'); ?>...</div>
+                    <?php if(mb_strlen($program['title']) > 15): ?>
+                        <div class="col-5 col-lg-4"><?=mb_substr($program['title'], 0, 15, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-4"><?=$program['title']; ?></div>
+                        <div class="col-5 col-lg-4"><?=$program['title']; ?></div>
                     <?php endif; ?>
-                    <div class="col-1 edit"><a href="edit.php?edit_id=<?=$program['id_program']?>">Edit</a></div>
-                    <div class="col-1 delete"><a href="edit.php?delete_id=<?=$program['id_program']?>">Delete</a></div>
+                    <div class="col-2 col-lg-1 edit"><a href="edit.php?edit_id=<?=$program['id_program']?>">Edit</a></div>
+                    <div class="col-2 col-lg-1 delete"><a href="edit.php?delete_id=<?=$program['id_program']?>">Delete</a></div>
                     <?php if($program['publish'] == 1): ?>
                         <div class="col-2 status"><a href="edit.php?edit_id=<?=$program['id_program']?>&publish=0">Publish</a></div>
                     <?php else: ?>

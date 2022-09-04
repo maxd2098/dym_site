@@ -93,18 +93,13 @@ textarea {
     text-align: center;
 }
 
-.carousel {
-    height: 400px;
-
-}
-
 .carousel-inner {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(205,92,92,0.1);
 }
 
 .carousel-item {
-    height: 400px;
+    max-height: 400px;
 }
 
 .carousel-item p {
@@ -679,24 +674,61 @@ textarea {
 }
 
 
+/*
+    OTHER
+ */
 
-
+.admin-word-wrap {
+    word-wrap: break-word;
+}
 
 /*
     MEDIA SCREEN
  */
 
+@media screen and (max-width: 1200px) {
+    .xl-unimportant {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 992px) {
     .program-cards .img-div, .trainers-cards .img-div, .train-cards .img-div{
         height: 300px;
         max-height: 400px;
     }
+
+    .carousel-item {
+        max-height: 250px;
+    }
+
+    .unimportant {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel-item {
+        max-height: 190px;
+    }
+
+    .md-unimportant {
+        display: none;
+    }
+
 }
 
 @media screen and (max-width: 576px) {
     .profile-content .img-div {
         max-height: 500px;
+    }
+
+    .carousel-item {
+        max-height: 130px;
+    }
+
+    .sm-unimportant {
+        display: none;
     }
 }
 

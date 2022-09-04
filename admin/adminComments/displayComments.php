@@ -66,37 +66,37 @@ if (isset($_GET['program'])) {
             <?php if($getTable == 'train') echo '<h1>Комментарии к тренерам</h1>'; ?>
             <?php if($getTable == 'forum') echo '<h1>Комментарии к форуму</h1>'; ?>
             <div class="row admin-params">
-                <div class="col-1"><strong>ID</strong></div>
-                <div class="col-2"><strong>ID раздела</strong></div>
-                <div class="col-2"><strong>Автор</strong></div>
-                <div class="col-5"><strong>Комментарий</strong></div>
+                <div class="col-1 unimportant"><strong>ID</strong></div>
+                <div class="col-1 col-sm-2 admin-word-wrap"><strong>ID раздела</strong></div>
+                <div class="col-2 admin-word-wrap"><strong>Автор</strong></div>
+                <div class="col-4 col-sm-5 admin-word-wrap"><strong>Комментарий</strong></div>
                 <div class="col-2"><strong>Действия</strong></div>
             </div>
             <?php foreach($comments as $comment): ?>
                 <?php //che($supportMsgs); ?>
                 <div class="row admin-string">
-                    <div class="col-1"><?=$comment['id']; ?></div>
+                    <div class="col-1 unimportant"><?=$comment['id']; ?></div>
                     <?php if($getTable == 'program'): ?>
-                        <div class="col-2"><?=$comment['id_program']; ?></div>
+                        <div class="col-1 col-sm-2"><?=$comment['id_program']; ?></div>
                     <?php elseif($getTable == 'train'): ?>
-                        <div class="col-2"><?=$comment['id_trainer']; ?></div>
+                        <div class="col-1 col-sm-2"><?=$comment['id_trainer']; ?></div>
                     <?php else: ?>
-                        <div class="col-2"><?=$comment['id_topic']; ?></div>
+                        <div class="col-1 col-sm-2"><?=$comment['id_topic']; ?></div>
                     <?php endif; ?>
                     
                     <?php if(mb_strlen($comment['email']) > 10): ?>
-                        <div class="col-2"><?=mb_substr($comment['email'], 0, 10, $encoding='utf8'); ?>...</div>
+                        <div class="col-2 admin-word-wrap"><?=mb_substr($comment['email'], 0, 10, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-2"><?=$comment['email']; ?></div>
+                        <div class="col-2 admin-word-wrap"><?=$comment['email']; ?></div>
                     <?php endif; ?>
                     
                     <?php if(mb_strlen($comment['comment']) > 30): ?>
-                        <div class="col-5"><?=mb_substr($comment['comment'], 0, 30, $encoding='utf8'); ?>...</div>
+                        <div class="col-4 col-sm-5 admin-word-wrap"><?=mb_substr($comment['comment'], 0, 30, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-5"><?=$comment['comment']; ?></div>
+                        <div class="col-4 col-sm-5 admin-word-wrap"><?=$comment['comment']; ?></div>
                     <?php endif; ?>
                     
-                    <div class="col-1 look"><a href="edit.php?edit_id=<?=$comment['id'] . '&' . $getTable; ?>">Edit</a></div>
+                    <div class="col-2 col-sm-1 look"><a href="edit.php?edit_id=<?=$comment['id'] . '&' . $getTable; ?>">Edit</a></div>
                     <div class="col-1 delete"><a href="display.php?delete_id=<?=$comment['id'] . '&' . $getTable; ?>">Delete</a></div>
                 </div>
             <?php endforeach; ?>

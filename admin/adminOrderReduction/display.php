@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['button_searchOrder'])) {
                 </div>
             </div>
             <div class="row admin-params">
-                <div class="col-1"><strong>ID</strong></div>
-                <div class="col-1"><strong>Заказ</strong></div>
-                <div class="col-2"><strong>Осталось</strong></div>
-                <div class="col-3"><strong>Отметил</strong></div>
+                <div class="col-1 unimportant"><strong>ID</strong></div>
+                <div class="col-1 admin-word-wrap"><strong>Заказ</strong></div>
+                <div class="col-2 admin-word-wrap"><strong>Осталось</strong></div>
+                <div class="col-3 admin-word-wrap"><strong>Отметил</strong></div>
                 <div class="col-3"><strong>Дата</strong></div>
                 <?php if($_SESSION['status'] == 3): ?>
                     <div class="col-2"><strong>Удалить</strong></div>
@@ -70,15 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['button_searchOrder'])) {
             <?php foreach($orderReduction as $order): ?>
                 <?php //che($supportMsgs); ?>
                 <div class="row admin-string">
-                    <div class="col-1"><?=$order['id_reduct']; ?></div>
+                    <div class="col-1 unimportant"><?=$order['id_reduct']; ?></div>
                     <div class="col-1"><?=$order['id_order']; ?></div>
                     
                     <div class="col-2"><?=$order['remains']; ?></div>
                     
                     <?php if(mb_strlen($order['email']) > 15): ?>
-                        <div class="col-3"><?=mb_substr($order['email'], 0, 15, $encoding='utf8'); ?>...</div>
+                        <div class="col-3 admin-word-wrap"><?=mb_substr($order['email'], 0, 15, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-3"><?=$order['email']; ?></div>
+                        <div class="col-3 admin-word-wrap"><?=$order['email']; ?></div>
                     <?php endif; ?>
                     <div class="col-3"><?=$order['created_date']; ?></div>
                     

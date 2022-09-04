@@ -46,8 +46,8 @@ $topics = selectAllForPage('forum', $limit, $offset);
             <h1>Форум</h1>
             <div class="row admin-params">
                 <div class="col-1"><strong>ID</strong></div>
-                <div class="col-3"><strong>Автор</strong></div>
-                <div class="col-5"><strong>Заголовок</strong></div>
+                <div class="col-3 md-unimportant"><strong>Автор</strong></div>
+                <div class="col-6 col-md-5"><strong>Заголовок</strong></div>
                 <div class="col-2"><strong>Действия</strong></div>
             </div>
             <?php foreach($topics as $topic): ?>
@@ -55,18 +55,18 @@ $topics = selectAllForPage('forum', $limit, $offset);
                 <div class="row admin-string">
                     <div class="col-1"><?=$topic['id_topic']; ?></div>
                     <?php if(mb_strlen($topic['email']) > 15): ?>
-                        <div class="col-3"><?=mb_substr($topic['email'], 0, 15, $encoding='utf8'); ?>...</div>
+                        <div class="col-3 md-unimportant"><?=mb_substr($topic['email'], 0, 15, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-3"><?=$topic['email']; ?></div>
+                        <div class="col-3 md-unimportant"><?=$topic['email']; ?></div>
                     <?php endif; ?>
             
                     <?php if(mb_strlen($topic['title']) > 30): ?>
-                        <div class="col-5"><?=mb_substr($topic['title'], 0, 30, $encoding='utf8'); ?>...</div>
+                        <div class="col-6 col-md-5"><?=mb_substr($topic['title'], 0, 30, $encoding='utf8'); ?>...</div>
                     <?php else: ?>
-                        <div class="col-5"><?=$topic['title']; ?></div>
+                        <div class="col-6 col-md-5"><?=$topic['title']; ?></div>
                     <?php endif; ?>
-                    <div class="col-1 look"><a href="edit.php?edit_id=<?=$topic['id_topic']?>">Edit</a></div>
-                    <div class="col-1 delete"><a href="display.php?delete_id=<?=$topic['id_topic']?>">Delete</a></div>
+                    <div class="col-2 col-md-1 look"><a href="edit.php?edit_id=<?=$topic['id_topic']?>">Edit</a></div>
+                    <div class="col-2 col-md-1 delete"><a href="display.php?delete_id=<?=$topic['id_topic']?>">Delete</a></div>
                 </div>
             <?php endforeach; ?>
 

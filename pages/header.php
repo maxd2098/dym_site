@@ -8,7 +8,7 @@ include SITE_ROOT . "/app/controllers/users.php";
     <div class="container">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid header-nav">
-                <a class="navbar-brand" href="#">TR</a>
+                <a class="navbar-brand" href="<?=BASE_URL . 'index.php'?>">TR</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
                     <span class="navbar-toggler-icon"></span>
                 </button>
