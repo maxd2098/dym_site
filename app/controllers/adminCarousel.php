@@ -98,8 +98,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditSlide'
         $slide = [
             'title' => $title
         ];
-        if($img !== '') $slide['img'] = $img;
-        updateCarousel('carousel', $id_slide, $slide);
+        if($img !== '') {
+            $slide['img'] = $img;
+            $slideImg = selectOneAnd('carousel', ['id_slide' => $id_slide]);
+            unlink(SITE_ROOT . '\assets\imageToServer\\' . $slideImg['img']);
+        }
+        updateAll('carousel', $id_slide, 'id_slide', $slide);
         header('location: display.php');
     }
 }

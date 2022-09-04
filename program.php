@@ -49,9 +49,6 @@ $comments = selectAllComments('comments_program', ['id_program' => $_GET['id_pro
                     </div>
                 <?php endif; ?>
             </div>
-            <div class="img-div-program">
-                <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
-            </div>
             <div class="weight-program age">
                 Автор: <?=$program['name'] . ' ' . $program['surname']; ?>
             </div>
@@ -61,8 +58,11 @@ $comments = selectAllComments('comments_program', ['id_program' => $_GET['id_pro
                     <div class="card-date-change col-6">Изменен: <?=$program['change_date']; ?></div>
                 <?php endif; ?>
             </div>
+            <div class="img-div-program">
+                <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+            </div>
             <div class="describe-program">
-                <?=$program['text']; ?>
+                <pre><?=$program['text']; ?></pre>
             </div>
             
 <!--            <button type="button" class="btn btn-primary like-program">-->

@@ -62,6 +62,15 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
                     <label for="exampleInputEmail1" class="form-label">Содержание программы*</label>
                     <textarea name="text" class="form-control" rows="12" placeholder="Содержание" maxlength="20000"><?=$program['text']; ?></textarea>
                 </div>
+                <?php if($program['img'] != ''): ?>
+                    <div class="w-100"></div>
+                    <div class="mb-3 col-12 col-lg-6">
+                        <label for="exampleInputEmail1" class="form-label">Нынешнее изображение</label>
+                        <div class="img-edit">
+                            <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputEmail1" class="form-label">Изменить изображение</label>
@@ -70,7 +79,7 @@ include SITE_ROOT . '/app/controllers/adminPrograms.php';
                 <div class="w-100"></div>
                 <div class="buttons-form mb-3 col-12 col-lg-6">
                     <button name="button_adminEditProgram" type="submit" class="btn btn-danger">Сохранить</button>
-                    <a class="button-reg" href="<?=BASE_URL . 'program.php'?>">
+                    <a class="button-reg" href="display.php">
                         <button type="button" class="btn btn-secondary">Не сохранять</button>
                     </a>
                 </div>

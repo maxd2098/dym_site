@@ -32,14 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditProgra
             $result = move_uploaded_file($imgTmp, $imgPath);
             if ($result) {
                 $_POST['img'] = $imgName;
-                /*$img = [
-                    'img' => $_POST['img']
-                ];
-            
-                update('programs', $id, $img);
-                $_SESSION['img'] = $_POST['img'];
-                header('location: ' . BASE_URL . 'profile.php');*/
-                
             } else {
                 $errMsg []= "Ошибка загрузки изображения на сервер";
             }
@@ -60,8 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditProgra
             'text' => $text,
             'change_date' => $timeNow
         ];
-        if(isset($_POST['img'])) $program['img'] = $_POST['img'];
-        updateProgram('programs', $id_program, $program);
+        if(isset($_POST['img'])) {
+            $program['img'] = $_POST['img'];
+            $programImg = selectOneAnd('programs', ['id_program' => $id_program]);
+            unlink(SITE_ROOT . '\assets\imageToServer\\' . $programImg['img']);
+        }
+        updateAll('programs', $id_program, 'id_program', $program);
         header('location: display.php');
     }
 }
@@ -82,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
 
 // РЕДАКТИРОВАНИЕ СТАТУСА СТАТЬИ edit start
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['edit_id']) && isset($_GET['publish'])) {
-    updateProgram('programs', $_GET['edit_id'], ['publish' => $_GET['publish']]);
+    updateAll('programs', $_GET['edit_id'], 'id_program', ['publish' => $_GET['publish']]);
     header('location: display.php');
 }
 

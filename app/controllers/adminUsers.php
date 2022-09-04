@@ -25,6 +25,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditProfil
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
     
+    if ($_FILES['img']['name'] !== '') {
+        $imgName = 'img' . time() . '_' . $_FILES['img']['name'];
+        $imgType = $_FILES['img']['type'];
+        $imgTmp = $_FILES['img']['tmp_name'];
+        $imgSize = $_FILES['img']['size'];
+        $imgPath = SITE_ROOT . '\assets\imageToServer\\' . $imgName;
+        
+        if(strpos($imgType, 'image') !== false) {
+            $result = move_uploaded_file($imgTmp, $imgPath);
+            if ($result) {
+                $_POST['img'] = $imgName;
+            } else {
+                $errMsg []= "Ошибка загрузки изображения на сервер";
+            }
+        } else {
+            $errMsg []= "Можно загружать только изображения";
+        }
+        
+    }
+    
     if ($name === '' || $surname === '' || $age === '') {
         $errMsg []= 'Не все поля * были заполнены';
         $userEdit = selectOneAnd('users', ['id' => $id]);
@@ -51,6 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditProfil
         if(!empty($pass1) && $pass1 !== '') {
             $pass = password_hash($pass1, PASSWORD_DEFAULT);
             $post['password'] = $pass;
+        }
+        if(isset($_POST['img'])) {
+            $post['img'] = $_POST['img'];
+            $userImg = selectOneAnd('users', ['id' => $id]);
+            unlink(SITE_ROOT . '\assets\imageToServer\\' . $userImg['img']);
         }
         //che($_FILES);
         update('users', $id, $post);

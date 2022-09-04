@@ -21,6 +21,8 @@ include "path.php";
 
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/pages/banUnaut.php";
+$userImg = selectOneAnd('users', ['id' => $_SESSION['id']]);
+
 
 ?>
 <!--HEADER end-->
@@ -39,9 +41,18 @@ include SITE_ROOT . "/pages/banUnaut.php";
                 }
                 ?>
             </div>
+            <?php if($userImg['img'] != ''): ?>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-4">
+                    <label for="exampleInputEmail1" class="form-label">Нынешнее фото</label>
+                    <div class="img-edit">
+                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $userImg['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-4">
-                <input name="img" type="file" class="form-control" id="inputGroupFile02">
+                <input name="img" type="file" class="form-control">
             </div>
             <div class="w-100"></div>
             <div class="btn-div mb-3 col-12 col-lg-4">

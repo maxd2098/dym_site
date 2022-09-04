@@ -70,110 +70,110 @@ function update($table, $id, $params) {
     dbCheckError($query);
 }
 
-function updateProgram($table, $id, $params) {
-    global $pdo;
-    
-    $set = '';
-    $check = 0;
-    foreach ($params as $key => $value) {
-        if ($check++ == 0) {
-            $set .= "$key = '$value'";
-        } else {
-            $set .= ", $key = '$value'";
-        }
-    }
-    
-    $sql = "UPDATE gym_site.$table SET $set WHERE id_program = $id";
-    
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    
-    dbCheckError($query);
-}
+//function updateProgram($table, $id, $params) {
+//    global $pdo;
+//
+//    $set = '';
+//    $check = 0;
+//    foreach ($params as $key => $value) {
+//        if ($check++ == 0) {
+//            $set .= "$key = '$value'";
+//        } else {
+//            $set .= ", $key = '$value'";
+//        }
+//    }
+//
+//    $sql = "UPDATE gym_site.$table SET $set WHERE id_program = $id";
+//
+//    $query = $pdo->prepare($sql);
+//    $query->execute();
+//
+//    dbCheckError($query);
+//}
 
-function updateMemShips($table, $id, $params) {
-    global $pdo;
-    
-    $set = '';
-    $check = 0;
-    foreach ($params as $key => $value) {
-        if ($check++ == 0) {
-            $set .= "$key = '$value'";
-        } else {
-            $set .= ", $key = '$value'";
-        }
-    }
-    
-    $sql = "UPDATE gym_site.$table SET $set WHERE id_memsh = $id";
-    
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    
-    dbCheckError($query);
-}
+//function updateMemShips($table, $id, $params) {
+//    global $pdo;
+//
+//    $set = '';
+//    $check = 0;
+//    foreach ($params as $key => $value) {
+//        if ($check++ == 0) {
+//            $set .= "$key = '$value'";
+//        } else {
+//            $set .= ", $key = '$value'";
+//        }
+//    }
+//
+//    $sql = "UPDATE gym_site.$table SET $set WHERE id_memsh = $id";
+//
+//    $query = $pdo->prepare($sql);
+//    $query->execute();
+//
+//    dbCheckError($query);
+//}
 
-function updateAbout($table, $params) {
-    global $pdo;
-    
-    $set = '';
-    $check = 0;
-    foreach ($params as $key => $value) {
-        if ($check++ == 0) {
-            $set .= "$key = '$value'";
-        } else {
-            $set .= ", $key = '$value'";
-        }
-    }
-    
-    $sql = "UPDATE gym_site.$table SET $set WHERE id_about = 1";
-    
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    
-    dbCheckError($query);
-}
+//function updateAbout($table, $params) {
+//    global $pdo;
+//
+//    $set = '';
+//    $check = 0;
+//    foreach ($params as $key => $value) {
+//        if ($check++ == 0) {
+//            $set .= "$key = '$value'";
+//        } else {
+//            $set .= ", $key = '$value'";
+//        }
+//    }
+//
+//    $sql = "UPDATE gym_site.$table SET $set WHERE id_about = 1";
+//
+//    $query = $pdo->prepare($sql);
+//    $query->execute();
+//
+//    dbCheckError($query);
+//}
 
-function updateForum($table, $id, $params) {
-    global $pdo;
-    
-    $set = '';
-    $check = 0;
-    foreach ($params as $key => $value) {
-        if ($check++ == 0) {
-            $set .= "$key = '$value'";
-        } else {
-            $set .= ", $key = '$value'";
-        }
-    }
-    
-    $sql = "UPDATE gym_site.$table SET $set WHERE id_topic = $id";
-    
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    
-    dbCheckError($query);
-}
+//function updateForum($table, $id, $params) {
+//    global $pdo;
+//
+//    $set = '';
+//    $check = 0;
+//    foreach ($params as $key => $value) {
+//        if ($check++ == 0) {
+//            $set .= "$key = '$value'";
+//        } else {
+//            $set .= ", $key = '$value'";
+//        }
+//    }
+//
+//    $sql = "UPDATE gym_site.$table SET $set WHERE id_topic = $id";
+//
+//    $query = $pdo->prepare($sql);
+//    $query->execute();
+//
+//    dbCheckError($query);
+//}
 
-function updateCarousel($table, $id, $params) {
-    global $pdo;
-    
-    $set = '';
-    $check = 0;
-    foreach ($params as $key => $value) {
-        if ($check++ == 0) {
-            $set .= "$key = '$value'";
-        } else {
-            $set .= ", $key = '$value'";
-        }
-    }
-    
-    $sql = "UPDATE gym_site.$table SET $set WHERE id_slide = $id";
-    
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    
-    dbCheckError($query);
-}
+//function updateCarousel($table, $id, $params) {
+//    global $pdo;
+//
+//    $set = '';
+//    $check = 0;
+//    foreach ($params as $key => $value) {
+//        if ($check++ == 0) {
+//            $set .= "$key = '$value'";
+//        } else {
+//            $set .= ", $key = '$value'";
+//        }
+//    }
+//
+//    $sql = "UPDATE gym_site.$table SET $set WHERE id_slide = $id";
+//
+//    $query = $pdo->prepare($sql);
+//    $query->execute();
+//
+//    dbCheckError($query);
+//}
 
 function updateAll($table, $id, $name_id, $params) {
     global $pdo;
@@ -382,13 +382,15 @@ function selectTrainersToGeneralPage($table, $params = []) {
     $check = 0;
     foreach ($params as $key => $value) {
         if ($check++ == 0) {
-            $where .= " WHERE $key = '$value'";
+            $where .= "WHERE $key = '$value' ";
+        } elseif($value == 'notNull') {
+            $where .= "AND $key IS NOT NULL ";
         } else {
-            $where .= " AND $key = '$value'";
+            $where .= "AND $key = '$value' ";
         }
     }
     
-    $sql = "SELECT * FROM gym_site.$table" . $where . " ORDER BY RAND() LIMIT 4";
+    $sql = "SELECT * FROM gym_site.$table " . $where . "ORDER BY RAND() LIMIT 4 ";
     $query = $pdo->prepare($sql);
     $query->execute();
     

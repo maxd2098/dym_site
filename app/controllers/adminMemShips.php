@@ -29,14 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminAddMemShip
             if ($result) {
                 $_POST['img'] = $imgName;
                 $img = $_POST['img'];
-                /*$img = [
-                    'img' => $_POST['img']
-                ];
-            
-                update('programs', $id, $img);
-                $_SESSION['img'] = $_POST['img'];
-                header('location: ' . BASE_URL . 'profile.php');*/
-                
             } else {
                 $errMsg []= "Ошибка загрузки изображения на сервер";
             }
@@ -95,14 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditMemShi
             if ($result) {
                 $_POST['img'] = $imgName;
                 $img = $_POST['img'];
-                //che($_POST);
-                /*$img = [
-                    'img' => $_POST['img']
-                ];
-            
-                update('programs', $id, $img);
-                $_SESSION['img'] = $_POST['img'];
-                header('location: ' . BASE_URL . 'profile.php');*/
                 
             } else {
                 $errMsg []= "Ошибка загрузки изображения на сервер";
@@ -126,8 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditMemShi
             'count' => $count,
             'title' => $title
         ];
-        if($img !== '') $memShips['img'] = $img;
-        updateMemShips('member_ships', $id_memsh, $memShips);
+        if($img !== '') {
+            $memShips['img'] = $img;
+            $memshImg = selectOneAnd('member_ships', ['id_memsh' => $id_memsh]);
+            unlink(SITE_ROOT . '\assets\imageToServer\\' . $memshImg['img']);
+        }
+        updateAll('member_ships', $id_memsh, 'id_memsh', $memShips);
         header('location: display.php');
     }
 }

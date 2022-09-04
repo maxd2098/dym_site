@@ -24,7 +24,7 @@ include SITE_ROOT . "/pages/addYear.php";
 //$trainers = selectAllAnd('users', ['status' => 1]);
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 2;
+$limit = 3;
 $offset = $limit * ($page - 1);
 $countPage = countTable('users', ['status' => 1]);
 $countPage = ceil($countPage['count'] / $limit);

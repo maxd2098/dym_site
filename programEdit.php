@@ -62,6 +62,15 @@ include SITE_ROOT . "/app/controllers/programs.php";
                 <label for="exampleInputEmail1" class="form-label">Содержание программы*</label>
                 <textarea name="text" class="form-control" rows="12" placeholder="Содержание" maxlength="20000"><?=$program['text']; ?></textarea>
             </div>
+            <?php if($program['img'] != ''): ?>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-5">
+                    <label for="exampleInputEmail1" class="form-label">Нынешнее изображение</label>
+                    <div class="img-edit">
+                        <img src="<?=BASE_URL . '/assets/imageToServer/' . $program['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-lg-5">
                 <label for="exampleInputEmail1" class="form-label">Изменить изображение</label>

@@ -23,7 +23,7 @@
 include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . '/app/controllers/adminCarousel.php';
 include SITE_ROOT . "/pages/addYear.php";
-$trainers = selectTrainersToGeneralPage('users', ['status' => 1]);
+$trainers = selectTrainersToGeneralPage('users', ['status' => 1, 'img' => 'notNull', 'experience' => 'notNull']);
 //che($trainers);
 
 ?>
@@ -37,6 +37,7 @@ $trainers = selectTrainersToGeneralPage('users', ['status' => 1]);
     <h2 class="title-carousel">
         Тренажерка
     </h2>
+    <?php if(!empty($slides)): ?>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php foreach($slides as $slide): ?>
@@ -64,6 +65,7 @@ $trainers = selectTrainersToGeneralPage('users', ['status' => 1]);
             <span class="visually-hidden">Следующий</span>
         </button>
     </div>
+        <?php endif; ?>
 </div>
 <!--CAROUSEL end-->
 

@@ -28,7 +28,7 @@ include SITE_ROOT . '/app/controllers/adminComments.php';
 function pagination($table) {
     global $page;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 5;
+    $limit = 20;
     $offset = $limit * ($page - 1);
     global $countPage;
     $countPage = countTable($table);

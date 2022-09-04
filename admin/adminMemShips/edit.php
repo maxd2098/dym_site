@@ -62,22 +62,31 @@ include SITE_ROOT . '/app/controllers/adminMemShips.php';
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Цена</label>
+                    <label for="exampleInputEmail1" class="form-label">Цена*</label>
                     <input name="price" value="<?=$memShip['price']; ?>" type="text" class="form-control" placeholder="Введите цену">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Число занятий</label>
+                    <label for="exampleInputEmail1" class="form-label">Число занятий*</label>
                     <input name="count" value="<?=$memShip['count']; ?>" type="text" class="form-control" placeholder="Введите число занятий">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Название абонемента</label>
+                    <label for="exampleInputEmail1" class="form-label">Название абонемента*</label>
                     <input name="title" value="<?=$memShip['title']; ?>" type="text" class="form-control" placeholder="Введите название">
                 </div>
+                <?php if($memShip['img'] != ''): ?>
+                    <div class="w-100"></div>
+                    <div class="mb-3 col-12 col-lg-6">
+                        <label for="exampleInputEmail1" class="form-label">Нынешнее изображение</label>
+                        <div class="img-edit">
+                            <img src="<?=BASE_URL . '/assets/imageToServer/' . $memShip['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Изображение</label>
+                    <label for="exampleInputEmail1" class="form-label">Изменить изображение</label>
                     <input name="img" type="file" class="form-control" id="inputGroupFile02">
                 </div>
                 <div class="w-100"></div>

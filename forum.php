@@ -23,7 +23,7 @@ include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/app/controllers/forum.php";
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 2;
+$limit = 5;
 $offset = $limit * ($page - 1);
 $countPage = countTable('forum');
 $countPage = ceil($countPage['count'] / $limit);

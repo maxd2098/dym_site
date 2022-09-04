@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditForum'
             'title' => $title,
             'comment' => $comment
         ];
-        updateForum('forum', $id_topic, $topic);
+        updateAll('forum', $id_topic, 'id_topic', $topic);
         header('location: display.php');
     }
 }

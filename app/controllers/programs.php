@@ -128,8 +128,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editProgram']))
             'author_id' => $author_id,
             'change_date' => $timeNow
         ];
-        if(isset($_POST['img'])) $program['img'] = $_POST['img'];
-        updateProgram('programs', $id_program, $program);
+        if(isset($_POST['img'])) {
+            $program['img'] = $_POST['img'];
+            $programImg = selectOneAnd('programs', ['id_program' => $id_program]);
+            unlink(SITE_ROOT . '\assets\imageToServer\\' . $programImg['img']);
+        }
+        updateAll('programs', $id_program, 'id_program', $program);
         header('location: program.php?id_program=' . $id_program);
     }
 }

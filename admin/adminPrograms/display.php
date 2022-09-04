@@ -24,7 +24,7 @@ include SITE_ROOT . "/pages/banAdmin.php";
 include SITE_ROOT . '/app/controllers/adminPrograms.php';
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 2;
+$limit = 5;
 $offset = $limit * ($page - 1);
 $countPage = countTable('programs');
 $countPage = ceil($countPage['count'] / $limit);

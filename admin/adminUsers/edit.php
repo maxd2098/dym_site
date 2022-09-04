@@ -29,7 +29,7 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
     <div class="row main-content">
         <!--ADMIN CONTENT start-->
         <div class="admin-content col-lg-9 col-12">
-            <form class="row profile-edit justify-content-center" action="edit.php" method="post">
+            <form class="row profile-edit justify-content-center" action="edit.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3 col-12 col-lg-6 error-msg">
                     <?php
                     foreach($errMsg as $msg) {
@@ -73,33 +73,33 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputEmail1" class="form-label">Имя пользователя*</label>
-                    <input name="name" value="<?=$userEdit['name']; ?>" type="text" class="form-control" id="regName" placeholder="Ваше имя">
+                    <input name="name" value="<?=$userEdit['name']; ?>" type="text" class="form-control" placeholder="Ваше имя">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputEmail1" class="form-label">Фамилия пользователя*</label>
-                    <input name="surname" value="<?=$userEdit['surname']; ?>" type="text" class="form-control" id="regSurname" placeholder="Ваша фамилия">
+                    <input name="surname" value="<?=$userEdit['surname']; ?>" type="text" class="form-control" placeholder="Ваша фамилия">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputEmail1" class="form-label">Адрес электронной почты*</label>
-                    <input name="email" value="<?=$userEdit['email']; ?>" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ваш email" readonly>
+                    <input name="email" value="<?=$userEdit['email']; ?>" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ваш email" readonly>
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputEmail1" class="form-label">Номер телефона*</label>
-                    <input name="phone" value="<?=$userEdit['phone']; ?>" type="text" class="form-control" id="regSurname" placeholder="Ваш номер" readonly>
+                    <input name="phone" value="<?=$userEdit['phone']; ?>" type="text" class="form-control" placeholder="Ваш номер" readonly>
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputEmail1" class="form-label">Возраст пользователя*</label>
-                    <input name="age" value="<?=$userEdit['age']; ?>" type="text" class="form-control" id="regSurname" placeholder="Ваш возраст">
+                    <input name="age" value="<?=$userEdit['age']; ?>" type="text" class="form-control" placeholder="Ваш возраст">
                 </div>
                 <?php if($userEdit['status'] == 1): ?>
                     <div class="w-100"></div>
                     <div class="mb-3 col-12 col-lg-6">
                         <label for="exampleInputEmail1" class="form-label">Стаж</label>
-                        <input name="experience" value="<?=$userEdit['experience']; ?>" type="text" class="form-control" id="regSurname" placeholder="Ваш возраст">
+                        <input name="experience" value="<?=$userEdit['experience']; ?>" type="text" class="form-control" placeholder="Ваш возраст">
                     </div>
                 <?php endif; ?>
                 <div class="w-100"></div>
@@ -107,15 +107,29 @@ include SITE_ROOT . '/app/controllers/adminUsers.php';
                     <label for="exampleInputEmail1" class="form-label">Информация о пользователе (max: 500 символов)</label>
                     <textarea name="info" class="form-control" rows="6" placeholder="Максимум 500 символов" maxlength="500"><?=$userEdit['info']; ?></textarea>
                 </div>
+                <?php if($userEdit['img'] != ''): ?>
+                    <div class="w-100"></div>
+                    <div class="mb-3 col-12 col-lg-6">
+                        <label for="exampleInputEmail1" class="form-label">Нынешнее фото</label>
+                        <div class="img-edit">
+                            <img src="<?=BASE_URL . '/assets/imageToServer/' . $userEdit['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="w-100"></div>
+                <div class="mb-3 col-12 col-lg-6">
+                    <label for="exampleInputEmail1" class="form-label">Изменить фото</label>
+                    <input name="img" type="file" class="form-control" id="inputGroupFile02">
+                </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputPassword1" class="form-label">Изменить пароль</label>
-                    <input name="pass1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+                    <input name="pass1" type="password" class="form-control" placeholder="Пароль">
                 </div>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
                     <label for="exampleInputPassword1" class="form-label">Повторите новый пароль</label>
-                    <input name="pass2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Повторите пароль">
+                    <input name="pass2" type="password" class="form-control" placeholder="Повторите пароль">
                 </div>
                 <div class="w-100"></div>
                 <div class="btn-div mb-3 col-12 col-lg-6">

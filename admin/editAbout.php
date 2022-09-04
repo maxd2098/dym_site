@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_adminEditAbout']
             'address' => $address,
             'description' => $description
         ];
-        updateAbout('about', $post);
+        updateAll('about', 1, 'id_about', $post);
         header('location: ' . '../about.php');
     }
 }

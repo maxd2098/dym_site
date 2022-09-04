@@ -23,7 +23,7 @@ include SITE_ROOT . "/pages/header.php";
 include SITE_ROOT . "/app/controllers/programs.php";
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$limit = 2;
+$limit = 3;
 $offset = $limit * ($page - 1);
 $countPage = countTable('programs', ['publish' => 1]);
 $countPage = ceil($countPage['count'] / $limit);

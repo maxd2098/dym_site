@@ -77,12 +77,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_aut'])) {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     
+    if(!isset($_SESSION['check'])) {
+        $_SESSION['check'] = 1;
+    } else {
+        $_SESSION['check'] += 1;
+    }
+    
+    if(isset($_SESSION['timeCheck'])) {
+        if(time() - $_SESSION['timeCheck'] > 10) {
+            $_SESSION['check'] = 1;
+            unset($_SESSION['timeCheck']);
+        }
+    }
+    
     if ($email === '' || $pass === '') {
         $errMsg []= 'Не все поля заполнены';
+    } elseif($_SESSION['check'] >= 3) {
+        $errMsg []= 'Подождите 10 секунд прежде чем снова попытаться войти';
+        $_SESSION['timeCheck'] = time();
     } else {
         $user = selectOneOr('users', ['email' => $email, 'phone' => $phone]);
         if (!empty($user) && password_verify($pass, $user['password'])) {
             autUser($user);
+            unset($_SESSION['check']);
         } else {
             $errMsg []= 'Неверный email (номер телефона) или пароль';
         }
@@ -201,7 +218,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['button_editPhoto'])) {
                 $img = [
                     'img' => $_POST['img']
                 ];
-                
+                $userImg = selectOneAnd('users', ['id' => $id]);
+                unlink(SITE_ROOT . '\assets\imageToServer\\' . $userImg['img']);
                 update('users', $id, $img);
                 $_SESSION['img'] = $_POST['img'];
                 header('location: ' . BASE_URL . 'profile.php');

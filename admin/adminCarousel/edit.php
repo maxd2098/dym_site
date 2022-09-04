@@ -53,10 +53,18 @@ include SITE_ROOT . '/app/controllers/adminCarousel.php';
                     <label for="exampleInputEmail1" class="form-label">Надпись для слайда*</label>
                     <input name="title" value="<?=$slide['title']; ?>" type="text" class="form-control" maxlength="100" placeholder="Введите заголовок слайда">
                 </div>
-    
+                <?php if($slide['img'] != ''): ?>
+                    <div class="w-100"></div>
+                    <div class="mb-3 col-12 col-lg-6">
+                        <label for="exampleInputEmail1" class="form-label">Нынешнее изображение</label>
+                        <div class="img-edit">
+                            <img src="<?=BASE_URL . '/assets/imageToServer/' . $slide['img']; ?>" class="img-fluid" alt="Загрузите фотографию">
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="w-100"></div>
                 <div class="mb-3 col-12 col-lg-6">
-                    <label for="exampleInputEmail1" class="form-label">Изображение</label>
+                    <label for="exampleInputEmail1" class="form-label">Изменить изображение</label>
                     <input name="img" type="file" class="form-control">
                 </div>
                 
